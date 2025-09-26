@@ -19,7 +19,6 @@ const Hero = () => {
           Ласкаво просимо!
           <br /> Перейдіть до каталогу, щоб обрати товар.
         </p>
-
         <Link href="/catalog" className={css.linkBtn}>
           Перейти до каталогу
         </Link>

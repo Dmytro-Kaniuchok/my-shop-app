@@ -39,3 +39,17 @@
   align-items: center;
   text-align: center;
 }
+
+.navigation a {
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #007bff;
+}
+
+.navigation a.active {
+  color: #007bff;
+}

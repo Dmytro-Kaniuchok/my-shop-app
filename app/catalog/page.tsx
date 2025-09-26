@@ -1,11 +1,24 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { products } from "../../data/products.js";
 import styles from "./catalog.module.css";
+import Loader from "@/components/Loader/Loader";
 
 export default function Catalog() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <main className={styles.container}>
       <Head>
@@ -24,7 +37,10 @@ export default function Catalog() {
         {products.map((p) => (
           <li key={p.id} className={styles.item}>
             <Link href={`/product/${p.id}`} className={styles.link}>
-              {p.name} — {p.price} грн
+              <img src={p.image} alt={p.name} className={styles.image} />
+              <span>
+                {p.name} — {p.price} грн
+              </span>
             </Link>
           </li>
         ))}

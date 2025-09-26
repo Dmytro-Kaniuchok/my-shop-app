@@ -1,0 +1,86 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import { products } from "../../../data/products";
+import styles from "./product.module.css";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import Loader from "@/components/Loader/Loader";
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
+export default function ProductPage() {
+  const { id } = useParams(); // id з URL
+  const [product, setProduct] = useState<(typeof products)[0] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    const found = products.find((p) => p.id === id);
+    setProduct(found || null);
+    setLoading(false);
+
+    if (!found) {
+      toast.error("Товар не знайдено!");
+    }
+  }, [id]);
+
+  const addToCart = (product: (typeof products)[0], quantity: number) => {
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const existing = cart.find((item) => item.id === product.id);
+    if (existing) {
+      existing.quantity += quantity;
+    } else {
+      cart.push({ ...product, quantity });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast.success("Товар додано до кошика!");
+  };
+
+  if (loading) return <Loader />;
+  if (!product) return <p>Товар не знайдено.</p>;
+
+  return (
+    <main className={styles.container}>
+      <img src={product.image} alt={product.name} className={styles.image} />
+      <div className={styles.info}>
+        <h1 className={styles.title}>{product.name}</h1>
+        <div className={styles.infoRow}>
+          <span>Бренд: {product.brand}</span>
+          <span>Артикул: {product.sku}</span>
+        </div>
+        <p className={styles.description}>{product.description}</p>
+
+        <div className={styles.quantityWrapper}>
+          <label htmlFor="quantity">Кількість: </label>
+          <input
+            id="quantity"
+            type="number"
+            min={1}
+            max={100}
+            value={quantity}
+            onChange={(e) => setQuantity(Number(e.target.value))}
+            className={styles.quantityInput}
+          />
+        </div>
+
+        <p className={styles.price}>{product.price} грн</p>
+
+        <button
+          className={styles.button}
+          onClick={() => addToCart(product, quantity)}
+        >
+          Додати до кошика
+        </button>
+      </div>
+    </main>
+  );
+}

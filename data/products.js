@@ -5,7 +5,7 @@ export const products = [
     price: 800,
     brand: "Bosch",
     sku: "BP001",
-    image: "/images/brake-pads.jpg",
+    image: "/image/stop.jpg",
     description:
       "Надійні колодки для стабільного гальмування. Сумісні з багатьма моделями.",
   },
@@ -15,7 +15,7 @@ export const products = [
     price: 250,
     brand: "Mann",
     sku: "OF002",
-    image: "/images/oil-filter.jpg",
+    image: "/image/oil-filtre.jpg",
     description:
       "Якісна фільтрація масла. Підходить для широкого ряду двигунів.",
   },
@@ -23,9 +23,29 @@ export const products = [
     id: "sp-003",
     name: "Свічка запалювання",
     price: 150,
-    brand: "NGK",
+    brand: "Dnipro-M",
     sku: "SP003",
-    image: "/images/spark-plug.jpg",
+    image: "/image/candle.jpg",
+    description:
+      "Стабільна іскра для надійного запуску і рівної роботи двигуна.",
+  },
+  {
+    id: "sp-004",
+    name: "Свічка запалювання",
+    price: 150,
+    brand: "Dnipro-M",
+    sku: "SP003",
+    image: "/image/candle.jpg",
+    description:
+      "Стабільна іскра для надійного запуску і рівної роботи двигуна.",
+  },
+  {
+    id: "sp-005",
+    name: "Свічка запалювання",
+    price: 150,
+    brand: "Dnipro-M",
+    sku: "SP003",
+    image: "/image/candle.jpg",
     description:
       "Стабільна іскра для надійного запуску і рівної роботи двигуна.",
   },
