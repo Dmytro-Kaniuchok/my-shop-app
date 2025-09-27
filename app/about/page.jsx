@@ -26,9 +26,9 @@ export default function About() {
 
         <h2 className={styles.sectionTitle}>Наші цінності</h2>
         <ul className={styles.list}>
-          <li>Якість і надійність запчастин</li>
-          <li>Швидка доставка</li>
-          <li>Прозорі ціни і чесність у роботі</li>
+          <li>✅ Якість і надійність запчастин.</li>
+          <li>✅ Швидка доставка.</li>
+          <li>✅ Прозорі ціни і чесність у роботі.</li>
         </ul>
 
         <h2 className={styles.sectionTitle}>Наша команда</h2>

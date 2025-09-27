@@ -117,19 +117,6 @@ export default function Footer() {
 
       {mounted && (
         <>
-          <div className={styles.actions}>
-            <div className={styles.lang}>
-              Мова:{" "}
-              <select aria-label="Мова сайту">
-                <option>UK</option>
-                <option>EN</option>
-              </select>
-            </div>
-            <button onClick={scrollTop} className={styles.topBtn}>
-              Повернутись нагору ↑
-            </button>
-          </div>
-
           <div className={styles.bottomBar}>
             <div className={styles.bottomInner}>
               <p className={styles.copy}>

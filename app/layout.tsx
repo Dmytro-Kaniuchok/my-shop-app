@@ -1,11 +1,17 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import { usePathname } from "next/navigation";
-import { Toaster } from "react-hot-toast";
+import ClientWrapper from "./clientWrapper";
+
+export const metadata: Metadata = {
+  title: "Магазин запчастин",
+  description:
+    "Запчастини для сільгосптехніки. Магазин якісних автозапчастин.,",
+  icons: {
+    icon: "/auto-service.svg",
+  },
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +25,14 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const pathname = usePathname();
-
+}) {
   return (
     <html lang="uk">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
-        <main>{children}</main>
-        <Toaster position="top-center" />
-        {pathname === "/" && <Footer />}
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );

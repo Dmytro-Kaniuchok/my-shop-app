@@ -28,13 +28,10 @@
   background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.2s,
-    box-shadow 0.3s;
+  transition: box-shadow 0.3s;
 }
 
 .item:hover {
-  transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
@@ -52,18 +49,15 @@
   border-radius: 10px;
   padding: 8px 16px;
   margin-left: 12px;
-  transition:
-    background 0.3s,
-    transform 0.2s;
+  transition: background 0.5s;
 }
 
 .removeBtn:hover {
   background: #d9363e;
-  transform: scale(1.05);
 }
 
 .orderBtn {
-  background: linear-gradient(90deg, #28a745, #218838);
+  background: #28a745;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -71,14 +65,11 @@
   cursor: pointer;
   font-weight: 500;
   font-size: 14px;
-  transition:
-    background 0.3s,
-    transform 0.2s;
+  transition: background 0.5s;
 }
 
 .orderBtn:hover {
-  background: linear-gradient(90deg, #218838, #1a6e2b);
-  transform: scale(1.05);
+  background: #1a6e2b;
 }
 
 .btns {
@@ -97,14 +88,11 @@
   cursor: pointer;
   font-weight: 500;
   font-size: 14px;
-  transition:
-    background 0.3s,
-    transform 0.2s;
+  transition: background 0.5s;
 }
 
 .clearBtn:hover {
   background: #d9363e;
-  transform: scale(1.05);
 }
 
 /* Порожній кошик */
@@ -138,14 +126,11 @@
   padding: 12px 24px;
   font-weight: 500;
   text-decoration: none;
-  transition:
-    background-color 0.3s,
-    transform 0.2s;
+  transition: background-color 0.5s;
 }
 
 .searchBtn:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
 }
 
 .emptyText {

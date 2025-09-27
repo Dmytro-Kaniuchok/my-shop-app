@@ -54,11 +54,6 @@
   background-color: #0056b3;
 }
 
-.linkBtn:focus {
-  transform: scale(0.97);
-  outline: none;
-}
-
 /* ===== Медіа-запити ===== */
 
 /* Планшет (768px - 1024px) */

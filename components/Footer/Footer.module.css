@@ -1,13 +1,11 @@
 .footer {
   background-color: #f9fafb;
   color: #374151;
-  border-top: 1px solid #e5e7eb;
 }
 
 .footerDark {
   background-color: #111827;
   color: #e5e7eb;
-  border-top: 1px solid #1f2937;
 }
 
 .container {
@@ -119,7 +117,7 @@
 .button {
   padding: 8px 16px;
   min-width: 120px;
-  background-color: #1a1a1a;
+  background-color: #007bff;
   color: #fff;
   border-radius: 10px;
   cursor: pointer;
@@ -128,7 +126,7 @@
 }
 
 .button:hover {
-  background-color: #007bff;
+  background-color: #0056b3;
 }
 
 .button:disabled {
@@ -164,39 +162,6 @@
 
 .copy {
   font-size: 14px;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.topBtn {
-  font-size: 14px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.5s;
-}
-
-.topBtn:hover {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.lang {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-.lang select {
-  background: transparent;
-  border: none;
-  cursor: pointer;
 }
 
 .status {
