@@ -1,10 +1,10 @@
 .overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
   z-index: 9999;
 }
 

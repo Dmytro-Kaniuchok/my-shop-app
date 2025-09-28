@@ -1,6 +1,20 @@
+"use client";
+
 import styles from "./About.module.css";
+import { useState, useEffect } from "react";
+import Loader from "../../components/Loader/Loader.tsx";
 
 export default function About() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
