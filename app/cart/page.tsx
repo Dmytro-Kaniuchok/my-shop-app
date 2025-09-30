@@ -31,6 +31,7 @@ export default function CartPage() {
     );
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   // Видалення товару
@@ -38,6 +39,7 @@ export default function CartPage() {
     const updatedCart = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new Event("cartUpdated"));
     toast.success("Товар видалено з кошика");
   };
 
@@ -45,6 +47,7 @@ export default function CartPage() {
   const clearCart = () => {
     setCartItems([]);
     localStorage.removeItem("cart");
+    window.dispatchEvent(new Event("cartUpdated"));
     toast.success("Кошик очищено!");
   };
 

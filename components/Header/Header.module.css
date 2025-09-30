@@ -53,3 +53,17 @@
 .navigation a.active {
   color: #007bff;
 }
+
+.cartCount {
+  background-color: #ff4d4f;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 50%;
+  margin-left: 4px;
+  transition: background 0.3s;
+}
+
+.cartCount:hover {
+  background: #d9363e;
+}

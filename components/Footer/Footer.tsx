@@ -52,13 +52,31 @@ export default function Footer() {
           </p>
 
           <div className={styles.socials}>
-            <a href="#" aria-label="Telegram" className={styles.socialLink}>
+            <a
+              href="https://web.telegram.org/k/"
+              aria-label="Telegram"
+              target="_blank"
+              rel="noopener norefferer"
+              className={styles.socialLink}
+            >
               <SiTelegram size={20} color="#0088cc" />
             </a>
-            <a href="#" aria-label="Viber" className={styles.socialLink}>
+            <a
+              href="#"
+              aria-label="Viber"
+              target="_blank"
+              rel="noopener norefferer"
+              className={styles.socialLink}
+            >
               <SiViber size={20} color="#665cac" />
             </a>
-            <a href="#" aria-label="Email" className={styles.socialLink}>
+            <a
+              href="https://workspace.google.com/intl/uk/gmail/"
+              aria-label="Email"
+              target="_blank"
+              rel="noopener norefferer"
+              className={styles.socialLink}
+            >
               <SiGmail size={20} color="#D14836" />
             </a>
           </div>

@@ -42,6 +42,7 @@ export default function ProductPage() {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated"));
     toast.success("Товар додано до кошика!");
   };
 

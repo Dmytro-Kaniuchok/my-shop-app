@@ -9,11 +9,16 @@ import Loader from "@/components/Loader/Loader";
 
 export default function Catalog() {
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 12);
+  };
 
   if (loading) {
     return <Loader />;
@@ -34,10 +39,18 @@ export default function Catalog() {
       </div>
 
       <ul className={styles.list}>
-        {products.map((p) => (
+        {products.slice(0, visibleCount).map((p) => (
           <li key={p.id} className={styles.item}>
             <Link href={`/product/${p.id}`} className={styles.link}>
-              <img src={p.image} alt={p.name} className={styles.image} />
+              <img
+                src={p.image}
+                alt={p.name}
+                className={styles.image}
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "https://dummyimage.com/200x200/fff/000000&text=No+Image&";
+                }}
+              />
               <span>
                 {p.name} — {p.price} грн
               </span>
@@ -45,6 +58,12 @@ export default function Catalog() {
           </li>
         ))}
       </ul>
+
+      {visibleCount < products.length && (
+        <button className={styles.loadMore} onClick={handleLoadMore}>
+          Завантажити ще
+        </button>
+      )}
     </main>
   );
 }

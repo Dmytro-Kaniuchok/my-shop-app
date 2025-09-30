@@ -1,8 +1,20 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import styles from "./Contact.module.css";
+import Loader from "@/components/Loader/Loader";
 
 export default function Contacts() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Контакти</h1>

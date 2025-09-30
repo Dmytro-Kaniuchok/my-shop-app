@@ -31,7 +31,6 @@
   padding: 0;
   list-style: none;
   margin: 0 auto;
-  max-width: 960px;
 }
 
 .item {
@@ -69,4 +68,22 @@
 
 .link:hover {
   color: #0056b3;
+}
+
+.loadMore {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.5s;
+  border: none;
+}
+
+.loadMore:hover {
+  background-color: #0056b3;
 }
