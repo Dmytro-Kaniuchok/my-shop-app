@@ -4,6 +4,7 @@ import css from "./Header.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { styleText } from "util";
 
 const Header = () => {
   const pathname = usePathname();
@@ -36,7 +37,7 @@ const Header = () => {
 
   return (
     <header className={css.header}>
-      <Link href="/" aria-label="Hero">
+      <Link href="/" aria-label="Головна" className={css.logoText}>
         Магазин
       </Link>
       <nav aria-label="Main Navigation">

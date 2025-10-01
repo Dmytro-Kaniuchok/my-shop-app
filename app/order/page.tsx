@@ -44,7 +44,7 @@ const OrderPage = () => {
       Email: formData.email,
       "Адреса доставки": formData.address,
       Товари: cartItems
-        .map((item) => `${item.name} x${item.quantity} — ${item.price} грн`)
+        .map((item) => `${item.name} ${item.quantity} шт. — ${item.price} грн`)
         .join("\n"),
       "Загальна сума": cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,

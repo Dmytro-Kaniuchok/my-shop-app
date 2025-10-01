@@ -9,15 +9,14 @@ import Loader from "@/components/Loader/Loader";
 
 export default function Catalog() {
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(12);
+  const [visibleCount, setVisibleCount] = useState(15);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(timer);
+    setLoading(false);
   }, []);
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 12);
+    setVisibleCount((prev) => prev + 15);
   };
 
   if (loading) {
@@ -51,9 +50,10 @@ export default function Catalog() {
                     "https://dummyimage.com/200x200/fff/000000&text=No+Image&";
                 }}
               />
-              <span>
-                {p.name} — {p.price} грн
-              </span>
+              <div className={styles.productInfo}>
+                <span className={styles.productName}>{p.name}</span>
+                <span className={styles.productPrice}>{p.price} грн</span>
+              </div>
             </Link>
           </li>
         ))}
