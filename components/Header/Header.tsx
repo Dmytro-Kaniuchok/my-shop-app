@@ -4,11 +4,10 @@ import css from "./Header.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { styleText } from "util";
 
 const Header = () => {
   const pathname = usePathname();
-  const [cartCount, setCartCount] = useState(0);
+  const [cartCount, setCartCount] = useState<number | null>(null);
 
   useEffect(() => {
     const updateCartCount = () => {
@@ -48,10 +47,12 @@ const Header = () => {
                 href={link.href}
                 className={pathname === link.href ? css.active : ""}
               >
-                {link.label}{" "}
-                {link.showCount && cartCount > 0 && (
-                  <span className={css.cartCount}>{cartCount}</span>
-                )}
+                <span className={css.cartWrapper}>
+                  {link.label}
+                  {link.showCount && cartCount !== null && cartCount > 0 && (
+                    <span className={css.cartCount}>{cartCount}</span>
+                  )}
+                </span>
               </Link>
             </li>
           ))}

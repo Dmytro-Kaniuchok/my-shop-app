@@ -14,6 +14,7 @@ interface CartItem {
 
 const OrderPage = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -59,14 +60,18 @@ const OrderPage = () => {
         body: JSON.stringify(dataToSend), // Відправляємо cart + total
       });
 
+      setLoading(false);
+
       if (res.ok) {
         toast.success("Замовлення відправлено!");
         localStorage.removeItem("cart");
+        window.dispatchEvent(new Event("cartUpdated"));
         router.push("/order/success");
       } else {
         toast.error("Сталася помилка при відправці");
       }
     } catch {
+      setLoading(false);
       toast.error("Помилка зʼєднання");
     }
   };
@@ -131,7 +136,7 @@ const OrderPage = () => {
         </label>
 
         <button type="submit" className={styles.submitBtn}>
-          Надіслати замовлення
+          {loading ? "Відправка..." : "Надіслати замовлення"}
         </button>
       </form>
     </main>

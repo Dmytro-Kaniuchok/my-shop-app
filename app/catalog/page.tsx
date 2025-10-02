@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import Head from "next/head";
+import { useRouter } from "next/navigation";
 import { products } from "../../data/products.js";
-import styles from "./catalog.module.css";
 import Loader from "@/components/Loader/Loader";
+import styles from "./catalog.module.css";
 
 export default function Catalog() {
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(15);
+  const [loadingItem, setLoadingItem] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setLoading(false);
@@ -19,20 +20,17 @@ export default function Catalog() {
     setVisibleCount((prev) => prev + 15);
   };
 
-  if (loading) {
+  const handleClick = (id: string) => {
+    setLoadingItem(true);
+    router.push(`/product/${id}`);
+  };
+
+  if (loading || loadingItem) {
     return <Loader />;
   }
 
   return (
     <main className={styles.container}>
-      <Head>
-        <title className={styles.title}>Каталог автозапчастин</title>
-        <meta
-          name="description"
-          content="Каталог автозапчастин: ціни, описи, бренди. Оформлення замовлення онлайн."
-        />
-      </Head>
-
       <div className={styles.div}>
         <h1 className={styles.title}>Каталог товарів</h1>
       </div>
@@ -40,7 +38,7 @@ export default function Catalog() {
       <ul className={styles.list}>
         {products.slice(0, visibleCount).map((p) => (
           <li key={p.id} className={styles.item}>
-            <Link href={`/product/${p.id}`} className={styles.link}>
+            <div className={styles.link} onClick={() => handleClick(p.id)}>
               <img
                 src={p.image}
                 alt={p.name}
@@ -54,7 +52,7 @@ export default function Catalog() {
                 <span className={styles.productName}>{p.name}</span>
                 <span className={styles.productPrice}>{p.price} грн</span>
               </div>
-            </Link>
+            </div>
           </li>
         ))}
       </ul>

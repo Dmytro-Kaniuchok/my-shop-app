@@ -1,20 +1,19 @@
 .container {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  background-image: url("/image/background.jpg");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/image/background-img.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/image/background.jpg");
   color: #fff;
-  display: flex;
-  flex-direction: column;
   padding: 60px;
   margin: auto;
   max-width: 1440px;
   height: 440px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .wrapper {
@@ -44,14 +43,12 @@
   background-color: #007bff;
   color: #fff;
   border-radius: 10px;
-  max-width: 200px;
-  transition:
-    background-color 0.3s,
-    transform 0.1s ease;
+  transition: background-color 0.3s;
 }
 
 .linkBtn:hover {
   background-color: #0056b3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== Медіа-запити ===== */

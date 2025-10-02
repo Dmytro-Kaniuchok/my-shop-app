@@ -12,12 +12,13 @@
   font-size: 32px;
   margin-bottom: 20px;
   color: #1a1a1a;
+  font-weight: 700;
 }
 
 .description {
   font-size: 18px;
   margin-bottom: 20px;
-  color: #555;
+  color: #5b5b5b;
 }
 
 .list {

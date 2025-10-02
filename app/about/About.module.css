@@ -5,22 +5,20 @@
   color: #1a1a1a;
 }
 
-/* Герой */
 .heroOverlay {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 40px;
+  font-weight: 700;
 }
 
 .heroTitle {
   color: #1a1a1a;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: bold;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* щоб текст не губився */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Контент */
 .content {
   max-width: 1280px;
   margin: 0 auto;
@@ -31,8 +29,7 @@
 }
 
 .sectionTitle {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 24px;
 }
 
 .paragraph {
@@ -40,7 +37,6 @@
   line-height: 1.5;
 }
 
-/* Список */
 .list {
   display: flex;
   flex-direction: column;
@@ -48,7 +44,6 @@
   list-style: none;
 }
 
-/* Мапа */
 .mapContainer {
   border-radius: 10px;
   overflow: hidden;
@@ -61,7 +56,6 @@
   border: none;
 }
 
-/* Кнопка */
 .mapButton {
   padding: 12px 24px;
   background-color: #007bff;
@@ -81,7 +75,7 @@
   transform: translateY(-1px);
 }
 
-/* 📱 Адаптивність */
+/* Адаптивність */
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 32px;
@@ -97,10 +91,6 @@
 }
 
 @media (min-width: 1024px) {
-  .content {
-    padding: 48px 40px;
-  }
-
   .mapContainer iframe {
     height: 400px;
   }

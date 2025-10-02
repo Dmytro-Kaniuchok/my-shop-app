@@ -47,15 +47,16 @@
   justify-content: center;
   align-items: center;
   padding: 8px;
-  border-radius: 8px;
-  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  border: 1px solid #bdbdbd;
   color: inherit;
   text-decoration: none;
-  transition: border 0.5s;
+  transition: border 0.5s transforn 0.2s;
 }
 
 .socialLink:hover {
-  border: 2px solid #007bff;
+  border: 1px solid #007bff;
+  transform: scale(1.05);
 }
 
 .sectionTitle {
@@ -109,8 +110,15 @@
 .input {
   flex: 1;
   padding: 8px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #bdbdbd;
+  font-size: 14px;
   border-radius: 10px;
+  transition: all 0.5s ease;
+}
+
+.input:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 .button {
@@ -120,7 +128,7 @@
   color: #fff;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.5s transform 0.1 ease;
+  transition: background 0.5s;
   border: none;
 }
 

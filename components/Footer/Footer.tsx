@@ -56,7 +56,7 @@ export default function Footer() {
               href="https://web.telegram.org/k/"
               aria-label="Telegram"
               target="_blank"
-              rel="noopener norefferer"
+              rel="noopener noreferrer"
               className={styles.socialLink}
             >
               <SiTelegram size={20} color="#0088cc" />
@@ -65,7 +65,7 @@ export default function Footer() {
               href="#"
               aria-label="Viber"
               target="_blank"
-              rel="noopener norefferer"
+              rel="noopener noreferrer"
               className={styles.socialLink}
             >
               <SiViber size={20} color="#665cac" />
@@ -74,7 +74,7 @@ export default function Footer() {
               href="https://workspace.google.com/intl/uk/gmail/"
               aria-label="Email"
               target="_blank"
-              rel="noopener norefferer"
+              rel="noopener noreferrer"
               className={styles.socialLink}
             >
               <SiGmail size={20} color="#D14836" />
