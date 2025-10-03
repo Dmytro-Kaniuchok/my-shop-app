@@ -134,3 +134,13 @@
     font-size: 12px;
   }
 }
+
+@media (min-width: 320px) and (max-width: 459px) {
+  .item {
+    width: 200px;
+  }
+
+  .list {
+    justify-items: center;
+  }
+}

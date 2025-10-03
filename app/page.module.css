@@ -73,9 +73,16 @@
 }
 
 /* Мобільні (менше 768px) */
-@media (max-width: 320px) {
+@media (max-width: 393px) {
   .container {
-    padding: 12px;
+    padding: 16px;
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+  }
+
+  .wrapper {
+    align-items: center;
   }
 
   .title {

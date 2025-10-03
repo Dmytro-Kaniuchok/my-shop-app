@@ -33,6 +33,7 @@
 .brandText {
   font-size: 14px;
   color: #6b7280;
+  white-space: nowrap;
 }
 
 .socials {
@@ -188,4 +189,38 @@
 .error {
   color: #dc3545;
   opacity: 1;
+}
+
+@media (max-width: 393px) {
+  .container {
+    padding: 24px;
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .brandText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+
+  .supportSection {
+    display: none;
+  }
+
+  .orderSection {
+    display: none;
+  }
+
+  .bottomInner {
+    padding: 24px;
+  }
 }
