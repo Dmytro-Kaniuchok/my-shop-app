@@ -43,7 +43,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div>
+        <div className={styles.brandAndSocials}>
           <Link href="/" className={styles.brand}>
             Магазин
           </Link>

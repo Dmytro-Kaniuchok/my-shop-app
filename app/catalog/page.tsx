@@ -10,10 +10,25 @@ export default function Catalog() {
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(15);
   const [loadingItem, setLoadingItem] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
     setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 800) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLoadMore = () => {
@@ -23,6 +38,11 @@ export default function Catalog() {
   const handleClick = (id: string) => {
     setLoadingItem(true);
     router.push(`/product/${id}`);
+  };
+
+  // Плавне повернення нагору
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (loading || loadingItem) {
@@ -60,6 +80,12 @@ export default function Catalog() {
       {visibleCount < products.length && (
         <button className={styles.loadMore} onClick={handleLoadMore}>
           Завантажити ще
+        </button>
+      )}
+
+      {showScrollTop && (
+        <button className={styles.scrollTop} onClick={scrollToTop}>
+          ↑
         </button>
       )}
     </main>

@@ -25,7 +25,7 @@
 }
 
 .title {
-  font-size: 60px;
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #fff;
@@ -53,32 +53,12 @@
 
 /* ===== Медіа-запити ===== */
 
-/* Планшет (768px - 1024px) */
-@media (max-width: 1024px) {
-  .container {
-    padding: 16px;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .description {
-    font-size: 16px;
-  }
-
-  .linkButton {
-    padding: 8px 16px;
-  }
-}
-
 /* Мобільні (менше 768px) */
 @media (max-width: 393px) {
   .container {
     padding: 16px;
     margin: 0 auto;
-    width: 300px;
-    height: 300px;
+    width: 95%;
   }
 
   .wrapper {
@@ -100,5 +80,44 @@
     width: 100%;
     text-align: center;
     padding: 10px 0;
+  }
+}
+
+@media (min-width: 393px) and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .wrapper {
+    align-items: center;
+    text-align: center;
+  }
+  .title {
+    font-size: 32px;
+  }
+}
+
+/* Планшет (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1023.9px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .linkButton {
+    padding: 8px 16px;
   }
 }

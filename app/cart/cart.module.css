@@ -25,13 +25,16 @@
   align-items: center;
   padding: 16px 20px;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  background: linear-gradient(135deg, #fafafa, #e8e8e8);
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .item:hover {
+  transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
@@ -110,6 +113,14 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   text-align: center;
   animation: fadeIn 0.5s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.searchWrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
 .searchWrapper p {
