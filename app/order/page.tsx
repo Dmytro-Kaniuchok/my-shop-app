@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./order.module.css";
 import toast from "react-hot-toast";
 import { products } from "../../data/products";
 import { SiTelegram, SiViber } from "react-icons/si";
+import Loader from "@/components/Loader/Loader";
 
 interface CartItem {
   id: string;
@@ -14,13 +15,12 @@ interface CartItem {
   quantity: number;
 }
 
-const OrderPage = () => {
+// Обгортка для хуку useSearchParams
+function OrderForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [loading, setLoading] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -28,41 +28,38 @@ const OrderPage = () => {
     address: "",
   });
 
-  // Завантаження даних лише на клієнті
-  useEffect(() => {
-    setIsClient(true);
-
-    const productId = searchParams.get("id");
-    const quantityParam = Number(searchParams.get("quantity") || 1);
-
-    const singleProduct = productId
-      ? products.find((p) => p.id === productId)
-      : null;
-
-    const cartItemsFromQuery: CartItem[] = singleProduct
-      ? [
-          {
-            id: singleProduct.id,
-            name: singleProduct.name,
-            price: singleProduct.price,
-            quantity: quantityParam,
-          },
-        ]
-      : [];
-
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    } else if (cartItemsFromQuery.length > 0) {
-      setCartItems(cartItemsFromQuery);
-    }
-  }, [searchParams]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Генерація посилань для месенджерів
+  // --- Формування cartItems ---
+  const productId = searchParams.get("id");
+  const quantityParam = Number(searchParams.get("quantity") || 1);
+
+  // Продукт із query-параметрів
+  const singleProduct = productId
+    ? products.find((p) => p.id === productId)
+    : null;
+
+  const cartItemsFromQuery: CartItem[] = singleProduct
+    ? [
+        {
+          id: singleProduct.id,
+          name: singleProduct.name,
+          price: singleProduct.price,
+          quantity: quantityParam,
+        },
+      ]
+    : [];
+
+  // Кошик із localStorage
+  const storedCart =
+    typeof window !== "undefined" ? localStorage.getItem("cart") : null;
+  const cartItems: CartItem[] = storedCart
+    ? JSON.parse(storedCart)
+    : cartItemsFromQuery;
+
+  // --- Генерація посилань для Viber/Telegram ---
   const generateMessageLink = (
     cart: CartItem[],
     messenger: "viber" | "telegram"
@@ -79,13 +76,7 @@ const OrderPage = () => {
       )
       .join("\n");
 
-    const fullMessage = `🛒 Нове замовлення:\n\n👤 Ім’я: ${
-      formData.name
-    }\n📞 Телефон: ${formData.phone}\n🏠 Адреса: ${
-      formData.address
-    }\n📧 Email: ${
-      formData.email || "-"
-    }\n\nТовари:\n${message}\n\n💰 Загальна сума: ${total} грн`;
+    const fullMessage = `🛒 Нове замовлення:\n\n👤 Ім’я: ${formData.name}\n📞 Телефон: ${formData.phone}\n🏠 Адреса: ${formData.address}\n📧 Email: ${formData.email || "-"}\n\nТовари:\n${message}\n\n💰 Загальна сума: ${total} грн`;
 
     if (messenger === "viber") {
       return `viber://chat?number=+380XXXXXXXXX&text=${encodeURIComponent(
@@ -100,7 +91,6 @@ const OrderPage = () => {
     return "#";
   };
 
-  // Надсилання форми
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -136,8 +126,10 @@ const OrderPage = () => {
 
       if (res.ok) {
         toast.success("Замовлення відправлено!");
-        localStorage.removeItem("cart");
-        window.dispatchEvent(new Event("cartUpdated"));
+        if (!productId) {
+          localStorage.removeItem("cart");
+          window.dispatchEvent(new Event("cartUpdated"));
+        }
         router.push("/order/success");
       } else {
         toast.error("Сталася помилка при відправці");
@@ -218,29 +210,34 @@ const OrderPage = () => {
         </button>
       </form>
 
-      {isClient && cartItems.length > 0 && (
-        <div className={styles.quickOrder}>
-          <p className={styles.quickLink}>
-            Або швидко:
-            <a
-              href={generateMessageLink(cartItems, "telegram")}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SiTelegram size={16} color="#0088cc" /> Telegram
-            </a>
-            <a
-              href={generateMessageLink(cartItems, "viber")}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SiViber size={16} color="#665cac" /> Viber
-            </a>
-          </p>
-        </div>
+      {cartItems.length > 0 && (
+        <p className={styles.quickLink}>
+          Або швидко:
+          <a
+            href={generateMessageLink(cartItems, "telegram")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiTelegram size={16} color="#0088cc" /> Telegram
+          </a>
+          <a
+            href={generateMessageLink(cartItems, "viber")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiViber size={16} color="#665cac" /> Viber
+          </a>
+        </p>
       )}
     </main>
   );
-};
+}
 
-export default OrderPage;
+// Головна сторінка з Suspense
+export default function OrderPage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <OrderForm />
+    </Suspense>
+  );
+}
