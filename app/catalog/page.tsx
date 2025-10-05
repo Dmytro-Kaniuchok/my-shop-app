@@ -58,7 +58,7 @@ export default function Catalog() {
       <ul className={styles.list}>
         {products.slice(0, visibleCount).map((p) => (
           <li key={p.id} className={styles.item}>
-            <div className={styles.link} onClick={() => handleClick(p.id)}>
+            <div className={styles.card}>
               <img
                 src={p.image}
                 alt={p.name}
@@ -71,6 +71,12 @@ export default function Catalog() {
               <div className={styles.productInfo}>
                 <span className={styles.productName}>{p.name}</span>
                 <span className={styles.productPrice}>{p.price} грн</span>
+                <button
+                  className={styles.detailsBtn}
+                  onClick={() => handleClick(p.id)}
+                >
+                  Детальніше
+                </button>
               </div>
             </div>
           </li>

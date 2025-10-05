@@ -167,4 +167,9 @@
   .burger {
     display: block;
   }
+
+  .cartCount {
+    top: -14px;
+    right: -20px;
+  }
 }

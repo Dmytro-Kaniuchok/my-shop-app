@@ -47,7 +47,6 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
 }
 
 .item:hover {
@@ -67,7 +66,7 @@
 .productInfo {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 10px;
   gap: 10px;
 }
@@ -97,6 +96,27 @@
   color: #0056b3;
 }
 
+.detailsBtn {
+  display: block;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid #007bff;
+  font-size: 14px;
+  color: #007bff;
+  font-weight: 600;
+  margin-top: 10px;
+  width: 95%;
+  transform:
+    bacground 0.3s ease,
+    color 0.3s ease;
+}
+
+.detailsBtn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
 /* Кнопка "Завантажити ще" */
 .loadMore {
   display: block;
@@ -105,7 +125,7 @@
   background-color: #007bff;
   color: #fff;
   border-radius: 10px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   cursor: pointer;
   transition:
@@ -182,7 +202,7 @@
 
 @media (min-width: 320px) and (max-width: 459.5px) {
   .item {
-    width: 200px;
+    width: 240px;
   }
 
   .list {

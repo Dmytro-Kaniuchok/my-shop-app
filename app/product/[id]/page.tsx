@@ -6,6 +6,7 @@ import styles from "./product.module.css";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Loader from "@/components/Loader/Loader";
+import Link from "next/link";
 
 interface CartItem {
   id: string;
@@ -75,12 +76,28 @@ export default function ProductPage() {
 
         <p className={styles.price}>{product.price} грн</p>
 
-        <button
-          className={styles.button}
-          onClick={() => addToCart(product, quantity)}
-        >
-          Додати до кошика
-        </button>
+        <div className={styles.buttons}>
+          <Link
+            href={{
+              pathname: "/order",
+              query: { id: product.id, quantity: quantity },
+            }}
+          >
+            <button
+              className={styles.buyButton}
+              onClick={() => toast.success("Перехід до оформлення замовлення")}
+            >
+              Купити
+            </button>
+          </Link>
+
+          <button
+            className={styles.button}
+            onClick={() => addToCart(product, quantity)}
+          >
+            Додати до кошика
+          </button>
+        </div>
       </div>
     </main>
   );

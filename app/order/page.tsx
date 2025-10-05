@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./order.module.css";
 import toast from "react-hot-toast";
+import { products } from "../../data/products";
+import { SiTelegram, SiViber } from "react-icons/si";
 
 interface CartItem {
   id: string;
@@ -14,6 +16,8 @@ interface CartItem {
 
 const OrderPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -26,19 +30,73 @@ const OrderPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // --- Формування cartItems ---
+  const productId = searchParams.get("id");
+  const quantityParam = Number(searchParams.get("quantity") || 1);
+
+  // Продукт із query-параметрів
+  const singleProduct = productId
+    ? products.find((p) => p.id === productId)
+    : null;
+
+  const cartItemsFromQuery: CartItem[] = singleProduct
+    ? [
+        {
+          id: singleProduct.id,
+          name: singleProduct.name,
+          price: singleProduct.price,
+          quantity: quantityParam,
+        },
+      ]
+    : [];
+
+  // Кошик із localStorage
+  const storedCart =
+    typeof window !== "undefined" ? localStorage.getItem("cart") : null;
+  const cartItems: CartItem[] = storedCart
+    ? JSON.parse(storedCart)
+    : cartItemsFromQuery;
+
+  // --- Генерація посилань для Viber/Telegram ---
+  const generateMessageLink = (
+    cart: CartItem[],
+    messenger: "viber" | "telegram"
+  ) => {
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    const message = cart
+      .map(
+        (item) =>
+          `${item.name} (${item.id}) — ${item.quantity} шт × ${item.price} грн`
+      )
+      .join("\n");
+
+    const fullMessage = `🛒 Нове замовлення:\n\n👤 Ім’я: ${formData.name}\n📞 Телефон: ${formData.phone}\n🏠 Адреса: ${formData.address}\n📧 Email: ${formData.email || "-"}\n\nТовари:\n${message}\n\n💰 Загальна сума: ${total} грн`;
+
+    if (messenger === "viber") {
+      return `viber://chat?number=+380XXXXXXXXX&text=${encodeURIComponent(
+        fullMessage
+      )}`;
+    }
+
+    if (messenger === "telegram") {
+      return `https://t.me/knc_d?text=${encodeURIComponent(fullMessage)}`;
+    }
+
+    return "#";
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Беремо кошик з localStorage
-    const storedCart = localStorage.getItem("cart");
-    const cartItems: CartItem[] = storedCart ? JSON.parse(storedCart) : [];
 
     if (cartItems.length === 0) {
       toast.error("Кошик порожній! Додайте товари перед замовленням.");
       return;
     }
 
-    // Формуємо дані для відправки
     const dataToSend = {
       "Ім’я": formData.name,
       "Номер телефону": formData.phone,
@@ -54,18 +112,23 @@ const OrderPage = () => {
     };
 
     try {
+      setLoading(true);
+
       const res = await fetch(process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT!, {
         method: "POST",
         headers: { Accept: "application/json" },
-        body: JSON.stringify(dataToSend), // Відправляємо cart + total
+        body: JSON.stringify(dataToSend),
       });
 
       setLoading(false);
 
       if (res.ok) {
         toast.success("Замовлення відправлено!");
-        localStorage.removeItem("cart");
-        window.dispatchEvent(new Event("cartUpdated"));
+
+        if (!productId) {
+          localStorage.removeItem("cart");
+          window.dispatchEvent(new Event("cartUpdated"));
+        }
         router.push("/order/success");
       } else {
         toast.error("Сталася помилка при відправці");
@@ -79,6 +142,7 @@ const OrderPage = () => {
   return (
     <main className={styles.container}>
       <h1 className={styles.title}>Оформлення замовлення</h1>
+
       <form onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Ім&apos;я:
@@ -135,10 +199,35 @@ const OrderPage = () => {
           />
         </label>
 
+        <label className={styles.checkboxLabel}>
+          <input type="checkbox" name="consent" required />Я згоден(на) на
+          обробку персональних даних
+        </label>
+
         <button type="submit" className={styles.submitBtn}>
           {loading ? "Відправка..." : "Надіслати замовлення"}
         </button>
       </form>
+
+      {cartItems.length > 0 && (
+        <p className={styles.quickLink}>
+          Або швидко:
+          <a
+            href={generateMessageLink(cartItems, "telegram")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiTelegram size={16} color="#0088cc" /> Telegram
+          </a>
+          <a
+            href={generateMessageLink(cartItems, "viber")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiViber size={16} color="#665cac" /> Viber
+          </a>
+        </p>
+      )}
     </main>
   );
 };

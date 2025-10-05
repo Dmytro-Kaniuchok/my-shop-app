@@ -18,10 +18,22 @@
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1a1a1a;
+  color: #1f1f1f;
 }
 
 .message {
   font-size: 18px;
   color: #5a5a5a;
+}
+
+.redirectNote {
+  font-size: 12px;
+  margin-top: 12px;
+  color: #1f1f1f;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 90%;
+  }
 }
