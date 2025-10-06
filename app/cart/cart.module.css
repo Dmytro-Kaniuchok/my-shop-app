@@ -2,14 +2,13 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 24px;
-  font-family: "Arial", sans-serif;
 }
 
 .title {
   font-size: 32px;
   font-weight: 700;
   text-align: center;
-  color: #1a1a1a;
+  color: #1f1f1f;
   margin-bottom: 32px;
 }
 
@@ -40,8 +39,38 @@
 
 .itemName {
   display: block;
-  width: 300px;
+  width: 350px;
   word-wrap: break-word;
+}
+
+.qtyWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qtyWrapper button {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid #dbdbdb;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.qtyWrapper button:hover {
+  background-color: #dbdbdb;
+}
+
+.qtyWrapper span {
+  min-width: 30px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .removeBtn {
@@ -60,6 +89,7 @@
 }
 
 .orderBtn {
+  text-align: center;
   background: #28a745;
   color: #fff;
   border: none;
@@ -105,7 +135,6 @@
   justify-content: center;
   align-items: center;
   width: 80%;
-  max-width: 800px;
   padding: 32px;
   margin: 60px auto;
   border-radius: 12px;
@@ -168,15 +197,72 @@
 }
 
 /* Мобільні екрани */
-@media (max-width: 768px) {
-  .item {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 375px) {
+  .searchBtn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .itemName {
+    width: auto;
+    font-size: 14px;
+  }
+
+  .removeBtn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 424.5px) {
+  .orderBtn {
+    width: 200px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .clearBtn {
+    width: 200px;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   .btns {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 425px) {
+  .searchWrapper {
+    width: 90%;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .removeBtn {
+    margin-left: 0;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: center;
     width: 100%;
     gap: 12px;
+  }
+
+  .orderBtn {
+    width: 200px;
+  }
+
+  .clearBtn {
+    width: 200px;
   }
 }

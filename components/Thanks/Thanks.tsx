@@ -11,7 +11,7 @@ const ThanksPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push("/");
-    }, 30000); // 30 секунд
+    }, 30000);
 
     return () => clearTimeout(timer);
   }, [router]);

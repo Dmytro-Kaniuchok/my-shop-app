@@ -23,10 +23,10 @@
 - **Next.js** (App Router)
 - **React**
 - **TypeScript**
-- **React Hot Toast** для повідомлень
+- **React Hot Toast** (для повідомлень)
 - **React Icons**
 - **CSS Modules**
-- **LocalStorage** для збереження кошика
+- **LocalStorage** (для збереження кошика)
 
 ---
 
