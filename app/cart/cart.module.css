@@ -24,7 +24,7 @@
   align-items: center;
   padding: 16px 20px;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #fafafa, #e8e8e8);
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
@@ -51,6 +51,9 @@
 }
 
 .qtyWrapper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 36px;
   height: 36px;
   font-size: 20px;
