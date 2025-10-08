@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  color: #555;
+  color: #717171;
 }
 
 .description {
@@ -40,7 +40,7 @@
 
 .price {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .buttons {
@@ -56,7 +56,7 @@
   padding: 12px 24px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.5s ease-in;
+  transition: background 0.3s ease-in;
   width: 200px;
   font-size: 14px;
   font-weight: 600;
@@ -95,8 +95,8 @@
 .quantityInput {
   width: 60px;
   padding: 6px 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: 1px solid #dbdbdb;
   text-align: center;
 }
 

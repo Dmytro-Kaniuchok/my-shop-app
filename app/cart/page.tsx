@@ -25,7 +25,7 @@ export default function CartPage() {
 
   // Змінити кількість товару
   const updateQuantity = (id: string, newQty: number) => {
-    if (newQty < 1) return; // мінімум 1
+    if (newQty < 1) return;
     const updatedCart = cartItems.map((item) =>
       item.id === id ? { ...item, quantity: newQty } : item
     );
