@@ -40,7 +40,6 @@ const Header = () => {
         Магазин
       </Link>
 
-      {/* Desktop navigation */}
       <nav aria-label="Main Navigation" className={css.desktopNav}>
         <ul className={css.navigation}>
           {links.map((link) => (
