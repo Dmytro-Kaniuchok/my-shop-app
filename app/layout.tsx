@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import ClientWrapper from "./clientWrapper";
@@ -23,14 +23,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="uk">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="uk"
+      className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${inter.variable}`}
+    >
+      <body>
         <Header />
         <ClientWrapper>{children}</ClientWrapper>
       </body>

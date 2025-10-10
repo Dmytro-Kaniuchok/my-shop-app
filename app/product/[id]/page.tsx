@@ -17,7 +17,7 @@ interface CartItem {
 }
 
 export default function ProductPage() {
-  const { id } = useParams(); // id з URL
+  const { id } = useParams();
   const [product, setProduct] = useState<(typeof products)[0] | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);

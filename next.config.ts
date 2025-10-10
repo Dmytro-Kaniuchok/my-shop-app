@@ -1,7 +1,26 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  swcMinify: true,
+  appDir: true,
+
+  experimental: {
+    optimizeCss: true,
+    // serverActions: true,
+  },
+
+  headers: async () => [
+    {
+      source: "/(.*)",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=31536000, immutable",
+        },
+      ],
+    },
+  ],
 };
 
 export default nextConfig;
