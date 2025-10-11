@@ -5,8 +5,7 @@
   width: 100%;
   max-width: 1440px;
   padding: 32px 60px;
-  background: #f9fafb;
-  color: #1f1f1f;
+  color: #101828;
   margin: 0 auto;
 }
 .logoText {
@@ -20,17 +19,6 @@
   gap: 24px;
   list-style-type: none;
   font-weight: 500;
-}
-
-.navigation li {
-  transition:
-    color 0.3s ease,
-    transform 0.1s ease;
-  cursor: pointer;
-}
-
-.navigation li:hover {
-  color: #007bff;
 }
 
 .navigation li:active {
@@ -57,6 +45,7 @@
 
 .navigation a.active {
   color: #0b44cd;
+  border-bottom: 2px solid #0b44cd;
 }
 
 .cartWrapper {

@@ -82,13 +82,14 @@
   cursor: pointer;
   border: none;
   border-radius: 10px;
+  font-weight: 500;
   padding: 8px 16px;
   margin-left: 12px;
   transition: background 0.5s;
 }
 
 .removeBtn:hover {
-  background: #d9363e;
+  background: #b00020;
 }
 
 .orderBtn {
@@ -101,11 +102,12 @@
   cursor: pointer;
   font-weight: 500;
   font-size: 14px;
+  min-width: 150px;
   transition: background 0.5s;
 }
 
 .orderBtn:hover {
-  background: #1a6e2b;
+  background: #1c7c31;
 }
 
 .btns {
@@ -128,7 +130,7 @@
 }
 
 .clearBtn:hover {
-  background: #d9363e;
+  background: #b00020;
 }
 
 /* Порожній кошик */
