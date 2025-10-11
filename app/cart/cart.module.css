@@ -8,7 +8,7 @@
   font-size: 32px;
   font-weight: 700;
   text-align: center;
-  color: #1f1f1f;
+  color: #101828;
   margin-bottom: 32px;
 }
 
@@ -58,7 +58,7 @@
   height: 36px;
   font-size: 20px;
   font-weight: bold;
-  border: 2px solid #dbdbdb;
+  border: 2px solid #8e929a;
   border-radius: 10px;
   background-color: #fff;
   cursor: pointer;
@@ -66,7 +66,7 @@
 }
 
 .qtyWrapper button:hover {
-  background-color: #dbdbdb;
+  background-color: #8e929a;
 }
 
 .qtyWrapper span {
@@ -159,12 +159,12 @@
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 24px;
-  color: #1f1f1f;
+  color: #101828;
 }
 
 .searchBtn {
   color: #fff;
-  background-color: #007bff;
+  background-color: #3470ff;
   border-radius: 10px;
   padding: 12px 24px;
   font-weight: 500;
@@ -173,7 +173,7 @@
 }
 
 .searchBtn:hover {
-  background-color: #0056b3;
+  background-color: #0b44cd;
 }
 
 .emptyText {

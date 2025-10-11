@@ -17,14 +17,14 @@
 .title {
   font-size: 32px;
   margin-bottom: 20px;
-  color: #1f1f1f;
+  color: #101828;
   font-weight: 700;
 }
 
 .description {
   font-size: 18px;
   margin-bottom: 20px;
-  color: #5b5b5b;
+  color: #8e929a;
   font-weight: 500;
 }
 
@@ -40,13 +40,13 @@
 }
 
 .list a {
-  color: #007bff;
+  color: #3470ff;
   text-decoration: none;
   transition: color 0.5s;
 }
 
 .list a:hover {
-  color: #0056b3;
+  color: #0b44cd;
   text-decoration: none;
 }
 

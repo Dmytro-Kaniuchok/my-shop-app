@@ -12,7 +12,7 @@
   text-align: center;
   font-size: 28px;
   font-weight: 700;
-  color: #1f1f1f;
+  color: #101828;
   margin-bottom: 25px;
 }
 
@@ -27,20 +27,20 @@
   flex-direction: column;
   font-size: 14px;
   font-weight: 600;
-  color: #1f1f1f;
+  color: #101828;
 }
 
 .input {
   margin-top: 6px;
   padding: 10px 12px;
-  border: 1px solid #bdbdbd;
+  border: 1px solid #8e929a;
   border-radius: 10px;
   font-size: 16px;
   transition: all 0.5s ease;
 }
 
 .input:focus {
-  border-color: #007bff;
+  border-color: #3470ff;
   outline: none;
 }
 
@@ -54,7 +54,7 @@
 
 .submitBtn {
   padding: 12px 0;
-  background-color: #007bff;
+  background-color: #3470ff;
   color: #fff;
   font-size: 16px;
   font-weight: 600;
@@ -65,7 +65,7 @@
 }
 
 .submitBtn:hover {
-  background-color: #0056b3;
+  background-color: #0b44cd;
 }
 
 .quickLink {
@@ -83,12 +83,12 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  color: #007bff;
+  color: #3470ff;
   transform: color 0.3s ease-in;
 }
 
 .quickLink a:hover {
-  color: #0056b3;
+  color: #0b44cd;
 }
 
 @media (max-width: 425px) {
