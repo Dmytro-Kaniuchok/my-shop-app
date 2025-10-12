@@ -101,7 +101,7 @@
   padding: 10px 22px;
   border-radius: 10px;
   background-color: transparent;
-  border: 2px solid #0b44cd;
+  border: 2px solid #3470ff;
   font-size: 14px;
   color: #101828;
   font-weight: 600;
@@ -109,10 +109,12 @@
   width: 95%;
   transition:
     background 0.3s ease,
+    border 0.3s ease,
     color 0.3s ease;
 }
 
 .detailsBtn:hover {
+  border: 2px solid #0b44cd;
   background-color: #0b44cd;
   color: #fff;
 }

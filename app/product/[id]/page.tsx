@@ -69,7 +69,9 @@ export default function ProductPage() {
             min={1}
             max={100}
             value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
+            onChange={(e) =>
+              setQuantity(Math.min(100, Math.max(1, Number(e.target.value))))
+            }
             className={styles.quantityInput}
           />
         </div>

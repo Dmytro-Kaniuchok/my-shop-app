@@ -34,12 +34,6 @@ export default function Footer() {
     }, 900);
   }
 
-  function scrollTop() {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
