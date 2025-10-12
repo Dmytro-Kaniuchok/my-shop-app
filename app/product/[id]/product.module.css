@@ -97,7 +97,7 @@
   width: 60px;
   padding: 6px 10px;
   border-radius: 10px;
-  border: 2px solid #8e929a;
+  border: 1px solid #dbdbdb;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -106,12 +106,12 @@
 }
 
 .quantityInput:focus {
-  border-color: #8e929a;
+  border-color: 1px solid #8e929a;
   box-shadow: 0 0 0 3px rgba(142, 146, 154, 0.2);
 }
 
 .quantityInput:hover {
-  border-color: #8e929a;
+  border-color: 1px solid #8e929a;
   box-shadow: 0 0 5px rgba(142, 146, 154, 0.15);
 }
 
