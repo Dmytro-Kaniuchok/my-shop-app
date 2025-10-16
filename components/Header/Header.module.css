@@ -45,7 +45,6 @@
 
 .navigation a.active {
   color: #0b44cd;
-  border-bottom: 2px solid #0b44cd;
 }
 
 .cartWrapper {
