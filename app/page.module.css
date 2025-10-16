@@ -13,7 +13,7 @@
   margin: auto;
   max-width: 1440px;
   height: 440px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .wrapper {
@@ -43,7 +43,7 @@
   padding: 10px 20px;
   background-color: #3470ff;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: background-color 0.3s;
   font-weight: 500;
 }

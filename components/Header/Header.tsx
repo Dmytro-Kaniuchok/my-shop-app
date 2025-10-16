@@ -2,12 +2,13 @@
 
 import css from "./Header.module.css";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 
 const Header = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const [cartCount, setCartCount] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -66,9 +67,9 @@ const Header = () => {
         aria-label="Меню"
       >
         {menuOpen ? (
-          <IoMdClose size={20} color="#1f1f1f" />
+          <IoMdClose size={20} color="#101828" />
         ) : (
-          <GiHamburgerMenu size={20} color="#1f1f1f" />
+          <GiHamburgerMenu size={20} color="#101828" />
         )}
       </button>
 
@@ -90,6 +91,18 @@ const Header = () => {
             </li>
           ))}
         </ul>
+
+        <div className={css.mobileNavFooter}>
+          <button
+            className={css.ctaBtn}
+            onClick={() => {
+              setMenuOpen(false);
+              router.push("/catalog");
+            }}
+          >
+            До каталогу
+          </button>
+        </div>
       </nav>
     </header>
   );

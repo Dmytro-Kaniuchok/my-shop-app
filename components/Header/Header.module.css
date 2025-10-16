@@ -101,6 +101,7 @@
   flex-direction: column;
   padding: 80px 20px;
   font-weight: 500;
+  overflow: hidden;
 }
 
 .mobileNav ul {
@@ -120,6 +121,29 @@
   font-size: 18px;
   text-decoration: none;
   cursor: pointer;
+}
+
+.mobileNavFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mobileNavFooter .ctaBtn {
+  width: 250px;
+  padding: 12px 24px;
+  border: none;
+  background-color: #3470ff;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mobileNavFooter .ctaBtn:hover {
+  background-color: #0b44cd;
 }
 
 .mobileNav.open {

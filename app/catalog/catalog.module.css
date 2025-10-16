@@ -36,13 +36,13 @@
 
 /* Картка продукту */
 .item {
-  background-color: #fff;
-  border: 1px solid #dadde1;
-  border-radius: 10px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  padding: 16px;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -99,46 +99,43 @@
 .detailsBtn {
   display: block;
   padding: 10px 22px;
-  border-radius: 10px;
-  background-color: transparent;
-  border: 2px solid #3470ff;
+  border-radius: 12px;
+  background-color: #3470ff;
+  border: none;
   font-size: 14px;
-  color: #101828;
+  color: #fff;
   font-weight: 600;
   margin-top: 10px;
   width: 95%;
-  transition:
-    background 0.3s ease,
-    border 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .detailsBtn:hover {
-  border: 2px solid #0b44cd;
   background-color: #0b44cd;
-  color: #fff;
 }
 
 /* Кнопка "Завантажити ще" */
 .loadMore {
   display: block;
   margin: 30px auto;
-  padding: 12px 24px;
-  background-color: #3470ff;
-  color: #fff;
-  border-radius: 10px;
+  padding: 10px 22px;
+  background-color: transparent;
+  color: #101828;
+  border-radius: 12px;
+  border: 2px solid #3470ff;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
   transition:
-    background 0.5s,
-    transform 0.2s;
-  border: none;
+    background 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
 }
 
 .loadMore:hover {
+  color: #fff;
   background-color: #0b44cd;
-  transform: translateY(-1px);
+  border: 2px solid #0b44cd;
 }
 
 .scrollTop {
