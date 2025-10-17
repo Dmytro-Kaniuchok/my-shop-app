@@ -6,11 +6,12 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import { GrCart } from "react-icons/gr";
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [cartCount, setCartCount] = useState<number | null>(null);
+  const [cartCount, setCartCount] = useState<number>(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -41,17 +42,21 @@ const Header = () => {
         Магазин
       </Link>
 
+      {/* Десктопна навігація */}
       <nav aria-label="Main Navigation" className={css.desktopNav}>
         <ul className={css.navigation}>
           {links.map((link) => (
-            <li key={link.href}>
+            <li
+              key={link.href}
+              className={link.href === "/cart" ? css.hideCartDesktop : ""}
+            >
               <Link
                 href={link.href}
                 className={pathname === link.href ? css.active : ""}
               >
                 <span className={css.cartWrapper}>
                   {link.label}
-                  {link.showCount && cartCount !== null && cartCount > 0 && (
+                  {link.showCount && cartCount > 0 && (
                     <span className={css.cartCount}>{cartCount}</span>
                   )}
                 </span>
@@ -61,18 +66,33 @@ const Header = () => {
         </ul>
       </nav>
 
-      <button
-        className={css.burger}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Меню"
-      >
-        {menuOpen ? (
-          <IoMdClose size={20} color="#101828" />
-        ) : (
-          <GiHamburgerMenu size={20} color="#101828" />
-        )}
-      </button>
+      {/* Кошик */}
+      <div className={css.mobileIcons}>
+        <button
+          className={css.mobileCart}
+          onClick={() => router.push("/cart")}
+          aria-label="Кошик"
+        >
+          <GrCart size={20} color="#101828" />
+          {cartCount > 0 && (
+            <span className={css.mobileCartCount}>{cartCount}</span>
+          )}
+        </button>
 
+        <button
+          className={css.burger}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Меню"
+        >
+          {menuOpen ? (
+            <IoMdClose size={20} color="#101828" />
+          ) : (
+            <GiHamburgerMenu size={20} color="#101828" />
+          )}
+        </button>
+      </div>
+
+      {/* Мобільне меню */}
       <nav className={`${css.mobileNav} ${menuOpen ? css.open : ""}`}>
         <ul>
           {links.map((link) => (
@@ -83,7 +103,7 @@ const Header = () => {
               >
                 <span className={css.cartWrapper}>
                   {link.label}
-                  {link.showCount && cartCount !== null && cartCount > 0 && (
+                  {link.showCount && cartCount > 0 && (
                     <span className={css.cartCount}>{cartCount}</span>
                   )}
                 </span>

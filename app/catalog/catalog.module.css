@@ -129,13 +129,15 @@
   transition:
     background 0.3s ease,
     color 0.3s ease,
-    border 0.3s ease;
+    border 0.3s ease,
+    transform 0.3s ease;
 }
 
 .loadMore:hover {
   color: #fff;
   background-color: #0b44cd;
   border: 2px solid #0b44cd;
+  transform: translateY(-4px);
 }
 
 .scrollTop {

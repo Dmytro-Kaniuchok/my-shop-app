@@ -86,6 +86,33 @@
   display: block;
 }
 
+.mobileIcons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Кнопка кошика */
+.mobileCart {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.mobileCartCount {
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  background-color: #ff4d4f;
+  color: #fff;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 /* Mobile nav */
 .mobileNav {
   position: fixed;
@@ -93,7 +120,10 @@
   right: -100%;
   height: 100vh;
   width: 100%;
-  background: #f2f4f7;
+  background-image: url("/image/mob-nav-back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   transition: right 0.3s ease;
   z-index: 1000;
   display: flex;
@@ -120,6 +150,12 @@
   font-size: 18px;
   text-decoration: none;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mobileNav span:hover,
+.mobileNav span:focus {
+  transform: translateY(-2px);
 }
 
 .mobileNavFooter {
@@ -131,18 +167,22 @@
 .mobileNavFooter .ctaBtn {
   width: 250px;
   padding: 12px 24px;
-  border: none;
-  background-color: #3470ff;
-  color: #fff;
+  border: 2px solid rgba(16, 24, 40, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #101828;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mobileNavFooter .ctaBtn:hover {
-  background-color: #0b44cd;
+  transform: translateY(-4px);
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 .mobileNav.open {
@@ -153,8 +193,6 @@
 @media (min-width: 320px) and (max-width: 393px) {
   .header {
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 24px;
   }
 }
@@ -177,5 +215,11 @@
   .cartCount {
     top: -14px;
     right: -20px;
+  }
+}
+
+@media (min-width: 769px) {
+  .hideCartDesktop {
+    display: none;
   }
 }
