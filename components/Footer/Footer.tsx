@@ -16,9 +16,10 @@ export default function Footer() {
 
   const nav = [
     { href: "/", label: "Головна" },
-    { href: "/about", label: "Про нас" },
     { href: "/catalog", label: "Каталог" },
     { href: "/contact", label: "Контакти" },
+    { href: "/about", label: "Про нас" },
+    { href: "/cart", label: "Кошик" },
   ];
 
   function handleSubscribe(e: React.FormEvent) {

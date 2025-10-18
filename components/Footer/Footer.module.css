@@ -57,7 +57,7 @@
 }
 
 .sectionTitle {
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 12px;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .input:focus {
-  border-color: #3470ff;
+  border-color: #0b44cd;
   outline: none;
 }
 
