@@ -41,16 +41,35 @@
 .linkBtn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #3470ff;
   color: #fff;
   border-radius: 12px;
-  transition: background-color 0.3s;
   font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(270deg, #0b44cd, #3470ff, #5b8eff, #1a5cff);
+  background-size: 400% 400%;
+  animation: blueFlow 6s ease infinite;
+  transition: transform 0.3s;
 }
 
 .linkBtn:hover {
-  background-color: #0b44cd;
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Анімація синього градієнта */
+@keyframes blueFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ===== Медіа-запити ===== */
