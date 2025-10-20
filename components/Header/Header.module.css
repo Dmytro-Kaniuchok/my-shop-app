@@ -98,19 +98,31 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 26px;
+  color: #101828;
+  transition: color 0.3s ease;
+}
+
+.mobileCart:hover {
+  color: #0b44cd;
+}
+
+.active {
+  color: #0b44cd;
 }
 
 .mobileCartCount {
   position: absolute;
-  top: -18px;
-  right: -6px;
-  background-color: #ff4d4f;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4d4d;
   color: #fff;
-  border-radius: 50%;
-  padding: 3px 6px;
   font-size: 12px;
   font-weight: 600;
+  border-radius: 50%;
+  padding: 2px 6px;
+  line-height: 1;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Mobile nav */

@@ -50,30 +50,38 @@
   gap: 8px;
 }
 
-.qtyWrapper button {
+.qtyWrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+}
+
+.qtyWrapper button {
   width: 36px;
   height: 36px;
-  font-size: 20px;
-  font-weight: bold;
-  border: 2px solid #8e929a;
+  border: 1px solid #dbdbdb;
   border-radius: 12px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease-in;
+  font-size: 16px;
+  font-weight: 500;
+  background: linear-gradient(145deg, #ffffff, #e8e8e8);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #101828;
+  transition: all 0.3s ease;
 }
 
 .qtyWrapper button:hover {
-  background-color: #8e929a;
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .qtyWrapper span {
-  min-width: 30px;
+  min-width: 32px;
   text-align: center;
   font-size: 18px;
   font-weight: 500;
+  color: #101828;
 }
 
 .removeBtn {

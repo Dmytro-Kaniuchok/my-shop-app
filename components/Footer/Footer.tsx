@@ -91,15 +91,13 @@ export default function Footer() {
         <div className={styles.orderSection}>
           <h4 className={styles.sectionTitle}>Підписка на розсилку</h4>
           <form onSubmit={handleSubscribe} className={styles.form}>
-            <label htmlFor="email" className="sr-only">
-              Email
-            </label>
+            <label htmlFor="email" className="sr-only"></label>
             <input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Введіть email"
+              placeholder="Ваш email"
               className={styles.input}
             />
             <button

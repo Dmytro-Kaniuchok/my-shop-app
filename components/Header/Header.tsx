@@ -6,7 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { GrCart } from "react-icons/gr";
+import { TbShoppingCartCopy } from "react-icons/tb";
 
 const Header = () => {
   const router = useRouter();
@@ -69,11 +69,13 @@ const Header = () => {
       {/* Кошик */}
       <div className={css.mobileIcons}>
         <button
-          className={css.mobileCart}
+          className={`${css.mobileCart} ${
+            pathname === "/cart" ? css.active : ""
+          }`}
           onClick={() => router.push("/cart")}
           aria-label="Кошик"
         >
-          <GrCart size={20} color="#101828" />
+          <TbShoppingCartCopy />
           {cartCount > 0 && (
             <span className={css.mobileCartCount}>{cartCount}</span>
           )}
