@@ -4,9 +4,7 @@ import css from "./Header.module.css";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoMdClose } from "react-icons/io";
-import { TbShoppingCartCopy } from "react-icons/tb";
+import { Menu, X, ShoppingCart } from "lucide-react";
 
 const Header = () => {
   const router = useRouter();
@@ -75,7 +73,7 @@ const Header = () => {
           onClick={() => router.push("/cart")}
           aria-label="Кошик"
         >
-          <TbShoppingCartCopy />
+          <ShoppingCart />
           {cartCount > 0 && (
             <span className={css.mobileCartCount}>{cartCount}</span>
           )}
@@ -87,9 +85,9 @@ const Header = () => {
           aria-label="Меню"
         >
           {menuOpen ? (
-            <IoMdClose size={20} color="#101828" />
+            <X size={26} color="#101828" />
           ) : (
-            <GiHamburgerMenu size={20} color="#101828" />
+            <Menu size={26} color="#101828" />
           )}
         </button>
       </div>

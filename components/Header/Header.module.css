@@ -9,8 +9,8 @@
   margin: 0 auto;
 }
 .logoText {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .navigation {
@@ -89,7 +89,7 @@
 .mobileIcons {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 /* Кнопка кошика */

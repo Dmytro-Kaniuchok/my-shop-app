@@ -10,7 +10,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
 }
 
 .title {
@@ -21,6 +20,28 @@
   font-size: 32px;
   font-weight: 700;
   color: #101828;
+}
+
+.searchBar {
+  display: flex;
+  margin: 32px auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchInput {
+  padding: 10px 22px;
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: border 0.3s ease;
+}
+
+.searchInput:hover,
+.searchInput:focus {
+  border-color: #0b44cd;
+  outline: none;
 }
 
 /* Сітка продуктів */

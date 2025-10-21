@@ -11,6 +11,7 @@ export default function Catalog() {
   const [visibleCount, setVisibleCount] = useState(15);
   const [loadingItem, setLoadingItem] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const router = useRouter();
 
@@ -55,32 +56,47 @@ export default function Catalog() {
         <h1 className={styles.title}>Каталог товарів</h1>
       </div>
 
+      <div className={styles.searchBar}>
+        <input
+          className={styles.searchInput}
+          type="text"
+          placeholder="Введіть назву товару..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       <ul className={styles.list}>
-        {products.slice(0, visibleCount).map((p) => (
-          <li key={p.id} className={styles.item}>
-            <div className={styles.card}>
-              <img
-                src={p.image}
-                alt={p.name}
-                className={styles.image}
-                onError={(e) => {
-                  e.currentTarget.src =
-                    "https://dummyimage.com/200x200/fff/000000&text=No+Image&";
-                }}
-              />
-              <div className={styles.productInfo}>
-                <span className={styles.productName}>{p.name}</span>
-                <span className={styles.productPrice}>{p.price} грн</span>
-                <button
-                  className={styles.detailsBtn}
-                  onClick={() => handleClick(p.id)}
-                >
-                  Детальніше
-                </button>
+        {products
+          .filter((p) =>
+            p.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+          )
+          .slice(0, visibleCount)
+          .map((p) => (
+            <li key={p.id} className={styles.item}>
+              <div className={styles.card}>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className={styles.image}
+                  onError={(e) => {
+                    e.currentTarget.src =
+                      "https://dummyimage.com/200x200/fff/000000&text=No+Image&";
+                  }}
+                />
+                <div className={styles.productInfo}>
+                  <span className={styles.productName}>{p.name}</span>
+                  <span className={styles.productPrice}>{p.price} грн</span>
+                  <button
+                    className={styles.detailsBtn}
+                    onClick={() => handleClick(p.id)}
+                  >
+                    Детальніше
+                  </button>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))}
       </ul>
 
       {visibleCount < products.length && (
