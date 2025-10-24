@@ -1,0 +1,92 @@
+/* Картка продукту */
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  padding: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Контейнер для зображення */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+/* Для самого next/image */
+.image {
+  object-fit: cover;
+}
+
+/* Інформація про продукт */
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.productName {
+  font-weight: 600;
+  font-size: 14px;
+  color: #101828;
+}
+
+.productPrice {
+  font-weight: 600;
+  color: #3470ff;
+  font-size: 14px;
+}
+
+/* Посилання */
+.link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3470ff;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #0b44cd;
+}
+
+.detailsBtn {
+  display: block;
+  padding: 10px 22px;
+  border-radius: 12px;
+  background-color: #3470ff;
+  border: none;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 10px;
+  width: 95%;
+  transition: background 0.3s ease;
+}
+
+.detailsBtn:hover {
+  background-color: #0b44cd;
+}
+
+@media (min-width: 320px) and (max-width: 459.5px) {
+  .item {
+    width: 240px;
+  }
+}

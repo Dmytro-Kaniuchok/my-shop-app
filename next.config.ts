@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     // serverActions: true,
   },
 
+  images: {
+    domains: ["dummyimage.com"],
+  },
+
   // headers: async () => [
   //   {
   //     source: "/(.*)",
