@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 const Header = () => {
   const router = useRouter();
@@ -36,8 +37,17 @@ const Header = () => {
 
   return (
     <header className={css.header}>
-      <Link href="/" aria-label="Головна" className={css.logoText}>
-        Магазин
+      <Link href="/" aria-label="Головна">
+        <div className={css.logoWrapper}>
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={120}
+            height={0}
+            className={css.logoImg}
+            style={{ height: "auto" }}
+          />
+        </div>
       </Link>
 
       {/* Десктопна навігація */}

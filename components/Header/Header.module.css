@@ -8,9 +8,14 @@
   color: #101828;
   margin: 0 auto;
 }
-.logoText {
-  font-size: 22px;
-  font-weight: 500;
+
+.logoWrapper {
+  width: 120px;
+}
+
+.logoImg {
+  width: 100%;
+  height: auto;
 }
 
 .navigation {
