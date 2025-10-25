@@ -99,44 +99,67 @@ function OrderForm() {
       return;
     }
 
+    const now = new Date().toLocaleString();
+
+    // plain-text лист
+    const message = `
+🕒 Замовлення створено: ${now}
+
+👤 Ім’я: ${formData.name}
+📞 Телефон: ${formData.phone}
+🏠 Адреса: ${formData.address}
+📧 Email: ${formData.email || "не вказано"}
+
+📦 Товари:
+${cartItems
+  .map(
+    (item, index) =>
+      `${index + 1}. ${item.name} (${item.id})
+       Кількість: ${item.quantity} шт
+       Ціна за одиницю: ${item.price} грн
+       Підсумок: ${item.quantity * item.price} грн`
+  )
+  .join("\n------------------------\n")}
+
+💰 Загальна сума: ${cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    )} грн
+`;
+
     const dataToSend = {
-      "Ім’я": formData.name,
-      "Номер телефону": formData.phone,
-      Email: formData.email,
-      "Адреса доставки": formData.address,
-      Товари: cartItems
-        .map((item) => `${item.name} ${item.quantity} шт. — ${item.price} грн`)
-        .join("\n"),
-      "Загальна сума": cartItems.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      ),
+      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+      subject: "Нове замовлення з сайту",
+      from_name: formData.name,
+      from_email: formData.email || "no-email",
+      message,
     };
 
     try {
       setLoading(true);
 
-      const res = await fetch(process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT!, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend),
       });
 
+      const result = await res.json();
       setLoading(false);
 
-      if (res.ok) {
-        toast.success("Замовлення відправлено!");
+      if (result.success) {
+        toast.success("Замовлення успішно відправлено!");
         if (!productId) {
           localStorage.removeItem("cart");
           window.dispatchEvent(new Event("cartUpdated"));
         }
         router.push("/order/success");
       } else {
-        toast.error("Сталася помилка при відправці");
+        toast.error("Не вдалося відправити замовлення. Спробуйте пізніше.");
       }
     } catch {
       setLoading(false);
-      toast.error("Помилка зʼєднання");
+      toast.error("Помилка з'єднання або мережі.");
     }
   };
 

@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CartItem {
   id: string;
@@ -52,7 +53,14 @@ export default function ProductPage() {
 
   return (
     <main className={styles.container}>
-      <img src={product.image} alt={product.name} className={styles.image} />
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={500}
+        height={500}
+        priority
+      />
+
       <div className={styles.info}>
         <h1 className={styles.title}>{product.name}</h1>
         <div className={styles.infoRow}>
