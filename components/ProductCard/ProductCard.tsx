@@ -31,7 +31,7 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
             className={styles.image}
             onError={() =>
               setImgSrc(
-                "https://dummyimage.com/200x200/fff/000000&text=No+Image&"
+                "https://dummyimage.com/200x200/fff/000000&text=Немає+Зображення&"
               )
             }
           />

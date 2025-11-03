@@ -8,6 +8,7 @@ export const products = [
     image: "/image/stop.jpg",
     description:
       "Надійні колодки для стабільного гальмування. Сумісні з багатьма моделями.",
+    popular: true,
   },
   {
     id: "of-002",
@@ -18,6 +19,7 @@ export const products = [
     image: "/image/oil-filtre.jpg",
     description:
       "Якісна фільтрація масла. Підходить для широкого ряду двигунів.",
+    popular: true,
   },
   {
     id: "sp-003",
@@ -28,6 +30,7 @@ export const products = [
     image: "/image/candle.jpg",
     description:
       "Стабільна іскра для надійного запуску і рівної роботи двигуна.",
+    popular: true,
   },
   {
     id: "bf-004",
@@ -38,6 +41,39 @@ export const products = [
     image: "/image/air-filter.jpg",
     description:
       "Чисте повітря для двигуна, збільшує ресурс роботи та ефективність.",
+    popular: false,
+  },
+  {
+    id: "bp-051",
+    name: "Тормозні колодки Bosch",
+    description: "Надійні колодки для безпечного гальмування",
+    image: "/image/product1.jpg",
+    price: 800,
+    popular: true,
+  },
+  {
+    id: "oil-001",
+    name: "Моторна олива Castrol",
+    description: "Захищає двигун у будь-яких умовах",
+    image: "/image/motor-oil.jpg",
+    price: 950,
+    popular: true,
+  },
+  {
+    id: "bat-001",
+    name: "Акумулятор Varta",
+    description: "Стабільний запуск за будь-якої погоди",
+    image: "/image/product3.jpg",
+    price: 2100,
+    popular: true,
+  },
+  {
+    id: "flt-001",
+    name: "Повітряний фільтр Mann",
+    description: "Якісна фільтрація повітря в системі двигуна",
+    image: "/image/product4.jpg",
+    price: 450,
+    popular: false,
   },
   {
     id: "rf-005",

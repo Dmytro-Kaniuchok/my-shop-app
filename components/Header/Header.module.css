@@ -59,21 +59,16 @@
 
 .cartCount {
   position: absolute;
-  top: -18px;
-  right: -18px;
-  background-color: #ff4d4f;
+  top: -12px;
+  right: -8px;
+  background-color: #ff4d4d;
   color: #fff;
   font-size: 12px;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 50%;
-  min-width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 2px 6px;
+  line-height: 1;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
 
 .burger {
@@ -125,7 +120,7 @@
   font-size: 12px;
   font-weight: 600;
   border-radius: 20px;
-  padding: 3px 6px;
+  padding: 2px 6px;
   line-height: 1;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
