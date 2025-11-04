@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header/Header";
+import Header from "@/src/components/Header/Header";
 import ClientWrapper from "./clientWrapper";
+import { ThemeProvider } from "@/src/context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Магазин запчастин",
-  description:
-    "Запчастини для сільгосптехніки. Магазин якісних автозапчастин.,",
+  description: "Запчастини для сільгосптехніки. Магазин якісних автозапчастин.",
   icons: {
     icon: "/logo-img.svg",
   },
@@ -46,8 +46,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${inter.variable}`}
     >
       <body>
-        <Header />
-        <ClientWrapper>{children}</ClientWrapper>
+        <ThemeProvider>
+          <Header />
+          <ClientWrapper>{children}</ClientWrapper>
+        </ThemeProvider>
       </body>
     </html>
   );

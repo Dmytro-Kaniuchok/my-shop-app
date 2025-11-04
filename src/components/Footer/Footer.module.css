@@ -43,12 +43,16 @@
   border: 1px solid #bdbdbd;
   color: inherit;
   text-decoration: none;
-  transition: border 0.5s transforn 0.2s;
+  transition: border 0.5s transform 0.2s;
 }
 
 .socialLink:hover {
   border: 1px solid #0b44cd;
   transform: scale(1.05);
+}
+
+[data-theme="dark"] .socialLink:hover {
+  border: 1px solid #f97316;
 }
 
 .sectionTitle {
@@ -84,6 +88,10 @@
 .list a:hover {
   color: #0b44cd;
   text-decoration: none;
+}
+
+[data-theme="dark"] .list a:hover {
+  color: #f97316;
 }
 
 .form {
@@ -129,9 +137,19 @@
   margin-right: 8px;
 }
 
+[data-theme="dark"] .input {
+  background-color: #1f1a17;
+  color: #dadde1;
+  border-color: #3a2f28;
+}
+
 .input:focus {
   border-color: #0b44cd;
   outline: none;
+}
+
+[data-theme="dark"] .input:focus {
+  border-color: #f97316;
 }
 
 .button {
@@ -147,8 +165,16 @@
   font-size: 14px;
 }
 
+[data-theme="dark"] .button {
+  background-color: #fb923c;
+}
+
 .button:hover {
   background-color: #0b44cd;
+}
+
+[data-theme="dark"] .button:hover {
+  background-color: #f97316;
 }
 
 .button:disabled {

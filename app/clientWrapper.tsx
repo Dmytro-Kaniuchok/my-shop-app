@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/src/components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 
 export default function ClientWrapper({

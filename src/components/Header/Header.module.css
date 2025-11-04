@@ -39,9 +39,15 @@
 }
 
 .navigation a {
+  position: relative;
+  display: inline-block;
   color: #101828;
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .navigation a {
+  color: #fff;
 }
 
 .navigation a:hover {
@@ -52,6 +58,14 @@
   color: #0b44cd;
 }
 
+[data-theme="dark"] .navigation a:hover {
+  color: #fb923c;
+}
+
+[data-theme="dark"] .navigation a.active {
+  color: #fb923c;
+}
+
 .cartWrapper {
   position: relative;
   display: inline-block;
@@ -59,8 +73,8 @@
 
 .cartCount {
   position: absolute;
-  top: -12px;
-  right: -8px;
+  top: -10px;
+  right: -20px;
   background-color: #ff4d4d;
   color: #fff;
   font-size: 12px;
@@ -113,8 +127,8 @@
 
 .mobileCartCount {
   position: absolute;
-  top: -12px;
-  right: -8px;
+  top: -10px;
+  right: -20px;
   background-color: #ff4d4d;
   color: #fff;
   font-size: 12px;
@@ -228,7 +242,7 @@
 }
 
 @media (min-width: 769px) {
-  .hideCartDesktop {
+  .slider {
     display: none;
   }
 }

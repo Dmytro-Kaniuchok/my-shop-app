@@ -2,7 +2,7 @@
 
 import styles from "./About.module.css";
 import { useState, useEffect } from "react";
-import Loader from "../../components/Loader/Loader";
+import Loader from "@/src/components/Loader/Loader";
 
 export default function About() {
   const [loading, setLoading] = useState(true);

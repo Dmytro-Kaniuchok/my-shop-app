@@ -1,4 +1,4 @@
-import Thanks from "@/components/Thanks/Thanks";
+import Thanks from "@/src/components/Thanks/Thanks";
 
 export default function SuccessPage() {
   return <Thanks />;

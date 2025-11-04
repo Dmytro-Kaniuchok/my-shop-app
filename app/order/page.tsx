@@ -6,7 +6,7 @@ import styles from "./order.module.css";
 import toast from "react-hot-toast";
 import { products } from "../../data/products";
 import { SiTelegram, SiViber } from "react-icons/si";
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/src/components/Loader/Loader";
 
 interface CartItem {
   id: string;

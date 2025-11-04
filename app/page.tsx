@@ -1,5 +1,5 @@
-import Hero from "@/components/Hero/Hero";
-import Popular from "@/components/Popular/Popular";
+import Hero from "@/src/components/Hero/Hero";
+import Popular from "@/src/components/Popular/Popular";
 
 export default function HomePage() {
   return (

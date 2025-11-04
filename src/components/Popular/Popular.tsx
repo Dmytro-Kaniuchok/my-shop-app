@@ -52,7 +52,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         }
       />
       <h3>{product.name}</h3>
-      <p>{product.description}</p>
+      <p className={css.description}>{product.description}</p>
       <p className={css.price}>{product.price} грн</p>
       <Link href={`/product/${product.id}`} className={css.buyBtn}>
         Детальніше

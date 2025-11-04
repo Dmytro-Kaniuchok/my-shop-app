@@ -15,6 +15,10 @@
   margin-bottom: 32px;
 }
 
+[data-theme="dark"] .popularTitle {
+  color: #fff;
+}
+
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -38,6 +42,11 @@
     box-shadow 0.25s ease;
 }
 
+[data-theme="dark"] .productCard {
+  background: #1c1a17;
+  border: 1px solid #3a2f28;
+}
+
 .productCard:hover {
   transform: translateY(-4px);
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
@@ -57,16 +66,28 @@
   margin-bottom: 6px;
 }
 
-.productCard p {
-  font-size: 13px;
+[data-theme="dark"] .productCard h3 {
+  color: #fff;
+}
+
+.description {
+  font-size: 14px;
   margin-bottom: 8px;
   text-align: center;
+}
+
+[data-theme="dark"] .description {
+  color: #8e929a;
 }
 
 .price {
   font-weight: 700;
   color: #3470ff;
   margin-bottom: 12px;
+}
+
+[data-theme="dark"] .price {
+  color: #fb923c;
 }
 
 .buyBtn {
@@ -83,8 +104,16 @@
   font-size: 14px;
 }
 
+[data-theme="dark"] .buyBtn {
+  background: #fb923c;
+}
+
 .buyBtn:hover {
   background-color: #0b44cd;
+}
+
+[data-theme="dark"] .buyBtn:hover {
+  background: #f97316;
 }
 
 /* Адаптив */

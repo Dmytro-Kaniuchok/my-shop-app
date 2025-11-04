@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { products } from "../../data/products.js";
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/src/components/Loader/Loader";
 import styles from "./catalog.module.css";
-import ProductCard from "@/components/ProductCard/ProductCard";
+import ProductCard from "@/src/components/ProductCard/ProductCard";
 
 export default function Catalog() {
   const [loading, setLoading] = useState(true);

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./Contact.module.css";
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/src/components/Loader/Loader";
 
 export default function Contacts() {
   const [loading, setLoading] = useState(true);

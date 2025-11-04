@@ -5,7 +5,7 @@ import { products } from "../../../data/products";
 import styles from "./product.module.css";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/src/components/Loader/Loader";
 import Link from "next/link";
 import Image from "next/image";
 
