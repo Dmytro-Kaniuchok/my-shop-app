@@ -22,6 +22,10 @@
   color: #101828;
 }
 
+[data-theme="dark"] .title {
+  color: #fff;
+}
+
 .searchBar {
   display: flex;
   margin: 32px auto;
@@ -38,9 +42,21 @@
   transition: border 0.3s ease;
 }
 
+[data-theme="dark"] .searchInput {
+  background-color: #1f1a17;
+  color: #dadde1;
+  border-color: #3a2f28;
+}
+
 .searchInput:hover,
 .searchInput:focus {
   border-color: #0b44cd;
+  outline: none;
+}
+
+[data-theme="dark"] .searchInput:hover,
+.searchInput:focus {
+  border-color: #f97316;
   outline: none;
 }
 
@@ -73,11 +89,21 @@
     transform 0.3s ease;
 }
 
+[data-theme="dark"] .loadMore {
+  border: 2px solid #fb923c;
+  color: #fff;
+}
+
 .loadMore:hover {
   color: #fff;
   background-color: #0b44cd;
   border: 2px solid #0b44cd;
   transform: translateY(-4px);
+}
+
+[data-theme="dark"] .loadMore:hover {
+  background-color: #f97316;
+  border: 2px solid #f97316;
 }
 
 .scrollTop {
@@ -101,9 +127,17 @@
   z-index: 1000;
 }
 
+[data-theme="dark"] .scrollTop {
+  background: #f97316;
+}
+
 .scrollTop:hover {
   background: #3470ff;
   transform: translateY(-4px);
+}
+
+[data-theme="dark"] .scrollTop:hover {
+  background: #fb923c;
 }
 
 .scrollTop:active {

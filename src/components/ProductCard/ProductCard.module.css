@@ -1,4 +1,3 @@
-/* Картка продукту */
 .item {
   display: flex;
   flex-direction: column;
@@ -10,6 +9,11 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .item {
+  background: #1c1a17;
+  border: 1px solid #3a2f28;
 }
 
 .item:hover {
@@ -45,12 +49,21 @@
   font-weight: 600;
   font-size: 14px;
   color: #101828;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .productName {
+  color: #fff;
 }
 
 .productPrice {
   font-weight: 600;
   color: #3470ff;
   font-size: 14px;
+}
+
+[data-theme="dark"] .productPrice {
+  color: #fb923c;
 }
 
 /* Посилання */
@@ -80,8 +93,16 @@
   transition: background 0.3s ease;
 }
 
+[data-theme="dark"] .detailsBtn {
+  background: #fb923c;
+}
+
 .detailsBtn:hover {
   background-color: #0b44cd;
+}
+
+[data-theme="dark"] .detailsBtn:hover {
+  background: #f97316;
 }
 
 @media (min-width: 320px) and (max-width: 459.5px) {
