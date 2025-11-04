@@ -59,11 +59,11 @@
 }
 
 [data-theme="dark"] .navigation a:hover {
-  color: #fb923c;
+  color: #f97316;
 }
 
 [data-theme="dark"] .navigation a.active {
-  color: #fb923c;
+  color: #f97316;
 }
 
 .cartWrapper {
@@ -80,7 +80,7 @@
   font-size: 12px;
   font-weight: 600;
   border-radius: 20px;
-  padding: 2px 6px;
+  padding: 3px 6px;
   line-height: 1;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
@@ -134,7 +134,7 @@
   font-size: 12px;
   font-weight: 600;
   border-radius: 20px;
-  padding: 2px 6px;
+  padding: 3px 6px;
   line-height: 1;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }

@@ -19,6 +19,10 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+[data-theme="dark"] .heroTitle {
+  color: #fff;
+}
+
 .content {
   max-width: 1280px;
   margin: 0 auto;
@@ -33,10 +37,18 @@
   font-weight: 700;
 }
 
+[data-theme="dark"] .sectionTitle {
+  color: #fff;
+}
+
 .paragraph {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 500;
+}
+
+[data-theme="dark"] .paragraph {
+  color: #8e929a;
 }
 
 .list {
@@ -44,6 +56,14 @@
   flex-direction: column;
   gap: 8px;
   list-style: none;
+}
+
+.list li {
+  font-weight: 500;
+}
+
+[data-theme="dark"] .list li {
+  color: #8e929a;
 }
 
 .mapContainer {

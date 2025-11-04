@@ -18,8 +18,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #dadde1;
-  transition: 0.4s;
+  background-color: #0b44cd;
+  transition:
+    background-color 0.4s,
+    box-shadow 0.4s;
   border-radius: 34px;
 }
 
@@ -31,34 +33,33 @@
   left: 3px;
   bottom: 3px;
   background-color: #fff;
-  transition: 0.4s;
+  transition: transform 0.4s;
   border-radius: 50%;
-}
-
-/* Коли активна темна тема */
-input:checked + .slider {
-  background-color: #3470ff;
+  z-index: 2;
 }
 
 [data-theme="dark"] input:checked + .slider {
-  background-color: #fb923c;
+  background-color: #f97316;
 }
 
 input:checked + .slider::before {
   transform: translateX(26px);
 }
 
-/* Опційно: іконки сонця і місяця */
 .slider::after {
   content: "🌞";
   position: absolute;
-  right: 6px;
   top: 3px;
+  right: 6px;
   font-size: 14px;
+  z-index: 1;
+  transition: opacity 0.4s;
+  opacity: 1;
 }
 
 input:checked + .slider::after {
   content: "🌙";
   left: 6px;
   right: auto;
+  opacity: 1;
 }

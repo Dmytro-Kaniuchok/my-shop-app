@@ -11,9 +11,19 @@
     box-shadow 0.3s ease;
 }
 
+[data-theme="dark"] .container {
+  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+}
+
 .container:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .container:hover {
+  box-shadow:
+    0 8px 16px rgba(255, 255, 255, 0.05),
+    0 2px 4px rgba(255, 255, 255, 0.08);
 }
 
 .title {
@@ -21,6 +31,10 @@
   margin-bottom: 20px;
   color: #101828;
   font-weight: 700;
+}
+
+[data-theme="dark"] .title {
+  color: #fff;
 }
 
 .description {
@@ -47,9 +61,17 @@
   transition: color 0.5s;
 }
 
+[data-theme="dark"] .list a {
+  color: #fb923c;
+}
+
 .list a:hover {
   color: #0b44cd;
   text-decoration: none;
+}
+
+[data-theme="dark"] .list a:hover {
+  color: #f97316;
 }
 
 @media (max-width: 393px) {

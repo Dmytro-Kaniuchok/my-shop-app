@@ -17,6 +17,11 @@
   animation: spin 1s linear infinite;
 }
 
+[data-theme="dark"] .loader {
+  border: 5px solid #1f2937;
+  border-top: 5px solid #fb923c;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
