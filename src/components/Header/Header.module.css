@@ -117,18 +117,22 @@
   transition: color 0.3s ease;
 }
 
+[data-theme="dark"] .mobileCart {
+  color: #fff;
+}
+
 .mobileCart:hover {
   color: #0b44cd;
 }
 
-.active {
-  color: #0b44cd;
+[data-theme="dark"] .mobileCart:hover {
+  color: #f97316;
 }
 
 .mobileCartCount {
   position: absolute;
-  top: -10px;
-  right: -20px;
+  top: -8px;
+  right: -10px;
   background-color: #ff4d4d;
   color: #fff;
   font-size: 12px;
@@ -137,6 +141,11 @@
   padding: 3px 6px;
   line-height: 1;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.iconsWrapper {
+  display: flex;
+  gap: 8px;
 }
 
 /* Mobile nav */
@@ -152,9 +161,14 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding: 80px 20px;
+  padding: 32px 16px;
   font-weight: 500;
   overflow: hidden;
+}
+
+[data-theme="dark"] .mobileNav {
+  background: linear-gradient(145deg, #0a0a0f 0%, #121826 50%, #1e2a3a 100%);
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.5);
 }
 
 .mobileNav ul {
@@ -174,12 +188,25 @@
   font-size: 18px;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .mobileNav li a {
+  color: #fff;
 }
 
 .mobileNav span:hover,
 .mobileNav span:focus {
-  transform: translateY(-2px);
+  color: #0b44cd;
+}
+
+[data-theme="dark"] .mobileNav span:hover,
+[data-theme="dark"] .mobileNav span:focus {
+  color: #f97316;
+}
+
+.mobileNavHeader {
+  display: flex;
 }
 
 .mobileNavFooter {
@@ -192,20 +219,25 @@
   width: 250px;
   padding: 10px 20px;
   border: none;
-  background: linear-gradient(90deg, #0b44cd, #3470ff, #1a5cff);
+  background: #3470ff;
   color: #fff;
   border-radius: 12px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(52, 112, 255, 0.3);
+  transition: background 0.3s ease;
 }
 
 .mobileNavFooter .ctaBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(52, 112, 255, 0.5);
-  filter: brightness(1.1);
+  background: #0b44cd;
+}
+
+[data-theme="dark"] .ctaBtn {
+  background: #fb923c;
+}
+
+[data-theme="dark"] .ctaBtn:hover {
+  background: #f97316;
 }
 
 .mobileNav.open {
@@ -236,13 +268,40 @@
   }
 
   .cartCount {
-    top: -14px;
-    right: -20px;
+    top: -10px;
+    right: -16px;
   }
 }
 
 @media (min-width: 769px) {
   .slider {
     display: none;
+  }
+
+  .hideCartDesktop {
+    display: none;
+  }
+}
+
+/* Десктоп: показуємо ThemeToggle */
+.themeDesktop {
+  display: none;
+}
+
+@media (min-width: 768.9px) {
+  .themeDesktop {
+    display: block;
+  }
+
+  .mobileNavHeader ThemeToggle {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobileNavHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

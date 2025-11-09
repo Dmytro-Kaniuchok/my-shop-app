@@ -55,7 +55,7 @@
 }
 
 [data-theme="dark"] .searchInput:hover,
-.searchInput:focus {
+[data-theme="dark"] .searchInput:focus {
   border-color: #f97316;
   outline: none;
 }

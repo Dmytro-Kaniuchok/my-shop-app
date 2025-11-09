@@ -1,15 +1,15 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
 import styles from "./ThemeToggle.module.css";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
+    const saved = localStorage.getItem("theme") || "light";
+    setTheme(saved);
+    document.documentElement.setAttribute("data-theme", saved);
   }, []);
 
   const toggleTheme = () => {
@@ -20,13 +20,8 @@ export default function ThemeToggle() {
   };
 
   return (
-    <label className={styles.switch}>
-      <input
-        type="checkbox"
-        checked={theme === "dark"}
-        onChange={toggleTheme}
-      />
-      <span className={styles.slider}></span>
-    </label>
+    <button className={styles.iconBtn} onClick={toggleTheme}>
+      {theme === "light" ? <Moon size={24} /> : <Sun size={24} color="#fff" />}
+    </button>
   );
 }

@@ -1,5 +1,5 @@
 .popular {
-  padding: 24px 16px;
+  padding: 32px 16px;
   text-align: center;
 }
 
@@ -44,7 +44,7 @@
 
 [data-theme="dark"] .productCard {
   background: #1c1a17;
-  border: 1px solid #3a2f28;
+  border: 2px solid #3a2f28;
 }
 
 .productCard:hover {

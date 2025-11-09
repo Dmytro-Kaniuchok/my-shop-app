@@ -14,11 +14,19 @@
   text-align: center;
 }
 
+[data-theme="dark"] .container {
+  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+}
+
 .title {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 12px;
   color: #101828;
+}
+
+[data-theme="dark"] .title {
+  color: #fff;
 }
 
 .message {
@@ -30,6 +38,10 @@
   font-size: 12px;
   margin-top: 12px;
   color: #101828;
+}
+
+[data-theme="dark"] .redirectNote {
+  color: #fff;
 }
 
 @media (max-width: 800px) {

@@ -8,12 +8,21 @@
   font-family: "Inter", sans-serif;
 }
 
+[data-theme="dark"] .container {
+  background: #1c1a17;
+  border: 2px solid #3a2f28;
+}
+
 .title {
   text-align: center;
   font-size: 28px;
   font-weight: 700;
   color: #101828;
   margin-bottom: 25px;
+}
+
+[data-theme="dark"] .title {
+  color: #fff;
 }
 
 .form {
@@ -30,6 +39,10 @@
   color: #101828;
 }
 
+[data-theme="dark"] .label {
+  color: #fff;
+}
+
 .input {
   margin-top: 6px;
   padding: 10px 12px;
@@ -39,9 +52,19 @@
   transition: all 0.5s ease;
 }
 
+[data-theme="dark"] .input {
+  background-color: #1f1a17;
+  color: #dadde1;
+  border: 2px solid #3a2f28;
+}
+
 .input:focus {
   border-color: #3470ff;
   outline: none;
+}
+
+[data-theme="dark"] .input:focus {
+  border-color: #f97316;
 }
 
 .checkboxLabel {
@@ -50,6 +73,50 @@
   align-items: center;
   font-size: 14px;
   gap: 8px;
+  color: #101828;
+}
+
+[data-theme="dark"] .checkboxLabel {
+  color: #fff;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  appearance: none; /* Прибираємо стандартний стиль */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #101828;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+}
+
+.checkboxLabel input[type="checkbox"]:checked {
+  background-color: #0b44cd;
+  border-color: #0b44cd;
+}
+
+.checkboxLabel input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  color: #fff;
+  font-size: 12px;
+}
+
+[data-theme="dark"] .checkboxLabel input[type="checkbox"] {
+  border: 2px solid #3a2f28;
+}
+
+[data-theme="dark"] .checkboxLabel input[type="checkbox"]:checked {
+  background-color: #f97316;
+  border-color: #f97316;
 }
 
 .submitBtn {
@@ -64,8 +131,16 @@
   transition: all 0.5s ease;
 }
 
+[data-theme="dark"] .submitBtn {
+  background-color: #fb923c;
+}
+
 .submitBtn:hover {
   background-color: #0b44cd;
+}
+
+[data-theme="dark"] .submitBtn:hover {
+  background-color: #f97316;
 }
 
 .quickLink {
@@ -76,6 +151,11 @@
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
+  color: #101828;
+}
+
+[data-theme="dark"] .quickLink {
+  color: #fff;
 }
 
 .quickLink a {
@@ -87,8 +167,16 @@
   transform: color 0.3s ease-in;
 }
 
+[data-theme="dark"] .quickLink a {
+  color: #fb923c;
+}
+
 .quickLink a:hover {
   color: #0b44cd;
+}
+
+[data-theme="dark"] .quickLink a:hover {
+  color: #f97316;
 }
 
 @media (max-width: 425px) {

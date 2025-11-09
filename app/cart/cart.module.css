@@ -28,12 +28,16 @@
   align-items: center;
   padding: 16px 20px;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     box-shadow 0.3s ease,
     transform 0.3s ease;
+}
+
+[data-theme="dark"] .item {
+  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
 }
 
 .item:hover {
@@ -45,6 +49,10 @@
   display: block;
   width: 350px;
   word-wrap: break-word;
+  color: #101828;
+}
+
+[data-theme="dark"] .itemName {
   color: #fff;
 }
 

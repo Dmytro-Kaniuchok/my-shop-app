@@ -47,48 +47,20 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-
-  background: linear-gradient(270deg, #0b44cd, #3470ff, #5b8eff, #1a5cff);
-  background-size: 400% 400%;
-  animation: blueFlow 6s ease infinite;
-  transition: transform 0.3s;
+  background: #3470ff;
+  transition: background 0.3s ease;
 }
 
 [data-theme="dark"] .linkBtn {
-  background: linear-gradient(270deg, #fb923c, #f97316, #ea580c, #f97316);
-  background-size: 400% 400%;
-  animation: orangeFlow 6s ease infinite;
-  transition: transform 0.3s;
-}
-
-@keyframes orangeFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: #fb923c;
 }
 
 .linkBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: #0b44cd;
 }
 
-/* Анімація синього градієнта */
-@keyframes blueFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+[data-theme="dark"] .linkBtn:hover {
+  background: #f97316;
 }
 
 /* ===== Медіа-запити ===== */

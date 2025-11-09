@@ -49,7 +49,7 @@ export const products = [
     description: "Надійні колодки для безпечного гальмування",
     image: "/image/product1.jpg",
     price: 800,
-    popular: true,
+    popular: false,
   },
   {
     id: "oil-001",
@@ -63,7 +63,7 @@ export const products = [
     id: "bat-001",
     name: "Акумулятор Varta",
     description: "Стабільний запуск за будь-якої погоди",
-    image: "/image/product3.jpg",
+    image: "/image/varta.jpg",
     price: 2100,
     popular: true,
   },
