@@ -134,7 +134,7 @@
 }
 
 [data-theme="dark"] .quantityInput:focus,
-.quantityInput:hover {
+[data-theme="dark"] .quantityInput:hover {
   border-color: #f97316;
 }
 

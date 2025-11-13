@@ -35,7 +35,7 @@
 
 .searchInput {
   padding: 10px 22px;
-  border: 2px solid #dadde1;
+  border: 1px solid #dadde1;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 500;
@@ -78,32 +78,30 @@
   background-color: transparent;
   color: #101828;
   border-radius: 12px;
-  border: 2px solid #3470ff;
+  border: 1px solid #3470ff;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
   transition:
     background 0.3s ease,
     color 0.3s ease,
-    border 0.3s ease,
-    transform 0.3s ease;
+    border 0.3s ease;
 }
 
 [data-theme="dark"] .loadMore {
-  border: 2px solid #fb923c;
+  border: 1px solid #fb923c;
   color: #fff;
 }
 
 .loadMore:hover {
   color: #fff;
   background-color: #0b44cd;
-  border: 2px solid #0b44cd;
-  transform: translateY(-4px);
+  border: 1px solid #0b44cd;
 }
 
 [data-theme="dark"] .loadMore:hover {
   background-color: #f97316;
-  border: 2px solid #f97316;
+  border: 1px solid #f97316;
 }
 
 .scrollTop {

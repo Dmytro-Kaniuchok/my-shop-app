@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    domains: ["dummyimage.com"],
+    domains: ["dummyimage.com", "source.unsplash.com"],
   },
 
   // headers: async () => [

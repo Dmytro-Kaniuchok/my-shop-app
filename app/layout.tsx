@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/src/components/Header/Header";
 import ClientWrapper from "./clientWrapper";
-import { ThemeProvider } from "@/src/context/ThemeContext";
+import { ThemeProvider } from "@/src/context/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Магазин запчастин",
@@ -48,7 +48,9 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <Header />
-          <ClientWrapper>{children}</ClientWrapper>
+          <main>
+            <ClientWrapper>{children}</ClientWrapper>
+          </main>
         </ThemeProvider>
       </body>
     </html>

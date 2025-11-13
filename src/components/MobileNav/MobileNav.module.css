@@ -1,0 +1,114 @@
+.mobileNav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(145deg, #ffffff 0%, #f2f4f7 60%, #dce4ff 100%);
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .mobileNav {
+  background: linear-gradient(145deg, #0a0a0f 0%, #121826 50%, #1e2a3a 100%);
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.5);
+}
+
+.mobileNav ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.mobileNav li a {
+  color: #101828;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .mobileNav li a {
+  color: #fff;
+}
+
+.mobileNav span:hover,
+.mobileNav span:focus {
+  color: #0b44cd;
+}
+
+[data-theme="dark"] .mobileNav span:hover,
+[data-theme="dark"] .mobileNav span:focus {
+  color: #f97316;
+}
+
+.mobileNavHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobileNavFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mobileNavFooter .ctaBtn {
+  width: 250px;
+  padding: 10px 20px;
+  border: none;
+  background: #3470ff;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.mobileNavFooter .ctaBtn:hover {
+  background: #0b44cd;
+}
+
+[data-theme="dark"] .ctaBtn {
+  background: #fb923c;
+}
+
+[data-theme="dark"] .ctaBtn:hover {
+  background: #f97316;
+}
+
+.mobileNav.open {
+  right: 0;
+}
+
+.cartWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cartCount {
+  position: absolute;
+  top: -10px;
+  right: -18px;
+  background-color: #ff4d4d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 3px 6px;
+  line-height: 1;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
