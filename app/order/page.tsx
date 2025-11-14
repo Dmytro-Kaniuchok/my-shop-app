@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./order.module.css";
 import toast from "react-hot-toast";
@@ -15,7 +15,6 @@ interface CartItem {
   quantity: number;
 }
 
-// Обгортка для хуку useSearchParams
 function OrderForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -28,6 +27,10 @@ function OrderForm() {
     address: "",
   });
 
+  // Для відкладеного рендеру клієнтського контенту
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -36,7 +39,6 @@ function OrderForm() {
   const productId = searchParams.get("id");
   const quantityParam = Number(searchParams.get("quantity") || 1);
 
-  // Продукт із query-параметрів
   const singleProduct = productId
     ? products.find((p) => p.id === productId)
     : null;
@@ -52,14 +54,18 @@ function OrderForm() {
       ]
     : [];
 
-  // Кошик із localStorage
-  const storedCart =
-    typeof window !== "undefined" ? localStorage.getItem("cart") : null;
-  const cartItems: CartItem[] = storedCart
-    ? JSON.parse(storedCart)
-    : cartItemsFromQuery;
+  const [cartItems, setCartItems] = useState<CartItem[]>(cartItemsFromQuery);
 
-  // --- Генерація посилань для Viber/Telegram ---
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("cart");
+      if (stored) {
+        setCartItems(JSON.parse(stored));
+      }
+    }
+  }, []);
+
+  // --- Генерація посилань ---
   const generateMessageLink = (
     cart: CartItem[],
     messenger: "viber" | "telegram"
@@ -79,9 +85,7 @@ function OrderForm() {
     const fullMessage = `🛒 Нове замовлення:\n\n👤 Ім’я: ${formData.name}\n📞 Телефон: ${formData.phone}\n🏠 Адреса: ${formData.address}\n📧 Email: ${formData.email || "-"}\n\nТовари:\n${message}\n\n💰 Загальна сума: ${total} грн`;
 
     if (messenger === "viber") {
-      return `viber://chat?number=+380XXXXXXXXX&text=${encodeURIComponent(
-        fullMessage
-      )}`;
+      return `viber://chat?number=+380XXXXXXXXX&text=${encodeURIComponent(fullMessage)}`;
     }
 
     if (messenger === "telegram") {
@@ -101,7 +105,6 @@ function OrderForm() {
 
     const now = new Date().toLocaleString();
 
-    // plain-text лист
     const message = `
 🕒 Замовлення створено: ${now}
 
@@ -137,13 +140,11 @@ ${cartItems
 
     try {
       setLoading(true);
-
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend),
       });
-
       const result = await res.json();
       setLoading(false);
 
@@ -233,7 +234,7 @@ ${cartItems
         </button>
       </form>
 
-      {cartItems.length > 0 && (
+      {isClient && cartItems.length > 0 && (
         <p className={styles.quickLink}>
           Або швидко:
           <a
@@ -256,7 +257,7 @@ ${cartItems
   );
 }
 
-// Головна сторінка з Suspense
+// Головна сторінка
 export default function OrderPage() {
   return (
     <Suspense fallback={<Loader />}>

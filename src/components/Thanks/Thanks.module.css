@@ -1,28 +1,36 @@
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  max-width: 800px;
-  height: 300px;
   margin: 60px auto;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  text-align: center;
+  transition: background 0.3s;
 }
 
-[data-theme="dark"] .container {
+.card {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-out forwards;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+[data-theme="dark"] .card {
   background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
 }
 
 .title {
   font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-weight: 700;
   color: #101828;
+  margin-bottom: 16px;
 }
 
 [data-theme="dark"] .title {
@@ -30,22 +38,75 @@
 }
 
 .message {
-  font-size: 18px;
-  color: #8e929a;
-}
-
-.redirectNote {
-  font-size: 12px;
-  margin-top: 12px;
+  font-size: 16px;
   color: #101828;
+  margin-bottom: 24px;
 }
 
-[data-theme="dark"] .redirectNote {
+[data-theme="dark"] .message {
   color: #fff;
 }
 
-@media (max-width: 800px) {
+.redirect {
+  font-size: 14px;
+  margin-bottom: 24px;
+  color: #8e929a;
+}
+
+[data-theme="dark"] .redirect {
+  color: #8e929a;
+}
+
+.timer {
+  font-weight: 700;
+  color: #0b44cd;
+}
+
+[data-theme="dark"] .timer {
+  color: #f97316;
+}
+
+.progressBar {
+  height: 6px;
+  background: #0b44cd;
+  border-radius: 6px;
+  transition: width 1s linear;
+}
+
+[data-theme="dark"] .progressBar {
+  background: #f97316;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
   .container {
+    margin: 80px auto;
+  }
+
+  .card {
+    padding: 30px 20px;
     width: 90%;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .redirect {
+    font-size: 12px;
   }
 }

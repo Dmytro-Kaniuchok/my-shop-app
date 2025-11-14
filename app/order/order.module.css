@@ -10,7 +10,7 @@
 
 [data-theme="dark"] .container {
   background: #1c1a17;
-  border: 2px solid #3a2f28;
+  border: 1px solid #3a2f28;
 }
 
 .title {
@@ -52,10 +52,15 @@
   transition: all 0.5s ease;
 }
 
+/* [data-theme="dark"] .input:-webkit-autofill {
+  -webkit-text-fill-color: #dadde1;
+  transition: background-color 5000s ease-in-out 0s;
+} */
+
 [data-theme="dark"] .input {
   background-color: #1f1a17;
   color: #dadde1;
-  border: 2px solid #3a2f28;
+  border: 1px solid #3a2f28;
 }
 
 .input:focus {
@@ -111,7 +116,7 @@
 }
 
 [data-theme="dark"] .checkboxLabel input[type="checkbox"] {
-  border: 2px solid #3a2f28;
+  border: 1px solid #3a2f28;
 }
 
 [data-theme="dark"] .checkboxLabel input[type="checkbox"]:checked {

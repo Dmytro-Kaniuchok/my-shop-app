@@ -9,14 +9,15 @@
 }
 
 :root[data-theme="dark"] {
-  --color-bg: #0d1117;
+  --color-bg: #181818;
   --color-text: #fff;
-  --color-primary: #539bf5;
-  --color-primary-dark: #3470ff;
+  --color-primary: #fb923c;
+  --color-primary-dark: #f97316;
 }
 
 html {
   overflow-y: scroll;
+  background-color: var(--color-bg);
 }
 
 body {
