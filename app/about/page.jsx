@@ -22,7 +22,7 @@ export default function About() {
         </div>
       </section>
       <section className={styles.content}>
-        <h2 className={styles.sectionTitle}>Хто ми?</h2>
+        <h2 className={styles.sectionTitle}>Хто ми ?</h2>
 
         <p className={styles.paragraph}>
           Ми – магазин автозапчастин та комплектуючих для сільськогосподарської
@@ -38,12 +38,12 @@ export default function About() {
           консультацію щодо підбору потрібної деталі для авто чи техніки.
         </p>
 
-        <h2 className={styles.sectionTitle}>Чому обирають нас</h2>
+        <h2 className={styles.sectionTitle}>Чому обирають нас ?</h2>
         <ul className={styles.list}>
-          <li>✅ Широкий вибір запчастин для авто та сільгосптехніки.</li>
-          <li>✅ Якість і надійність запчастин.</li>
-          <li>✅ Швидка доставка та зручні способи оплати.</li>
-          <li>✅ Прозорі ціни і чесність у роботі.</li>
+          <li>Широкий вибір запчастин для авто та сільгосптехніки.</li>
+          <li>Якість і надійність запчастин.</li>
+          <li>Швидка доставка та зручні способи оплати.</li>
+          <li>Прозорі ціни і чесність у роботі.</li>
         </ul>
 
         <h2 className={styles.sectionTitle}>Наша команда</h2>

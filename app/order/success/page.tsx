@@ -1,5 +1,5 @@
-import Thanks from "@/src/components/Thanks/Thanks";
+import ThanksPage from "@/src/components/ThanksPage/ThanksPage";
 
 export default function SuccessPage() {
-  return <Thanks />;
+  return <ThanksPage />;
 }

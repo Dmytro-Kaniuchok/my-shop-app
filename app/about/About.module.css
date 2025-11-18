@@ -48,22 +48,48 @@
 }
 
 [data-theme="dark"] .paragraph {
-  color: #8e929a;
+  color: #dadde1;
 }
 
 .list {
+  list-style: none;
+  padding-left: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  list-style: none;
+  gap: 12px;
 }
 
 .list li {
+  position: relative;
+  padding-left: 32px;
+  font-size: 16px;
   font-weight: 500;
+  color: #101828;
 }
 
 [data-theme="dark"] .list li {
-  color: #8e929a;
+  color: #dadde1;
+}
+
+/* Кастомні галочки */
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0b44cd;
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.00004 10.586L3.70704 8.293L2.29304 9.707L6.00004 13.414L14.0001 5.414L12.586 4L6.00004 10.586Z"/></svg>')
+    no-repeat center / contain;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.00004 10.586L3.70704 8.293L2.29304 9.707L6.00004 13.414L14.0001 5.414L12.586 4L6.00004 10.586Z"/></svg>')
+    no-repeat center / contain;
+}
+
+[data-theme="dark"] .list li::before {
+  background-color: #f97316;
 }
 
 .mapContainer {
