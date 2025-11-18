@@ -62,6 +62,7 @@ export const products = [
   {
     id: "bat-001",
     name: "Акумулятор Varta",
+    brand: "Varta",
     description: "Стабільний запуск за будь-якої погоди",
     image: "/image/varta.jpg",
     price: 2100,

@@ -8,7 +8,11 @@ export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button className={styles.iconBtn} onClick={toggleTheme}>
+    <button
+      className={styles.iconBtn}
+      onClick={toggleTheme}
+      aria-label="Зміна теми"
+    >
       {theme === "light" ? <Moon size={24} /> : <Sun size={24} color="#fff" />}
     </button>
   );

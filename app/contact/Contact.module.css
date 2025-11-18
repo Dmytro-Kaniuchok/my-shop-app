@@ -1,95 +1,78 @@
 .container {
   max-width: 800px;
   margin: 60px auto;
-  padding: 30px;
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  text-align: left;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-[data-theme="dark"] .container {
-  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
-}
-
-.container:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="dark"] .container:hover {
-  box-shadow:
-    0 8px 16px rgba(255, 255, 255, 0.05),
-    0 2px 4px rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  text-align: center;
 }
 
 .title {
   font-size: 32px;
-  margin-bottom: 20px;
-  color: #101828;
+  margin-bottom: 30px;
   font-weight: 700;
+  color: #101828;
 }
 
 [data-theme="dark"] .title {
   color: #fff;
 }
 
-.description {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #8e929a;
-  font-weight: 500;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.list {
-  list-style: none;
-  padding: 0;
-}
-
-.list li {
-  margin-bottom: 12px;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.list a {
-  color: #3470ff;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #dadde1;
+  border-radius: 12px;
   text-decoration: none;
-  transition: color 0.5s;
+  color: #101828;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
-[data-theme="dark"] .list a {
-  color: #fb923c;
+[data-theme="dark"] .card {
+  background: #2b2b2b;
+  color: #fff;
+  border: 1px solid #3a2f28;
 }
 
-.list a:hover {
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
   color: #0b44cd;
-  text-decoration: none;
 }
 
-[data-theme="dark"] .list a:hover {
+.card span {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+[data-theme="dark"] .icon {
   color: #f97316;
 }
 
-@media (max-width: 393px) {
-  .title {
-    font-size: 28px;
-  }
-
-  .list a {
-    font-size: 14px;
-  }
-
-  .description {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .container {
-    width: 90%;
+    margin: 20px auto;
+  }
+  .cards {
+    grid-template-columns: 1fr;
   }
 }
