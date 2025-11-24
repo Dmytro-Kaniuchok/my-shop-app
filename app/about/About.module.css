@@ -48,9 +48,9 @@
   color: #dadde1;
 }
 
-.block:hover {
+/* .block:hover {
   transform: translateY(-4px);
-}
+} */
 
 .sectionTitle {
   font-size: 28px;
