@@ -12,7 +12,7 @@
 .image {
   width: 300px;
   height: 300px;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
@@ -54,7 +54,7 @@
   color: #fff;
   border: none;
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background 0.3s ease-in;
   width: 200px;
@@ -79,7 +79,7 @@
   border: 2px solid #0b44cd;
   color: #0b44cd;
   padding: 10px 22px;
-  border-radius: 12px;
+  border-radius: 20px;
   cursor: pointer;
   width: 200px;
   font-size: 14px;
@@ -113,7 +113,7 @@
 .quantityInput {
   width: 60px;
   padding: 6px 10px;
-  border-radius: 12px;
+  border-radius: 20px;
   border: 1px solid #dbdbdb;
   text-align: center;
   transition: all 0.25s ease;

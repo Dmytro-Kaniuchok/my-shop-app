@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 20px;
   border: 1px solid #dadde1;
   padding: 16px;
   transition:
@@ -83,14 +83,14 @@
 .detailsBtn {
   display: block;
   padding: 10px 22px;
-  border-radius: 12px;
+  border-radius: 20px;
   background-color: #3470ff;
   border: none;
   font-size: 14px;
   color: #fff;
   font-weight: 600;
   margin-top: 10px;
-  width: 95%;
+  width: 100%;
   transition: background 0.3s ease;
 }
 
@@ -108,6 +108,6 @@
 
 @media (min-width: 320px) and (max-width: 459.5px) {
   .item {
-    width: 240px;
+    width: 220px;
   }
 }

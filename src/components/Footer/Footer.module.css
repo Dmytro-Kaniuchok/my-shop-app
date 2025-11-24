@@ -139,7 +139,7 @@
   padding: 10px 22px;
   border: 1px solid #bdbdbd;
   font-size: 14px;
-  border-radius: 12px;
+  border-radius: 20px;
   transition: all 0.3s ease;
   margin-right: 8px;
 }
@@ -164,7 +164,7 @@
   min-width: 132px;
   background-color: #3470ff;
   color: #fff;
-  border-radius: 12px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background 0.3s;
   border: none;
