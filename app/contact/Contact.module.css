@@ -36,12 +36,21 @@
   transition:
     transform 0.2s,
     box-shadow 0.2s;
+  border-color: 0.2s;
 }
 
 [data-theme="dark"] .card {
-  background: #2b2b2b;
+  background: #1f1f1f;
   color: #fff;
-  border: 1px solid #3a2f28;
+  border: none;
+}
+
+[data-theme="dark"] .card:nth-child(-n + 2) {
+  border-top: 2px solid #1e90ff;
+}
+
+[data-theme="dark"] .card:nth-last-child(-n + 2) {
+  border-bottom: 2px solid #1e90ff;
 }
 
 .card:hover {
@@ -50,7 +59,7 @@
 }
 
 [data-theme="dark"] .card:hover {
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
+  border-color: #0b60b5;
 }
 
 .icon {
@@ -65,7 +74,7 @@
 }
 
 [data-theme="dark"] .icon {
-  color: #f97316;
+  color: #1e90ff;
 }
 
 @media (max-width: 500px) {

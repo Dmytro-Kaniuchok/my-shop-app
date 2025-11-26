@@ -172,10 +172,13 @@
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+  border-color: 0.3s ease;
 }
 
 [data-theme="dark"] .searchWrapper {
-  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+  background: #1f1f1f;
+  border: none;
+  border-top: 2px solid #1e90ff;
 }
 
 .searchWrapper:hover {
@@ -184,7 +187,7 @@
 }
 
 [data-theme="dark"] .searchWrapper:hover {
-  box-shadow: 0 16px 32px rgba(255, 255, 255, 0.05);
+  border-color: #0b60b5;
 }
 
 .searchWrapper p {
@@ -205,7 +208,7 @@
 }
 
 [data-theme="dark"] .searchBtn {
-  background: #fb923c;
+  background: #1e90ff;
 }
 
 .searchBtn:hover {
@@ -213,7 +216,7 @@
 }
 
 [data-theme="dark"] .searchBtn:hover {
-  background-color: #f97316;
+  background-color: #0b60b5;
 }
 
 .emptyText {
