@@ -35,11 +35,11 @@
 }
 
 [data-theme="dark"] .navigation a:hover {
-  color: #f97316;
+  color: #0b60b5;
 }
 
 [data-theme="dark"] .navigation a.active {
-  color: #f97316;
+  color: #1e90ff;
 }
 
 @media (max-width: 768px) {

@@ -1,18 +1,18 @@
 .popular {
-  padding: 32px 16px;
   text-align: center;
+  padding: 60px;
 }
 
 .popularWrapper {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
 .popularTitle {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: #101828;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 [data-theme="dark"] .popularTitle {
@@ -44,8 +44,10 @@
 }
 
 [data-theme="dark"] .productCard {
-  background: #1c1a17;
-  border: 1px solid #3a2f28;
+  background: #1f1f1f;
+  color: #cccccc;
+  border: none;
+  border-top: 2px solid #1e90ff;
 }
 
 .productCard:hover {
@@ -88,7 +90,7 @@
 }
 
 [data-theme="dark"] .price {
-  color: #fb923c;
+  color: #1e90ff;
 }
 
 .buyBtn {
@@ -96,16 +98,16 @@
   color: #fff;
   width: 100%;
   border: none;
-  border-radius: 20px;
-  padding: 10px 22px;
+  border-radius: 12px;
+  padding: 12px 24px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   transition: background 0.3s ease;
   font-size: 14px;
 }
 
 [data-theme="dark"] .buyBtn {
-  background: #fb923c;
+  background: #1e90ff;
 }
 
 .buyBtn:hover {
@@ -113,7 +115,7 @@
 }
 
 [data-theme="dark"] .buyBtn:hover {
-  background: #f97316;
+  background: #0b60b5;
 }
 
 /* Адаптив */

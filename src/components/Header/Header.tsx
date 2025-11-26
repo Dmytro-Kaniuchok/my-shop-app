@@ -54,7 +54,7 @@ export default function Header() {
             color={
               pathname === "/cart"
                 ? theme === "dark"
-                  ? "#f97316"
+                  ? "#1e90ff"
                   : "#0b44cd"
                 : theme === "dark"
                   ? "#fff"

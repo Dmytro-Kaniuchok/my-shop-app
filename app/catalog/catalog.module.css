@@ -36,16 +36,17 @@
 .searchInput {
   padding: 10px 22px;
   border: 1px solid #dadde1;
-  border-radius: 20px;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 500;
   transition: border 0.3s ease;
 }
 
 [data-theme="dark"] .searchInput {
-  background-color: #1f1a17;
+  background-color: #1f1f1f;
   color: #dadde1;
-  border-color: #3a2f28;
+  border: none;
+  border-bottom: 2px solid #1e90ff;
 }
 
 .searchInput:hover,
@@ -56,7 +57,7 @@
 
 [data-theme="dark"] .searchInput:hover,
 [data-theme="dark"] .searchInput:focus {
-  border-color: #f97316;
+  border-color: #0b60b5;
   outline: none;
 }
 
@@ -74,13 +75,13 @@
 .loadMore {
   display: block;
   margin: 30px auto;
-  padding: 10px 22px;
+  padding: 12px 24px;
   background-color: transparent;
   color: #101828;
-  border-radius: 20px;
+  border-radius: 12px;
   border: 1px solid #3470ff;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   transition:
     background 0.3s ease,
@@ -89,7 +90,7 @@
 }
 
 [data-theme="dark"] .loadMore {
-  border: 1px solid #fb923c;
+  border: 1px solid #1e90ff;
   color: #fff;
 }
 
@@ -100,8 +101,8 @@
 }
 
 [data-theme="dark"] .loadMore:hover {
-  background-color: #f97316;
-  border: 1px solid #f97316;
+  background-color: #0b60b5;
+  border: 1px solid #0b60b5;
 }
 
 .scrollTop {
@@ -126,7 +127,7 @@
 }
 
 [data-theme="dark"] .scrollTop {
-  background: #f97316;
+  background: #0b60b5;
 }
 
 .scrollTop:hover {
@@ -135,7 +136,7 @@
 }
 
 [data-theme="dark"] .scrollTop:hover {
-  background: #fb923c;
+  background: #1e90ff;
 }
 
 .scrollTop:active {

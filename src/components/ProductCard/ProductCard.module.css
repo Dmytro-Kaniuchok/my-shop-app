@@ -13,8 +13,9 @@
 }
 
 [data-theme="dark"] .item {
-  background: #1c1a17;
-  border: 1px solid #3a2f28;
+  background: #1f1f1f;
+  border: none;
+  border-top: 2px solid #1e90ff;
 }
 
 .item:hover {
@@ -58,13 +59,13 @@
 }
 
 .productPrice {
-  font-weight: 600;
+  font-weight: 700;
   color: #3470ff;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 [data-theme="dark"] .productPrice {
-  color: #fb923c;
+  color: #1e90ff;
 }
 
 /* Посилання */
@@ -82,8 +83,8 @@
 
 .detailsBtn {
   display: block;
-  padding: 10px 22px;
-  border-radius: 20px;
+  padding: 12px 24px;
+  border-radius: 12px;
   background-color: #3470ff;
   border: none;
   font-size: 14px;
@@ -95,7 +96,7 @@
 }
 
 [data-theme="dark"] .detailsBtn {
-  background: #fb923c;
+  background: #1e90ff;
 }
 
 .detailsBtn:hover {
@@ -103,7 +104,7 @@
 }
 
 [data-theme="dark"] .detailsBtn:hover {
-  background: #f97316;
+  background: #0b60b5;
 }
 
 @media (min-width: 320px) and (max-width: 459.5px) {
