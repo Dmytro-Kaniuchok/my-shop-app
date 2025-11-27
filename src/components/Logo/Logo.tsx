@@ -11,7 +11,7 @@ export default function Logo({ theme }: LogoProps) {
     <Link href="/" aria-label="Головна">
       <div className={css.logoWrapper}>
         <Image
-          src={theme === "dark" ? "/logo-dark.png" : "/logo.png"}
+          src={theme === "dark" ? "/dark-logo.png" : "/logo.png"}
           alt="Logo"
           width={120}
           height={120}

@@ -9,8 +9,9 @@
 }
 
 [data-theme="dark"] .container {
-  background: #1c1a17;
-  border: 1px solid #3a2f28;
+  background: #1f1f1f;
+  border: none;
+  border-top: 2px solid #1e90ff;
 }
 
 .title {
@@ -53,9 +54,10 @@
 }
 
 [data-theme="dark"] .input {
-  background-color: #1f1a17;
+  background-color: #1f1f1f;
   color: #dadde1;
-  border: 1px solid #3a2f28;
+  border: none;
+  border-bottom: 1px solid #1e90ff;
 }
 
 .input:focus {
@@ -64,7 +66,7 @@
 }
 
 [data-theme="dark"] .input:focus {
-  border-color: #f97316;
+  border-color: #dadde1;
 }
 
 .checkboxLabel {
@@ -74,6 +76,7 @@
   font-size: 14px;
   gap: 8px;
   color: #101828;
+  font-weight: 600;
 }
 
 [data-theme="dark"] .checkboxLabel {
@@ -111,12 +114,12 @@
 }
 
 [data-theme="dark"] .checkboxLabel input[type="checkbox"] {
-  border: 1px solid #3a2f28;
+  border: 1px solid #1e90ff;
 }
 
 [data-theme="dark"] .checkboxLabel input[type="checkbox"]:checked {
-  background-color: #f97316;
-  border-color: #f97316;
+  background-color: #0b60b5;
+  border-color: #0b60b5;
 }
 
 .submitBtn {
@@ -132,7 +135,7 @@
 }
 
 [data-theme="dark"] .submitBtn {
-  background-color: #fb923c;
+  background-color: #1e90ff;
 }
 
 .submitBtn:hover {
@@ -140,7 +143,7 @@
 }
 
 [data-theme="dark"] .submitBtn:hover {
-  background-color: #f97316;
+  background-color: #0b60b5;
 }
 
 .quickLink {
@@ -168,7 +171,7 @@
 }
 
 [data-theme="dark"] .quickLink a {
-  color: #fb923c;
+  color: #1e90ff;
 }
 
 .quickLink a:hover {
@@ -176,7 +179,7 @@
 }
 
 [data-theme="dark"] .quickLink a:hover {
-  color: #f97316;
+  color: #0b60b5;
 }
 
 @media (max-width: 425px) {

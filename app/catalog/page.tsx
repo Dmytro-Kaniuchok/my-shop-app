@@ -6,6 +6,8 @@ import { products } from "../../data/products.js";
 import Loader from "@/src/components/Loader/Loader";
 import styles from "./catalog.module.css";
 import ProductCard from "@/src/components/ProductCard/ProductCard";
+import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
+import { Product } from "@/src/types/products";
 
 export default function Catalog() {
   const [loading, setLoading] = useState(true);
@@ -13,6 +15,7 @@ export default function Catalog() {
   const [loadingItem, setLoadingItem] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
   const router = useRouter();
 
@@ -22,34 +25,30 @@ export default function Catalog() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 800) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+      if (window.scrollY > 800) setShowScrollTop(true);
+      else setShowScrollTop(false);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 15);
-  };
+  const handleLoadMore = () => setVisibleCount((prev) => prev + 15);
 
   const handleClick = (id: string) => {
     setLoadingItem(true);
     router.push(`/product/${id}`);
   };
 
-  // Плавне повернення нагору
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (loading || loadingItem) {
-    return <Loader />;
-  }
+  if (loading || loadingItem) return <Loader />;
+
+  const filteredProducts = products.filter((p) =>
+    p.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+  );
 
   return (
     <main className={styles.container}>
@@ -65,33 +64,41 @@ export default function Catalog() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+
+        <div className={styles.favoritesWrapper}>
+          <button
+            className={styles.openFavoritesBtn}
+            onClick={() => setIsFavoritesOpen(true)}
+          >
+            Обране
+          </button>
+        </div>
       </div>
 
       <ul className={styles.list}>
-        {products
-          .filter((p) =>
-            p.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
-          )
-          .slice(0, visibleCount)
-          .map((p) => (
-            <ProductCard key={p.id} p={p} handleClick={handleClick} />
-          ))}
+        {filteredProducts.slice(0, visibleCount).map((p) => (
+          <ProductCard key={p.id} p={p as Product} handleClick={handleClick} />
+        ))}
       </ul>
 
-      {visibleCount < products.length &&
-        products.filter((p) =>
-          p.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
-        ).length > 0 && (
-          <button className={styles.loadMore} onClick={handleLoadMore}>
-            Завантажити ще
-          </button>
-        )}
+      {visibleCount < filteredProducts.length && (
+        <button className={styles.loadMore} onClick={handleLoadMore}>
+          Завантажити ще
+        </button>
+      )}
 
       {showScrollTop && (
         <button className={styles.scrollTop} onClick={scrollToTop}>
           ↑
         </button>
       )}
+
+      <FavoritesModal
+        isOpen={isFavoritesOpen}
+        onClose={() => setIsFavoritesOpen(false)}
+        products={products as Product[]}
+        handleClick={handleClick}
+      />
     </main>
   );
 }

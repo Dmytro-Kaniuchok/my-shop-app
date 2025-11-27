@@ -28,13 +28,16 @@
   align-items: center;
   padding: 16px 20px;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  background: #fff;
+  border: 1px solid #dadde1;
   border-radius: 20px;
   transition: box-shadow 0.3s ease;
 }
 
 [data-theme="dark"] .item {
-  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+  background: #1f1f1f;
+  border: none;
+  border-top: 2px solid #1e90ff;
 }
 
 .item:hover {
@@ -229,6 +232,8 @@
   display: flex;
   justify-content: flex-end;
   padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 @keyframes fadeIn {

@@ -47,7 +47,7 @@
 }
 
 [data-theme="dark"] .socialLink {
-  border: 1px solid #3a2f28;
+  border: 1px solid #1e90ff;
 }
 
 .socialLink:hover {
@@ -152,8 +152,9 @@
   outline: none;
 }
 
-[data-theme="dark"] .input:focus {
-  border-color: #0b60b5;
+[data-theme="dark"] .input:focus,
+[data-theme="dark"] .input:hover {
+  border-color: #dadde1;
 }
 
 .button {

@@ -1,15 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./ProductCard.module.css";
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-}
+import { AiOutlineStar } from "react-icons/ai";
+import { AiOutlineCheck } from "react-icons/ai";
+import { Product } from "@/src/types/products";
 
 interface ProductCardProps {
   p: Product;
@@ -18,6 +14,28 @@ interface ProductCardProps {
 
 export default function ProductCard({ p, handleClick }: ProductCardProps) {
   const [imgSrc, setImgSrc] = useState(p.image);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    setIsFavorite(favorites.includes(p.id));
+  }, [p.id]);
+
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    let updatedFavorites;
+
+    if (isFavorite) {
+      // прибрати з обраного
+      updatedFavorites = favorites.filter((id: string) => id !== p.id);
+    } else {
+      // додати в обране
+      updatedFavorites = [...favorites, p.id];
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <li className={styles.item}>
@@ -38,13 +56,33 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
         </div>
         <div className={styles.productInfo}>
           <span className={styles.productName}>{p.name}</span>
+          <span className={styles.brandAndArticle}>
+            Бренд: {p.brand || "не вказано"} <br />
+            Артикул: {p.sku || "не вказано"}
+          </span>
           <span className={styles.productPrice}>{p.price} грн</span>
-          <button
-            className={styles.detailsBtn}
-            onClick={() => handleClick(p.id)}
-          >
-            Детальніше
-          </button>
+          <div className={styles.actions}>
+            <button
+              className={styles.detailsBtn}
+              onClick={() => handleClick(p.id)}
+            >
+              Детальніше
+            </button>
+
+            <button
+              className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ""}`}
+              onClick={toggleFavorite}
+              title={isFavorite ? "В улюблених" : "Додати в обране"}
+            >
+              {isFavorite ? (
+                <AiOutlineCheck
+                  style={{ color: "#28a745", fontSize: "18px" }}
+                />
+              ) : (
+                <AiOutlineStar style={{ color: "#FFD700", fontSize: "18px" }} />
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </li>

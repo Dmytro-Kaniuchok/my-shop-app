@@ -9,6 +9,10 @@ import DesktopNav from "../DesktopNav/DesktopNav";
 import MobileNav from "../MobileNav/MobileNav";
 import ThemeToggle from "@/src/context/ThemeToggle/ThemeToggle";
 import { useTheme } from "@/src/context/ThemeProvider";
+import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
+import { products } from "@/data/products";
+import { Product } from "@/src/types/products";
+import { LuStar } from "react-icons/lu";
 
 const links = [
   { href: "/", label: "Головна" },
@@ -25,6 +29,7 @@ export default function Header() {
 
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
   // Оновлення кількості товарів у кошику
   useEffect(() => {
@@ -44,6 +49,24 @@ export default function Header() {
       <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
 
       <div className={css.iconsWrapper}>
+        <button
+          className={css.mobileFavorites}
+          onClick={() => setIsFavoritesOpen(true)}
+          aria-label="Обране"
+        >
+          <LuStar
+            color={
+              pathname === "/cart"
+                ? theme === "dark"
+                  ? "#1e90ff"
+                  : "#0b44cd"
+                : theme === "dark"
+                  ? "#fff"
+                  : "#101828"
+            }
+          />
+        </button>
+
         {/* Кнопка кошика для мобільних */}
         <button
           className={`${css.mobileCart} ${pathname === "/cart" ? css.active : ""}`}
@@ -66,12 +89,10 @@ export default function Header() {
           )}
         </button>
 
-        {/* Перемикач теми (працює через контекст) */}
         <div className={css.themeDesktop}>
           <ThemeToggle />
         </div>
 
-        {/* Бургер-меню */}
         {!menuOpen && (
           <button
             className={css.burger}
@@ -83,7 +104,6 @@ export default function Header() {
         )}
       </div>
 
-      {/* Мобільна навігація */}
       <MobileNav
         links={links}
         pathname={pathname}
@@ -91,6 +111,13 @@ export default function Header() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         theme={theme}
+      />
+
+      <FavoritesModal
+        isOpen={isFavoritesOpen}
+        onClose={() => setIsFavoritesOpen(false)}
+        products={products as Product[]}
+        handleClick={(id) => router.push(`/product/${id}`)}
       />
     </header>
   );

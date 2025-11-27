@@ -63,7 +63,7 @@
 }
 
 [data-theme="dark"] .button {
-  background: #fb923c;
+  background: #1e90ff;
 }
 
 .button:hover {
@@ -71,7 +71,7 @@
 }
 
 [data-theme="dark"] .button:hover {
-  background-color: #f97316;
+  background-color: #0b60b5;
 }
 
 .buyButton {
@@ -90,8 +90,8 @@
 }
 
 [data-theme="dark"] .buyButton {
-  border: 1px solid #f97316;
-  color: #f97316;
+  border: 1px solid #0b60b5;
+  color: #0b60b5;
 }
 
 .buyButton:hover {
@@ -100,7 +100,7 @@
 }
 
 [data-theme="dark"] .buyButton:hover {
-  background: #f97316;
+  background: #0b60b5;
 }
 
 .quantityWrapper {
@@ -123,8 +123,9 @@
 }
 
 [data-theme="dark"] .quantityInput {
-  background-color: #1f1a17;
-  border-color: #3a2f28;
+  background-color: #1f1f1f;
+  border: none;
+  border-bottom: 1px solid #1e90ff;
   color: #fff;
 }
 
@@ -135,7 +136,7 @@
 
 [data-theme="dark"] .quantityInput:focus,
 [data-theme="dark"] .quantityInput:hover {
-  border-color: #f97316;
+  border-color: #0b60b5;
 }
 
 /* Адаптація */
