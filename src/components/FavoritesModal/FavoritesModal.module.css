@@ -29,6 +29,7 @@
 
 [data-theme="dark"] .modal {
   background: #121212;
+  border: none;
   border-top: 2px solid #1e90ff;
 }
 

@@ -9,7 +9,20 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    domains: ["dummyimage.com", "source.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dummyimage.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 
   // headers: async () => [
