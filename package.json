@@ -16,7 +16,9 @@
     "react-dom": "19.1.0",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
-    "simple-icons": "^15.16.0"
+    "simple-icons": "^15.16.0",
+    "simplebar": "^6.3.3",
+    "simplebar-react": "^3.3.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

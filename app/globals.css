@@ -1,3 +1,5 @@
+@import "simplebar-react/dist/simplebar.min.css";
+
 :root {
   --font-family: var(--font-manrope), sans-serif;
   --second-family: var(--font-inter), sans-serif;

@@ -66,7 +66,7 @@
 }
 
 .mobileFavorites {
-  display: none; /* сховано на десктопі */
+  display: none;
 }
 
 @media (min-width: 768.9px) {
@@ -82,7 +82,9 @@
 /* Адаптивність */
 @media (min-width: 320px) and (max-width: 393px) {
   .header {
-    padding: 24px;
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
   }
 }
 

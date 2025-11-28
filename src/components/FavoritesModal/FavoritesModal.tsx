@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./FavoritesModal.module.css";
+import css from "./FavoritesModal.module.css";
 import ProductCard from "../ProductCard/ProductCard";
 import { AiOutlineClose } from "react-icons/ai";
 import { Product } from "@/src/types/products";
+import SimpleBar from "simplebar-react";
 
 interface FavoritesModalProps {
   isOpen: boolean;
@@ -48,24 +49,30 @@ export default function FavoritesModal({
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen) return;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <button className={styles.closeBtn} onClick={onClose}>
+    <div className={css.overlay}>
+      <div className={css.modal}>
+        <button className={css.closeBtn} onClick={onClose}>
           <AiOutlineClose size={20} />
         </button>
-        <h2>Ваші обрані товари</h2>
-        {favoriteProducts.length === 0 ? (
-          <p>Поки що немає обраних товарів.</p>
-        ) : (
-          <ul className={styles.list}>
-            {favoriteProducts.map((p) => (
-              <ProductCard key={p.id} p={p} handleClick={handleClick} />
-            ))}
-          </ul>
-        )}
+        <h2 className={css.modalTitle}>Ваші обрані товари</h2>
+
+        <SimpleBar
+          style={{ maxHeight: "60vh", paddingRight: "20px" }}
+          autoHide={false}
+        >
+          {favoriteProducts.length === 0 ? (
+            <p className={css.modalWrapper}>Поки що немає обраних товарів.</p>
+          ) : (
+            <ul className={css.list}>
+              {favoriteProducts.map((p) => (
+                <ProductCard key={p.id} p={p} handleClick={handleClick} />
+              ))}
+            </ul>
+          )}
+        </SimpleBar>
       </div>
     </div>
   );
