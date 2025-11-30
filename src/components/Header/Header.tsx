@@ -50,13 +50,13 @@ export default function Header() {
 
       <div className={css.iconsWrapper}>
         <button
-          className={css.mobileFavorites}
+          className={`${css.mobileFavorites} ${pathname === "/products" ? css.active : ""}`}
           onClick={() => setIsFavoritesOpen(true)}
           aria-label="Обране"
         >
           <LuStar
             color={
-              pathname === "/cart"
+              pathname === "/products"
                 ? theme === "dark"
                   ? "#1e90ff"
                   : "#0b44cd"

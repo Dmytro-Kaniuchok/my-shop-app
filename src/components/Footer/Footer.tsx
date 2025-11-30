@@ -57,7 +57,7 @@ export default function Footer() {
               <SiTelegram size={20} color="#0088cc" />
             </a>
             <a
-              href="#"
+              href="viber://chat?number=+380501234567 "
               aria-label="Viber"
               target="_blank"
               rel="noopener noreferrer"

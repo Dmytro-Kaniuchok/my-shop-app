@@ -6,12 +6,17 @@
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   font-family: "Inter", sans-serif;
+  transition: border-color 0.3s ease;
 }
 
 [data-theme="dark"] .container {
   background: #1f1f1f;
   border: none;
   border-top: 2px solid #1e90ff;
+}
+
+[data-theme="dark"] .container:hover {
+  border-top: 2px solid #dadde1;
 }
 
 .title {
@@ -48,7 +53,7 @@
   margin-top: 6px;
   padding: 10px 12px;
   border: 1px solid #8e929a;
-  border-radius: 20px;
+  border-radius: 12px;
   font-size: 16px;
   transition: all 0.5s ease;
 }
@@ -95,7 +100,6 @@
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-right: 8px;
 }
 
 .checkboxLabel input[type="checkbox"]:checked {
@@ -129,7 +133,7 @@
   font-size: 16px;
   font-weight: 600;
   border: none;
-  border-radius: 20px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.5s ease;
 }

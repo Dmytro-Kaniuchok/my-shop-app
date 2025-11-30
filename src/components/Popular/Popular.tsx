@@ -52,8 +52,11 @@ const ProductCard = ({ product }: { product: Product }) => {
         }
       />
       <h3>{product.name}</h3>
-      <p className={css.description}>{product.description}</p>
-      <p className={css.price}>{product.price} грн</p>
+      <span className={css.brandAndArticle}>
+        Бренд: {product.brand || "не вказано"} <br />
+        Артикул: {product.sku || "не вказано"}
+      </span>
+      <span className={css.price}>{product.price} грн</span>
       <Link href={`/product/${product.id}`} className={css.buyBtn}>
         Детальніше
       </Link>
