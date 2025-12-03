@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/src/components/Header/Header";
 import ClientWrapper from "./clientWrapper";
-import { ThemeProvider } from "@/src/theme/ThemeProvider";
+import { ThemeProvider } from "../src/theme/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Магазин запчастин",
