@@ -7,7 +7,7 @@ import css from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import DesktopNav from "../Navigation/DesktopNav/DesktopNav";
 import MobileNav from "../Navigation/MobileNav/MobileNav";
-import ThemeToggle from "@/src/theme/ThemeToggle/ThemeToggle";
+import ThemeToggle from "../../theme/ThemeToggle/ThemeToggle";
 import { useTheme } from "@/src/theme/ThemeProvider";
 import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
 import { products } from "@/data/products";
