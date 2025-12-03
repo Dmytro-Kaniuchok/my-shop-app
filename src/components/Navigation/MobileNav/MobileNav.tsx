@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import css from "./MobileNav.module.css";
-import ThemeToggle from "../../../theme/ThemeToggle/ThemeToggle";
+import ThemeToggle from "@/src/Theme/ThemeToggle/ThemeToggle";
 
 interface NavLink {
   href: string;
