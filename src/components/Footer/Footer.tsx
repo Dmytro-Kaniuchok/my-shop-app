@@ -88,6 +88,14 @@ export default function Footer() {
           </ul>
         </div>
 
+        <div className={styles.workingHours}>
+          <h4 className={styles.sectionTitle}>Графік роботи</h4>
+          <ul className={styles.hours}>
+            <li>Пн-Пт: 10:00-18:00</li>
+            <li>Сб-Нд: вихідний</li>
+          </ul>
+        </div>
+
         <div className={styles.orderSection}>
           <h4 className={styles.sectionTitle}>Підписка на розсилку</h4>
           <form onSubmit={handleSubscribe} className={styles.form}>

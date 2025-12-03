@@ -9,7 +9,7 @@
 
 @media (min-width: 768px) {
   .container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -98,6 +98,13 @@
 
 [data-theme="dark"] .list a:hover {
   color: #0b60b5;
+}
+
+.hours li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8e929a;
 }
 
 .form {
@@ -287,9 +294,15 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023.9px) {
+@media (min-width: 320px) and (max-width: 1023.98px) {
+  .workingHours {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     padding: 24px 32px;
   }
 
@@ -326,5 +339,11 @@
 
   .socials {
     margin-top: 12px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
