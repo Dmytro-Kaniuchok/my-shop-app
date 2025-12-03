@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import css from "./FavoritesModal.module.css";
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCard from "../Products/ProductCard/ProductCard";
 import { AiOutlineClose } from "react-icons/ai";
 import { Product } from "@/src/types/products";
 import SimpleBar from "simplebar-react";

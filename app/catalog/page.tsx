@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { products } from "../../data/products.js";
 import Loader from "@/src/components/Loader/Loader";
 import styles from "./catalog.module.css";
-import ProductCard from "@/src/components/ProductCard/ProductCard";
+import ProductCard from "@/src/components/Products/ProductCard/ProductCard";
 import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
 import { Product } from "@/src/types/products";
 
