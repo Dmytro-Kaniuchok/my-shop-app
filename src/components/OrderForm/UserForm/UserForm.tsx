@@ -1,12 +1,19 @@
-import { ChangeEvent } from "react";
-import styles from "./UserForm.module.css";
+"use client";
+
+import React from "react";
+import styles from "../UserForm/UserForm.module.css";
 
 interface UserFormProps {
-  formData: { name: string; phone: string; email: string; address: string };
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  formData: {
+    name: string;
+    phone: string;
+    email: string;
+    address: string;
+  };
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function UserForm({ formData, onChange }: UserFormProps) {
+export default function UserForm({ formData, handleChange }: UserFormProps) {
   return (
     <>
       <label className={styles.label}>
@@ -19,7 +26,7 @@ export default function UserForm({ formData, onChange }: UserFormProps) {
           pattern="[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s]+"
           title="Вводьте тільки літери"
           value={formData.name}
-          onChange={onChange}
+          onChange={handleChange}
           required
         />
       </label>
@@ -35,7 +42,7 @@ export default function UserForm({ formData, onChange }: UserFormProps) {
           maxLength={13}
           title="Вводьте лише цифри та знак +"
           value={formData.phone}
-          onChange={onChange}
+          onChange={handleChange}
           required
         />
       </label>
@@ -48,7 +55,7 @@ export default function UserForm({ formData, onChange }: UserFormProps) {
           name="email"
           placeholder="you@example.com"
           value={formData.email}
-          onChange={onChange}
+          onChange={handleChange}
         />
       </label>
 
@@ -59,7 +66,7 @@ export default function UserForm({ formData, onChange }: UserFormProps) {
           type="text"
           name="address"
           value={formData.address}
-          onChange={onChange}
+          onChange={handleChange}
           required
         />
       </label>

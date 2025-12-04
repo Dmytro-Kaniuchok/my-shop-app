@@ -28,9 +28,13 @@ export default function OrderForm() {
   });
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isClient, setIsClient] = useState(false);
-
   useEffect(() => setIsClient(true), []);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Ініціалізація cartItems
   useEffect(() => {
     const productId = searchParams.get("id");
     const quantityParam = Number(searchParams.get("quantity") || 1);
@@ -49,26 +53,50 @@ export default function OrderForm() {
         ]
       : [];
 
-    const stored =
-      typeof window !== "undefined" ? localStorage.getItem("cart") : null;
-    if (stored) setCartItems(JSON.parse(stored));
-    else setCartItems(initialCart);
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("cart");
+      if (stored) setCartItems(JSON.parse(stored));
+      else setCartItems(initialCart);
+    }
   }, [searchParams]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cartItems.length) return toast.error("Кошик порожній!");
+
+    const now = new Date().toLocaleString();
+
+    const message = `
+🕒 Замовлення створено: ${now}
+
+👤 Ім’я: ${formData.name}
+📞 Телефон: ${formData.phone}
+🏠 Адреса: ${formData.address}
+📧 Email: ${formData.email || "не вказано"}
+
+📦 Товари:
+${cartItems
+  .map(
+    (item, index) =>
+      `${index + 1}. ${item.name} (${item.id})
+       Кількість: ${item.quantity} шт
+       Ціна за одиницю: ${item.price} грн
+       Підсумок: ${item.quantity * item.price} грн`
+  )
+  .join("\n------------------------\n")}
+
+💰 Загальна сума: ${cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    )} грн
+`;
 
     const dataToSend = {
       access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
       subject: "Нове замовлення з сайту",
       from_name: formData.name,
       from_email: formData.email || "no-email",
-      message: "...", // Тут можна винести генерацію повідомлення у утиліту
+      message,
     };
 
     try {
@@ -83,8 +111,10 @@ export default function OrderForm() {
 
       if (result.success) {
         toast.success("Замовлення успішно відправлено!");
-        localStorage.removeItem("cart");
-        window.dispatchEvent(new Event("cartUpdated"));
+        if (!searchParams.get("id")) {
+          localStorage.removeItem("cart");
+          window.dispatchEvent(new Event("cartUpdated"));
+        }
         router.push("/order/success");
       } else toast.error("Не вдалося відправити замовлення.");
     } catch {
@@ -97,11 +127,12 @@ export default function OrderForm() {
     <main className={styles.container}>
       <h1 className={styles.title}>Оформлення замовлення</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <UserForm formData={formData} onChange={handleChange} />
+        <UserForm formData={formData} handleChange={handleChange} />
         <button type="submit" className={styles.submitBtn}>
           {loading ? "Відправка..." : "Надіслати замовлення"}
         </button>
       </form>
+
       {isClient && cartItems.length > 0 && (
         <QuickLinks cartItems={cartItems} formData={formData} />
       )}

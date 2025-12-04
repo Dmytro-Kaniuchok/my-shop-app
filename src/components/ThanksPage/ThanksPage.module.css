@@ -10,8 +10,9 @@
   max-width: 600px;
   width: 100%;
   padding: 40px 30px;
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  background: #fff;
   border-radius: 20px;
+  border: 1px solid #dadde1;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   text-align: center;
   overflow: hidden;
@@ -19,7 +20,9 @@
 }
 
 [data-theme="dark"] .card {
-  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+  background: #1f1f1f;
+  border: none;
+  border-top: 2px solid #1e90ff;
 }
 
 .checkmarkWrapper {
@@ -41,7 +44,7 @@
 }
 
 [data-theme="dark"] .checkmark {
-  stroke: #fb923c;
+  stroke: #1e90ff;
 }
 
 /* Анімована галочка без квадрата */
@@ -96,17 +99,17 @@
 
 .timer {
   font-weight: 700;
-  color: #0b44cd;
+  color: #3470ff;
   transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .timer {
-  color: #f97316;
+  color: #1e90ff;
 }
 
 .progressContainer {
   height: 8px;
-  background: #e0e0e0;
+  background: transparent;
   border-radius: 6px;
   overflow: hidden;
   margin-top: 20px;
@@ -114,13 +117,13 @@
 
 .progressBar {
   height: 100%;
-  background: #0b44cd;
+  background: #3470ff;
   border-radius: 6px;
   transition: width 1s linear;
 }
 
 [data-theme="dark"] .progressBar {
-  background: #f97316;
+  background: #1e90ff;
 }
 
 .confetti {
