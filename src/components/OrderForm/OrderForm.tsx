@@ -14,7 +14,7 @@ interface CartItem {
   quantity: number;
 }
 
-function OrderForm() {
+export default function OrderForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -255,5 +255,3 @@ ${cartItems
     </main>
   );
 }
-
-export default OrderForm;
