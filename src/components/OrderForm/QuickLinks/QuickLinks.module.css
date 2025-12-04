@@ -1,0 +1,35 @@
+.quickLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+}
+
+[data-theme="dark"] .quickLink {
+  color: #fff;
+}
+
+.quickLink a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #3470ff;
+  transform: color 0.3s ease-in;
+}
+
+[data-theme="dark"] .quickLink a {
+  color: #1e90ff;
+}
+
+.quickLink a:hover {
+  color: #0b44cd;
+}
+
+[data-theme="dark"] .quickLink a:hover {
+  color: #0b60b5;
+}
