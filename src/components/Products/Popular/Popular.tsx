@@ -18,7 +18,7 @@ interface Product {
 }
 
 const Popular = () => {
-  const popularProducts = products.filter((item) => item.popular).slice(0, 5);
+  const popularProducts = products.filter((item) => item.popular).slice(0, 6);
 
   return (
     <section className={css.popular}>

@@ -133,8 +133,9 @@ export const products = [
     price: 750,
     brand: "SKF",
     sku: "SB010",
-    image: "/image/wheel-bearing.jpg",
+    image: "/image/5.jpg",
     description: "Забезпечує плавне обертання коліс і довговічність вузла.",
+    popular: true,
   },
   {
     id: "bp-011",
@@ -162,6 +163,7 @@ export const products = [
     sku: "WS013",
     image: "/image/wiper.jpg",
     description: "Надійне очищення лобового скла в будь-яку погоду.",
+    popular: true,
   },
   {
     id: "cl-014",
