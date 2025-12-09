@@ -12,6 +12,8 @@ interface FavoritesModalProps {
   onClose: () => void;
   products: Product[];
   handleClick: (id: string) => void;
+  toggleFavorite?: (id: string) => void;
+  favoritesIds?: string[];
 }
 
 export default function FavoritesModal({

@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./OrderForm.module.css";
 import toast from "react-hot-toast";
-import { products } from "../../../data/products";
 import UserForm from "./UserForm/UserForm";
 import QuickLinks from "./QuickLinks/QuickLinks";
+import { Product } from "@/src/types/products";
 
 interface CartItem {
   id: string;
@@ -14,6 +14,8 @@ interface CartItem {
   price: number;
   quantity: number;
 }
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function OrderForm() {
   const router = useRouter();
@@ -28,36 +30,48 @@ export default function OrderForm() {
   });
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isClient, setIsClient] = useState(false);
+
   useEffect(() => setIsClient(true), []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Ініціалізація cartItems
   useEffect(() => {
-    const productId = searchParams.get("id");
-    const quantityParam = Number(searchParams.get("quantity") || 1);
-    const singleProduct = productId
-      ? products.find((p) => p.id === productId)
-      : null;
+    const fetchCart = async () => {
+      const productId = searchParams.get("id");
+      const quantityParam = Number(searchParams.get("quantity") || 1);
 
-    const initialCart = singleProduct
-      ? [
-          {
-            id: singleProduct.id,
-            name: singleProduct.name,
-            price: singleProduct.price,
-            quantity: quantityParam,
-          },
-        ]
-      : [];
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        const allProducts: Product[] = await res.json();
 
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("cart");
-      if (stored) setCartItems(JSON.parse(stored));
-      else setCartItems(initialCart);
-    }
+        const singleProduct = productId
+          ? allProducts.find((p) => p.id === productId)
+          : null;
+
+        const initialCart: CartItem[] = singleProduct
+          ? [
+              {
+                id: singleProduct.id,
+                name: singleProduct.name,
+                price: singleProduct.price,
+                quantity: quantityParam,
+              },
+            ]
+          : [];
+
+        if (typeof window !== "undefined") {
+          const stored = localStorage.getItem("cart");
+          if (stored) setCartItems(JSON.parse(stored));
+          else setCartItems(initialCart);
+        }
+      } catch (err) {
+        console.error("Fetch products error:", err);
+      }
+    };
+
+    fetchCart();
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,8 +80,7 @@ export default function OrderForm() {
 
     const now = new Date().toLocaleString();
 
-    const message = `
-🕒 Замовлення створено: ${now}
+    const message = `🕒 Замовлення створено: ${now}
 
 👤 Ім’я: ${formData.name}
 📞 Телефон: ${formData.phone}

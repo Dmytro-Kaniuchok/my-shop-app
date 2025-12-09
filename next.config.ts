@@ -5,37 +5,40 @@ const nextConfig: NextConfig = {
 
   experimental: {
     optimizeCss: true,
-    // serverActions: true,
   },
 
   images: {
     remotePatterns: [
+      // dummyimage (можеш залишити)
       {
         protocol: "https",
         hostname: "dummyimage.com",
         port: "",
         pathname: "/**",
       },
+      // unsplash (можеш залишити)
       {
         protocol: "https",
         hostname: "source.unsplash.com",
         port: "",
         pathname: "/**",
       },
+      // 🔥 Cloudinary — твої картинки
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**",
+      },
+      // 🔥 Picsum — використовувався у сидері
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
-
-  // headers: async () => [
-  //   {
-  //     source: "/(.*)",
-  //     headers: [
-  //       {
-  //         key: "Cache-Control",
-  //         value: "no-store",
-  //       },
-  //     ],
-  //   },
-  // ],
 };
 
 export default nextConfig;

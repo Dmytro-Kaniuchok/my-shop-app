@@ -1,39 +1,54 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { products } from "@/data/products";
-import styles from "./ProductPage.module.css";
 import { useState, useEffect } from "react";
+import styles from "./ProductPage.module.css";
 import toast from "react-hot-toast";
 import Loader from "@/src/components/Loader/Loader";
 import Link from "next/link";
 import Image from "next/image";
 
-interface CartItem {
+interface Product {
   id: string;
   name: string;
+  brand: string;
+  sku: string;
+  description: string;
   price: number;
   image: string;
+}
+
+interface CartItem extends Product {
   quantity: number;
 }
 
 export default function ProductPage() {
   const { id } = useParams();
-  const [product, setProduct] = useState<(typeof products)[0] | null>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const found = products.find((p) => p.id === id);
-    setProduct(found || null);
-    setLoading(false);
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`
+        );
+        if (!res.ok) throw new Error("Помилка отримання товару");
 
-    if (!found) {
-      toast.error("Товар не знайдено!");
-    }
+        const data = await res.json();
+        setProduct(data);
+      } catch {
+        toast.error("Товар не знайдено!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [id]);
 
-  const addToCart = (product: (typeof products)[0], quantity: number) => {
+  const addToCart = (product: Product, quantity: number) => {
     const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
     const existing = cart.find((item) => item.id === product.id);
@@ -63,14 +78,16 @@ export default function ProductPage() {
 
       <div className={styles.info}>
         <h1 className={styles.title}>{product.name}</h1>
+
         <div className={styles.infoRow}>
           <span>Бренд: {product.brand}</span>
           <span>Артикул: {product.sku}</span>
         </div>
+
         <p className={styles.description}>{product.description}</p>
 
         <div className={styles.quantityWrapper}>
-          <label htmlFor="quantity">Кількість: </label>
+          <label htmlFor="quantity">Кількість:</label>
           <input
             id="quantity"
             type="number"
@@ -90,7 +107,7 @@ export default function ProductPage() {
           <Link
             href={{
               pathname: "/order",
-              query: { id: product.id, quantity: quantity },
+              query: { id: product.id, quantity },
             }}
           >
             <button

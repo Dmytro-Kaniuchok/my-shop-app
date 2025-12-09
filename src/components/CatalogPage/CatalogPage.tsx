@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { products } from "../../../data/products";
 import Loader from "@/src/components/Loader/Loader";
 import styles from "./CatalogPage.module.css";
 import ProductCard from "@/src/components/Products/ProductCard/ProductCard";
@@ -10,6 +9,7 @@ import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
 import { Product } from "@/src/types/products";
 
 export default function CatalogPage() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(15);
   const [loadingItem, setLoadingItem] = useState(false);
@@ -17,11 +17,24 @@ export default function CatalogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    async function loadProducts() {
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Помилка при завантаженні продуктів:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProducts();
+  }, [API_URL]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +60,7 @@ export default function CatalogPage() {
   if (loading || loadingItem) return <Loader />;
 
   const filteredProducts = products.filter((p) =>
-    p.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -77,7 +90,7 @@ export default function CatalogPage() {
 
       <ul className={styles.list}>
         {filteredProducts.slice(0, visibleCount).map((p) => (
-          <ProductCard key={p.id} p={p as Product} handleClick={handleClick} />
+          <ProductCard key={p.id} p={p} handleClick={handleClick} />
         ))}
       </ul>
 
@@ -96,7 +109,7 @@ export default function CatalogPage() {
       <FavoritesModal
         isOpen={isFavoritesOpen}
         onClose={() => setIsFavoritesOpen(false)}
-        products={products as Product[]}
+        products={products}
         handleClick={handleClick}
       />
     </main>
