@@ -46,6 +46,7 @@ const Popular = () => {
   if (loading)
     return (
       <section className={css.popular}>
+        <p className={css.p}>Завантаження популярних товарів...</p>
         <div className={css.loaderWrapper}>
           <span className={css.loader}></span>
         </div>

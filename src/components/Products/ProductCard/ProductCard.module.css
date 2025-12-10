@@ -124,23 +124,30 @@
   align-items: center;
   gap: 8px;
   margin-top: 10px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
 }
 
 .favoriteBtn {
-  display: inline-flex;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 5;
+  width: 32px;
+  height: 32px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
-  background-color: #fff;
-  border: 1px solid #dadde1;
   border-radius: 12px;
   cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s;
+  transition: 0.25s ease;
 }
 
 .favoriteBtn:hover {
-  background-color: #e0e0e0;
+  background-color: #dadde1;
 }
 
 @media (min-width: 320px) and (max-width: 459.5px) {

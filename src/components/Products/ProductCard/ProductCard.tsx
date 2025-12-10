@@ -40,6 +40,19 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
   return (
     <li className={styles.item}>
       <div className={styles.card}>
+        {/* Кнопка в правому верхньому куті */}
+        <button
+          className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ""}`}
+          onClick={toggleFavorite}
+          title={isFavorite ? "В улюблених" : "Додати в обране"}
+        >
+          {isFavorite ? (
+            <AiOutlineCheck style={{ color: "#28a745", fontSize: "18px" }} />
+          ) : (
+            <AiOutlineStar style={{ color: "#FFD700", fontSize: "18px" }} />
+          )}
+        </button>
+
         <div className={styles.imageWrapper}>
           <Image
             src={imgSrc}
@@ -54,33 +67,23 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
             }
           />
         </div>
+
         <div className={styles.productInfo}>
           <span className={styles.productName}>{p.name}</span>
+
           <span className={styles.brandAndArticle}>
             Бренд: {p.brand || "не вказано"} <br />
             Артикул: {p.sku || "не вказано"}
           </span>
+
           <span className={styles.productPrice}>{p.price} грн</span>
+
           <div className={styles.actions}>
             <button
               className={styles.detailsBtn}
               onClick={() => handleClick(p.id)}
             >
               Детальніше
-            </button>
-
-            <button
-              className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ""}`}
-              onClick={toggleFavorite}
-              title={isFavorite ? "В улюблених" : "Додати в обране"}
-            >
-              {isFavorite ? (
-                <AiOutlineCheck
-                  style={{ color: "#28a745", fontSize: "18px" }}
-                />
-              ) : (
-                <AiOutlineStar style={{ color: "#FFD700", fontSize: "18px" }} />
-              )}
             </button>
           </div>
         </div>
