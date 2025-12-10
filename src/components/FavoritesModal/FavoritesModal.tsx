@@ -2,38 +2,37 @@
 
 import { useState, useEffect } from "react";
 import css from "./FavoritesModal.module.css";
-import ProductCard from "../Products/ProductCard/ProductCard";
 import { AiOutlineClose } from "react-icons/ai";
-import { Product } from "@/src/types/products";
 import SimpleBar from "simplebar-react";
+
+interface FavoriteItem {
+  id: string;
+  name: string;
+  price: number;
+}
 
 interface FavoritesModalProps {
   isOpen: boolean;
   onClose: () => void;
-  products: Product[];
   handleClick: (id: string) => void;
-  toggleFavorite?: (id: string) => void;
-  favoritesIds?: string[];
 }
 
 export default function FavoritesModal({
   isOpen,
   onClose,
-  products,
   handleClick,
 }: FavoritesModalProps) {
-  const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
+  const [favoriteProducts, setFavoriteProducts] = useState<FavoriteItem[]>([]);
 
-  // Підвантаження обраного при відкритті
+  // Підвантаження коротких даних з localStorage
   useEffect(() => {
     if (isOpen) {
-      const favoritesIds = JSON.parse(
+      const favoritesList = JSON.parse(
         localStorage.getItem("favorites") || "[]"
       );
-      const favoritesList = products.filter((p) => favoritesIds.includes(p.id));
       setFavoriteProducts(favoritesList);
     }
-  }, [isOpen, products]);
+  }, [isOpen]);
 
   // Заморозка скролу при відкритті модалки
   useEffect(() => {
@@ -46,12 +45,12 @@ export default function FavoritesModal({
       return () => {
         document.body.style.position = "";
         document.body.style.top = "";
-        window.scrollTo(0, scrollY); // повертаємо скрол на місце
+        window.scrollTo(0, scrollY);
       };
     }
   }, [isOpen]);
 
-  if (!isOpen) return;
+  if (!isOpen) return null;
 
   return (
     <div className={css.overlay}>
@@ -59,6 +58,7 @@ export default function FavoritesModal({
         <button className={css.closeBtn} onClick={onClose}>
           <AiOutlineClose size={20} />
         </button>
+
         <h2 className={css.modalTitle}>Ваші обрані товари</h2>
 
         <SimpleBar
@@ -70,7 +70,15 @@ export default function FavoritesModal({
           ) : (
             <ul className={css.list}>
               {favoriteProducts.map((p) => (
-                <ProductCard key={p.id} p={p} handleClick={handleClick} />
+                <li key={p.id} className={css.favoriteItem}>
+                  <span
+                    className={css.favoriteName}
+                    onClick={() => handleClick(p.id)}
+                  >
+                    {p.name}
+                  </span>
+                  <span className={css.favoritePrice}>{p.price} грн</span>
+                </li>
               ))}
             </ul>
           )}

@@ -109,7 +109,6 @@ export default function CatalogPage() {
       <FavoritesModal
         isOpen={isFavoritesOpen}
         onClose={() => setIsFavoritesOpen(false)}
-        products={products}
         handleClick={handleClick}
       />
     </main>

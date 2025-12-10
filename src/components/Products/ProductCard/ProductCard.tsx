@@ -3,9 +3,14 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./ProductCard.module.css";
-import { AiOutlineStar } from "react-icons/ai";
-import { AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
 import { Product } from "@/src/types/products";
+
+interface FavoriteItem {
+  id: string;
+  name: string;
+  price: number;
+}
 
 interface ProductCardProps {
   p: Product;
@@ -16,21 +21,31 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
   const [imgSrc, setImgSrc] = useState(p.image);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  // Перевіряємо, чи товар в обраному
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setIsFavorite(favorites.includes(p.id));
+    setIsFavorite(favorites.some((item: FavoriteItem) => item.id === p.id));
   }, [p.id]);
 
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
     let updatedFavorites;
 
     if (isFavorite) {
-      // прибрати з обраного
-      updatedFavorites = favorites.filter((id: string) => id !== p.id);
+      // Видалення з обраного
+      updatedFavorites = favorites.filter(
+        (item: FavoriteItem) => item.id !== p.id
+      );
     } else {
-      // додати в обране
-      updatedFavorites = [...favorites, p.id];
+      // Додавання мінімальних даних
+      const newItem = {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+      };
+
+      updatedFavorites = [...favorites, newItem];
     }
 
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
@@ -40,7 +55,6 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
   return (
     <li className={styles.item}>
       <div className={styles.card}>
-        {/* Кнопка в правому верхньому куті */}
         <button
           className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ""}`}
           onClick={toggleFavorite}
