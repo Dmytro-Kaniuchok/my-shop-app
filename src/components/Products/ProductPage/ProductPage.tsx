@@ -91,11 +91,11 @@ export default function ProductPage() {
           <input
             id="quantity"
             type="number"
-            min={1}
+            min={0}
             max={100}
             value={quantity}
             onChange={(e) =>
-              setQuantity(Math.min(100, Math.max(1, Number(e.target.value))))
+              setQuantity(Math.min(100, Math.max(0, Number(e.target.value))))
             }
             className={styles.quantityInput}
           />

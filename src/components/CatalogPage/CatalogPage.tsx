@@ -17,8 +17,17 @@ export default function CatalogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
+  // 🆕 Обране
+  const [favoritesIds, setFavoritesIds] = useState<string[]>([]);
+
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
+
+  // 🆕 Підвантаження обраних з localStorage
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
+    setFavoritesIds(saved);
+  }, []);
 
   useEffect(() => {
     async function loadProducts() {
@@ -62,6 +71,20 @@ export default function CatalogPage() {
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // 🆕 toggleFavorite — тепер є 🔥
+  const toggleFavorite = (id: string) => {
+    setFavoritesIds((prev) => {
+      let updated;
+      if (prev.includes(id)) {
+        updated = prev.filter((favId) => favId !== id);
+      } else {
+        updated = [...prev, id];
+      }
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      return updated;
+    });
+  };
 
   return (
     <main className={styles.container}>
@@ -110,6 +133,9 @@ export default function CatalogPage() {
         isOpen={isFavoritesOpen}
         onClose={() => setIsFavoritesOpen(false)}
         handleClick={handleClick}
+        products={products}
+        toggleFavorite={toggleFavorite}
+        favoritesIds={favoritesIds}
       />
     </main>
   );
