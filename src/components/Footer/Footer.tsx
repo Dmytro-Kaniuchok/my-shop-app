@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./Footer.module.css";
 import { SiTelegram, SiViber, SiGmail } from "react-icons/si";
+import { FiPhone } from "react-icons/fi";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -40,13 +41,21 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.brandAndSocials}>
           <Link href="/" className={styles.brand}>
-            Для зв&#39;язку з нами
+            Для зв&apos;язку з нами
           </Link>
           <p className={styles.brandText}>
             Запчастини для вас швидко, вигідно та надійно!
           </p>
 
           <div className={styles.socials}>
+            <a
+              href="tel:+380501234567"
+              aria-label="Phone"
+              className={styles.socialLink}
+            >
+              <FiPhone size={20} color="#25D366" />
+            </a>
+
             <a
               href="https://web.telegram.org/k/"
               aria-label="Telegram"
@@ -56,6 +65,7 @@ export default function Footer() {
             >
               <SiTelegram size={20} color="#0088cc" />
             </a>
+            
             <a
               href="viber://chat?number=+380501234567 "
               aria-label="Viber"
@@ -65,6 +75,7 @@ export default function Footer() {
             >
               <SiViber size={20} color="#665cac" />
             </a>
+            
             <a
               href="https://workspace.google.com/intl/uk/gmail/"
               aria-label="Email"

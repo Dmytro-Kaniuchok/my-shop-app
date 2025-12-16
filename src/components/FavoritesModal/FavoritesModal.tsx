@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import css from "./FavoritesModal.module.css";
 import { AiOutlineClose } from "react-icons/ai";
 import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
+import { RiDeleteBin7Line } from "react-icons/ri";
 
 interface FavoriteItem {
   id: string;
@@ -72,15 +74,33 @@ export default function FavoritesModal({
             <p className={css.modalWrapper}>Поки що немає обраних товарів.</p>
           ) : (
             <ul className={css.list}>
-              {favoriteProducts.map((p) => (
-                <li key={p.id} className={css.favoriteItem}>
-                  <span
-                    className={css.favoriteName}
-                    onClick={() => handleClick(p.id)}
+              {favoriteProducts.map((p, index) => (
+                <li key={p.id || index} className={css.favoriteItem}>
+                  <div className={css.itemInfo}>
+                    <span
+                      className={css.favoriteName}
+                      onClick={() => handleClick(p.id)}
+                    >
+                      {p.name}
+                    </span>
+                    <span className={css.favoritePrice}>{p.price} грн</span>
+                  </div>
+                  <button
+                    className={css.removeBtn}
+                    onClick={() => {
+                      const updated = favoriteProducts.filter(
+                        (item) => item.id !== p.id
+                      );
+                      setFavoriteProducts(updated);
+                      localStorage.setItem(
+                        "favorites",
+                        JSON.stringify(updated)
+                      );
+                    }}
+                    aria-label="Видалити з обраних"
                   >
-                    {p.name}
-                  </span>
-                  <span className={css.favoritePrice}>{p.price} грн</span>
+                    <RiDeleteBin7Line color="#fff" />
+                  </button>
                 </li>
               ))}
             </ul>

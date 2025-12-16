@@ -161,3 +161,26 @@
     padding: 10px 14px;
   }
 }
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ff4d4f;
+  border-radius: 8px;
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background 0.3s ease;
+}
+
+.removeBtn:hover {
+  background: #b00020;
+}
