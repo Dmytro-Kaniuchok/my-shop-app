@@ -65,7 +65,7 @@ export default function Footer() {
             >
               <SiTelegram size={20} color="#0088cc" />
             </a>
-            
+
             <a
               href="viber://chat?number=+380501234567 "
               aria-label="Viber"
@@ -75,7 +75,7 @@ export default function Footer() {
             >
               <SiViber size={20} color="#665cac" />
             </a>
-            
+
             <a
               href="https://workspace.google.com/intl/uk/gmail/"
               aria-label="Email"
@@ -150,7 +150,7 @@ export default function Footer() {
           <div className={styles.bottomBar}>
             <div className={styles.bottomInner}>
               <p className={styles.copy}>
-                © {new Date().getFullYear()} Магазин. Всі права захищені.
+                © {new Date().getFullYear()} AVTOAGRO. Всі права захищені.
               </p>
             </div>
           </div>

@@ -85,83 +85,85 @@ export default function Header() {
 
   return (
     <header className={css.header}>
-      <Logo theme={theme} />
-      <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
+      <div className={css.container}>
+        <Logo theme={theme} />
+        <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
 
-      <div className={css.iconsWrapper}>
-        <button
-          className={`${css.mobileFavorites} ${pathname === "/products" ? css.active : ""}`}
-          onClick={() => setIsFavoritesOpen(true)}
-          aria-label="Обране"
-        >
-          <LuStar
-            color={
-              favoritesIds.length > 0
-                ? "#FFD700"
-                : pathname === "/products"
+        <div className={css.iconsWrapper}>
+          <button
+            className={`${css.mobileFavorites} ${pathname === "/products" ? css.active : ""}`}
+            onClick={() => setIsFavoritesOpen(true)}
+            aria-label="Обране"
+          >
+            <LuStar
+              color={
+                favoritesIds.length > 0
+                  ? "#FFD700"
+                  : pathname === "/products"
+                    ? theme === "dark"
+                      ? "#1e90ff"
+                      : "#0b44cd"
+                    : theme === "dark"
+                      ? "#fff"
+                      : "#101828"
+              }
+            />
+          </button>
+
+          <button
+            className={`${css.mobileCart} ${pathname === "/cart" ? css.active : ""}`}
+            onClick={() => router.push("/cart")}
+            aria-label="Кошик"
+          >
+            <ShoppingCart
+              color={
+                pathname === "/cart"
                   ? theme === "dark"
                     ? "#1e90ff"
                     : "#0b44cd"
                   : theme === "dark"
                     ? "#fff"
                     : "#101828"
-            }
-          />
-        </button>
+              }
+            />
+            {cartCount > 0 && (
+              <span className={css.mobileCartCount}>{cartCount}</span>
+            )}
+          </button>
 
-        <button
-          className={`${css.mobileCart} ${pathname === "/cart" ? css.active : ""}`}
-          onClick={() => router.push("/cart")}
-          aria-label="Кошик"
-        >
-          <ShoppingCart
-            color={
-              pathname === "/cart"
-                ? theme === "dark"
-                  ? "#1e90ff"
-                  : "#0b44cd"
-                : theme === "dark"
-                  ? "#fff"
-                  : "#101828"
-            }
-          />
-          {cartCount > 0 && (
-            <span className={css.mobileCartCount}>{cartCount}</span>
+          <div className={css.themeDesktop}>
+            <ThemeToggle />
+          </div>
+
+          {!menuOpen && (
+            <button
+              className={css.burger}
+              onClick={() => setMenuOpen(true)}
+              aria-label="Меню"
+            >
+              <Menu size={26} color={theme === "dark" ? "#fff" : "#101828"} />
+            </button>
           )}
-        </button>
-
-        <div className={css.themeDesktop}>
-          <ThemeToggle />
         </div>
 
-        {!menuOpen && (
-          <button
-            className={css.burger}
-            onClick={() => setMenuOpen(true)}
-            aria-label="Меню"
-          >
-            <Menu size={26} color={theme === "dark" ? "#fff" : "#101828"} />
-          </button>
-        )}
+        <MobileNav
+          links={links}
+          pathname={pathname}
+          cartCount={cartCount}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          theme={theme}
+        />
+
+        <FavoritesModal
+          isOpen={isFavoritesOpen}
+          onClose={() => setIsFavoritesOpen(false)}
+          products={favoritesProducts}
+          handleClick={(id) => router.push(`/product/${id}`)}
+          toggleFavorite={toggleFavorite}
+          favoritesIds={favoritesIds}
+        />
       </div>
-
-      <MobileNav
-        links={links}
-        pathname={pathname}
-        cartCount={cartCount}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        theme={theme}
-      />
-
-      <FavoritesModal
-        isOpen={isFavoritesOpen}
-        onClose={() => setIsFavoritesOpen(false)}
-        products={favoritesProducts}
-        handleClick={(id) => router.push(`/product/${id}`)}
-        toggleFavorite={toggleFavorite}
-        favoritesIds={favoritesIds}
-      />
     </header>
   );
 }
