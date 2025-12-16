@@ -11,12 +11,7 @@
 
 [data-theme="dark"] .container {
   background: #1f1f1f;
-  border: none;
-  border-top: 2px solid #1e90ff;
-}
-
-[data-theme="dark"] .container:hover {
-  border-top: 2px solid #dadde1;
+  border: 1px solid #2e2e2e;
 }
 
 .title {

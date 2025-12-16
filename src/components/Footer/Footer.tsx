@@ -40,7 +40,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.brandAndSocials}>
           <Link href="/" className={styles.brand}>
-            Магазин
+            Для зв&#39;язку з нами
           </Link>
           <p className={styles.brandText}>
             Запчастини для вас швидко, вигідно та надійно!

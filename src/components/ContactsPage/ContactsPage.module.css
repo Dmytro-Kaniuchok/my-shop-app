@@ -36,7 +36,11 @@
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
-    border-color 0.3s ease;
+    color 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  color: #0b44cd;
 }
 
 [data-theme="dark"] .card {
@@ -45,21 +49,8 @@
   border: none;
 }
 
-[data-theme="dark"] .card:nth-child(-n + 2) {
-  border-top: 2px solid #1e90ff;
-}
-
-[data-theme="dark"] .card:nth-last-child(-n + 2) {
-  border-bottom: 2px solid #1e90ff;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
 [data-theme="dark"] .card:hover {
-  border-color: #dadde1;
+  color: #1e90ff;
 }
 
 .icon {

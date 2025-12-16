@@ -22,8 +22,7 @@
 [data-theme="dark"] .input {
   background-color: #1f1f1f;
   color: #dadde1;
-  border: none;
-  border-bottom: 1px solid #1e90ff;
+  border: 1px solid #2e2e2e;
 }
 
 .input:focus {
@@ -31,8 +30,9 @@
   outline: none;
 }
 
-[data-theme="dark"] .input:focus {
-  border-color: #dadde1;
+[data-theme="dark"] .input:hover,
+.input:focus {
+  border-color: #1e90ff;
 }
 
 .checkboxLabel {

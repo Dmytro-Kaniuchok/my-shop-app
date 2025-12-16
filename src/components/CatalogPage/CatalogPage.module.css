@@ -47,8 +47,7 @@
 [data-theme="dark"] .searchInput {
   background-color: #1f1f1f;
   color: #dadde1;
-  border: none;
-  border-bottom: 2px solid #1e90ff;
+  border: 1px solid #2e2e2e;
 }
 
 .searchInput:hover,
@@ -59,7 +58,7 @@
 
 [data-theme="dark"] .searchInput:hover,
 [data-theme="dark"] .searchInput:focus {
-  border-color: #dadde1;
+  border-color: #1e90ff;
   outline: none;
 }
 
@@ -191,13 +190,13 @@
 }
 
 [data-theme="dark"] .openFavoritesBtn {
-  background: #1f1f1f;
-  border: none;
-  border-bottom: 2px solid #1e90ff;
+  background: transparent;
+  border: 1px solid #1e90ff;
 }
 
 [data-theme="dark"] .openFavoritesBtn:hover {
-  border-color: #dadde1;
+  background-color: #0b60b5;
+  border: 1px solid #0b60b5;
 }
 
 [data-theme="dark"] .openFavoritesBtn {

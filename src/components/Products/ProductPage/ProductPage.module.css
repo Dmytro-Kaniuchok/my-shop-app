@@ -124,8 +124,7 @@
 
 [data-theme="dark"] .quantityInput {
   background-color: #1f1f1f;
-  border: none;
-  border-bottom: 1px solid #1e90ff;
+  border: 1px solid #2e2e2e;
   color: #fff;
 }
 

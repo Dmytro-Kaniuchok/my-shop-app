@@ -25,6 +25,7 @@
 .modal {
   background: #fff;
   border-radius: 20px;
+  border: 1px solid #dadde1;
   padding: 28px;
   max-width: 600px;
   width: 90%;
@@ -38,7 +39,7 @@
 [data-theme="dark"] .modal {
   background: #1f1f1f;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
-  border-top: 2px solid #1e90ff;
+  border: 1px solid #2e2e2e;
 }
 
 @keyframes scaleIn {

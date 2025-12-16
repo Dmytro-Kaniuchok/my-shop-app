@@ -38,16 +38,11 @@
 
 [data-theme="dark"] .item {
   background: #1f1f1f;
-  border: none;
-  border-top: 2px solid #1e90ff;
+  border: 1px solid #2e2e2e;
 }
 
 .item:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] .item:hover {
-  border-color: #dadde1;
 }
 
 .itemName {
@@ -186,17 +181,11 @@
 
 [data-theme="dark"] .searchWrapper {
   background: #1f1f1f;
-  border: none;
-  border-top: 2px solid #1e90ff;
+  border: 1px solid #2e2e2e;
 }
 
 .searchWrapper:hover {
-  transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .searchWrapper:hover {
-  border-color: #0b60b5;
 }
 
 .searchWrapper p {
