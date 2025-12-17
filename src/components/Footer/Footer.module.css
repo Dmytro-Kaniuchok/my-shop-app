@@ -35,9 +35,13 @@
 
 .brandText {
   font-size: 14px;
-  color: #8e929a;
+  color: #4b5563;
   white-space: nowrap;
   font-weight: 500;
+}
+
+[data-theme="dark"] .brandText {
+  color: #dadde1;
 }
 
 .socials {
@@ -115,7 +119,11 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #8e929a;
+  color: #4b5563;
+}
+
+[data-theme="dark"] .hours li {
+  color: #dadde1;
 }
 
 .form {
@@ -134,20 +142,24 @@
 .status {
   font-size: 14px;
   margin-top: 8px;
-  color: #8e929a;
+  color: #4b5563;
   font-weight: 500;
   transition:
     color 0.3s,
     opacity 0.3s;
 }
 
+[data-theme="dark"] .status {
+  color: #dadde1;
+}
+
 .success {
-  color: #28a745;
+  color: #1e7e34;
   opacity: 1;
 }
 
 .error {
-  color: #dc3545;
+  color: #b02a37;
   opacity: 1;
 }
 
@@ -210,10 +222,6 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-/* .bottomBar {
-  border-top: 1px solid #dadde1;
-} */
 
 .bottomInner {
   max-width: 1440px;
