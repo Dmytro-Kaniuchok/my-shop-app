@@ -23,7 +23,7 @@ export default function ContactsPage() {
         </a>
         <a href="mailto:example@mail.com" className={styles.card}>
           <FiMail className={styles.icon} />
-          <span>example@mail.com</span>
+          <span>example@gmail.com</span>
         </a>
         <a href="viber://chat?number=%2B380123456789" className={styles.card}>
           <SiViber className={styles.icon} />

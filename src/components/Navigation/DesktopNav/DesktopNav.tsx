@@ -4,7 +4,6 @@ import css from "./DesktopNav.module.css";
 interface NavLink {
   href: string;
   label: string;
-  showCount?: boolean;
 }
 
 interface DesktopNavProps {
@@ -19,16 +18,20 @@ export default function DesktopNav({ links, pathname }: DesktopNavProps) {
       <ul className={css.navigation}>
         {links
           .filter((link) => link.href !== "/cart")
-          .map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={pathname === link.href ? css.active : ""}
-              >
-                <span>{link.label}</span>
-              </Link>
-            </li>
-          ))}
+          .map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`${css.navLink} ${isActive ? css.active : ""}`}
+                >
+                  <span>{link.label}</span>
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     </nav>
   );

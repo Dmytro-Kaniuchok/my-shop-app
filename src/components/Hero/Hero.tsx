@@ -6,7 +6,7 @@ const Hero = () => {
     <section className={css.hero}>
       <div className={css.container}>
         <div className={css.wrapper}>
-          <h1 className={css.title}>Запчастини ⚙</h1>
+          <h1 className={css.title}>Запчастини</h1>
           <p className={css.description}>
             Ласкаво просимо!
             <br /> Перейдіть до каталогу, щоб обрати товар.
