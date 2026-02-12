@@ -62,7 +62,7 @@ export default function Header() {
   // Завантаження обраних з localStorage
   useEffect(() => {
     const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]"
+      localStorage.getItem("favorites") || "[]",
     );
     setFavoritesIds(storedFavorites);
   }, []);
@@ -74,12 +74,12 @@ export default function Header() {
 
   // Відкрити модалку і передати товари
   const favoritesProducts = allProducts.filter((p) =>
-    favoritesIds.includes(p.id)
+    favoritesIds.includes(p.id),
   );
 
   const toggleFavorite = (id: string) => {
     setFavoritesIds((prev) =>
-      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id],
     );
   };
 

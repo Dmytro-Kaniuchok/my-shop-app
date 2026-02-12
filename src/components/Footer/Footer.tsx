@@ -150,7 +150,7 @@ export default function Footer() {
           <div className={styles.bottomBar}>
             <div className={styles.bottomInner}>
               <p className={styles.copy}>
-                © {new Date().getFullYear()} AVTOAGRO. Всі права захищені.
+                © {new Date().getFullYear()} AGROAVTO. Всі права захищені.
               </p>
             </div>
           </div>
