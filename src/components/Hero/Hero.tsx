@@ -1,12 +1,13 @@
 import Link from "next/link";
 import css from "./Hero.module.css";
 import { FiSearch } from "react-icons/fi";
+import FeaturedCard from "../FeatureCard/FeaturedCard";
 
 const Hero = () => {
   return (
     <section className={css.hero}>
-      <div className={css.heroInner}>
-        <div className={css.content}>
+      <div className={css.heroContainer}>
+        <div className={css.left}>
           <h1 className={css.title}>
             Запчастини для вас
             <br /> швидко і зручно
@@ -53,6 +54,15 @@ const Hero = () => {
               <FiSearch />
             </button>
           </div>
+        </div>
+
+        <div className={css.right}>
+          <FeaturedCard
+            title="Паливний фільтр"
+            price={300}
+            image="https://res.cloudinary.com/dqzzwskbk/image/upload/v1765194272/fuel-filter_wk4tvb.webp"
+            badge="Хіт продажів"
+          />
         </div>
       </div>
     </section>

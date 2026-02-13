@@ -1,8 +1,7 @@
 .hero {
   width: 100%;
-  min-height: 520px;
-  display: flex;
-  align-items: center;
+  padding: 120px 0 100px;
+  position: relative;
   background:
     radial-gradient(
       circle at top left,
@@ -26,19 +25,22 @@
   color: #111;
 }
 
-.heroInner {
-  width: 100%;
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 60px;
+  gap: 80px;
 }
 
-.content {
-  max-width: 640px;
+.left {
+  flex: 1.3;
 }
 
 .title {
-  font-size: 52px;
+  font-size: 56px;
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 16px;
@@ -152,6 +154,46 @@
 
 [data-theme="light"] .button:hover {
   background: rgba(0, 0, 0, 0.1);
+}
+
+.suggestions {
+  margin-top: 4px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+
+[data-theme="dark"] .suggestions {
+  background: #1f1f1f;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.suggestionItem {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestionItem:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+[data-theme="dark"] .suggestionItem:hover {
+  background: #1e90ff;
+  color: #fff;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
 }
 
 /* Адаптив */

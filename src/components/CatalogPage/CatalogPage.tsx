@@ -17,13 +17,13 @@ export default function CatalogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
-  // 🆕 Обране
+  // Обране
   const [favoritesIds, setFavoritesIds] = useState<string[]>([]);
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
-  // 🆕 Підвантаження обраних з localStorage
+  // Підвантаження обраних з localStorage
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
     setFavoritesIds(saved);
@@ -69,10 +69,10 @@ export default function CatalogPage() {
   if (loading || loadingItem) return <Loader />;
 
   const filteredProducts = products.filter((p) =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    p.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  // 🆕 toggleFavorite — тепер є 🔥
+  // toggleFavorite для додавання/видалення з обраного
   const toggleFavorite = (id: string) => {
     setFavoritesIds((prev) => {
       let updated;

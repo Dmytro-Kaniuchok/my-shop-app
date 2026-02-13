@@ -43,8 +43,8 @@
 }
 
 [data-theme="dark"] .block {
-  background: #1f1f1f;
-  border: none;
+  background: #1f2937;
+  border: 1px solid #374151;
   color: #dadde1;
 }
 

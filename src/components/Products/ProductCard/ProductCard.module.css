@@ -14,8 +14,8 @@
 }
 
 [data-theme="dark"] .item {
-  background: #1f1f1f;
-  border: 1px solid #2e2e2e;
+  background: #1f2937;
+  border: 1px solid #374151;
 }
 
 .item:hover {

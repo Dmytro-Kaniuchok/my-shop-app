@@ -1,0 +1,99 @@
+.card {
+  position: relative;
+  width: 340px;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid rgb(229, 231, 235);
+  background: #fff;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  transform: rotate(2deg);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  animation: float 5s ease-in-out infinite;
+  text-align: center;
+}
+
+[data-theme="dark"] .card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+  transform: rotate(0deg) translateY(-10px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ef4444, #f59e0b);
+  color: #fff;
+}
+
+.image {
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 12px 0;
+  color: #2563eb;
+}
+
+[data-theme="dark"] .price {
+  color: #1e90ff;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(to right, #2563eb, #06b6d4);
+  color: #fff;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+}
+
+/* Floating animation */
+
+@keyframes float {
+  0% {
+    transform: rotate(2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2deg) translateY(-12px);
+  }
+  100% {
+    transform: rotate(2deg) translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .heroContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .right {
+    margin-top: 40px;
+  }
+}

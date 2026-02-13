@@ -27,15 +27,15 @@
 }
 
 .brand {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .brandText {
-  font-size: 14px;
-  color: #4b5563;
+  font-size: 16px;
+  color: #9ca3af;
   white-space: nowrap;
   font-weight: 500;
 }
@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 16px;
 }
 
 .socialLink {
@@ -56,29 +56,27 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 50%;
   border: 1px solid #dadde1;
   color: inherit;
   text-decoration: none;
-  transition: border 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .socialLink {
-  background: #1f1f1f;
-  border: 1px solid #2e2e2e;
+  background: #1f2937;
+  border: 1px solid #374151;
 }
 
 .socialLink:hover {
-  border: 1px solid #0b44cd;
-}
-
-[data-theme="dark"] .socialLink:hover {
-  border: 1px solid #1e90ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
 }
 
 .sectionTitle {
   font-weight: 700;
   margin-bottom: 12px;
+  font-size: 18px;
 }
 
 .list {
@@ -89,7 +87,7 @@
 }
 
 .list li {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .list li:hover {
@@ -99,7 +97,7 @@
 }
 
 .list a {
-  font-size: 14px;
+  font-size: 16px;
   color: inherit;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -112,14 +110,14 @@
 }
 
 [data-theme="dark"] .list a:hover {
-  color: #0b60b5;
+  color: #1e90ff;
 }
 
 .hours li {
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 12px;
+  font-size: 16px;
   font-weight: 500;
-  color: #4b5563;
+  color: #64748b;
 }
 
 [data-theme="dark"] .hours li {

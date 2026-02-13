@@ -45,9 +45,9 @@
 }
 
 [data-theme="dark"] .searchInput {
-  background-color: #1f1f1f;
+  background: #1f2937;
+  border: 1px solid #374151;
   color: #dadde1;
-  border: 1px solid #2e2e2e;
 }
 
 .searchInput:hover,
