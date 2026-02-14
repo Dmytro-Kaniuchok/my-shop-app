@@ -12,6 +12,7 @@ import { useTheme } from "@/src/Theme/ThemeProvider";
 import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
 import { Product } from "@/src/types/products";
 import { LuStar } from "react-icons/lu";
+import { Phone } from "lucide-react";
 
 const links = [
   { href: "/", label: "Головна" },
@@ -90,6 +91,16 @@ export default function Header() {
         <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
 
         <div className={css.iconsWrapper}>
+          <div className={css.phoneBlock}>
+            <div className={css.phoneRow}>
+              <Phone size={20} />
+              <a href="tel:+380501234567" className={css.phone}>
+                +38 (050) 123-45-67
+              </a>
+            </div>
+            <span className={css.phoneTime}>Пн-Нд: 10:00-18:00</span>
+          </div>
+
           <button
             className={`${css.mobileFavorites} ${pathname === "/products" ? css.active : ""}`}
             onClick={() => setIsFavoritesOpen(true)}
@@ -115,24 +126,15 @@ export default function Header() {
             onClick={() => router.push("/cart")}
             aria-label="Кошик"
           >
-            <ShoppingCart
-              color={
-                pathname === "/cart"
-                  ? theme === "dark"
-                    ? "#1e90ff"
-                    : "#0b44cd"
-                  : theme === "dark"
-                    ? "#fff"
-                    : "#101828"
-              }
-            />
+            <ShoppingCart size={26} />
+
             {cartCount > 0 && (
               <span className={css.mobileCartCount}>{cartCount}</span>
             )}
           </button>
 
           <div className={css.themeDesktop}>
-            <ThemeToggle />
+            <ThemeToggle size={26} />
           </div>
 
           {!menuOpen && (

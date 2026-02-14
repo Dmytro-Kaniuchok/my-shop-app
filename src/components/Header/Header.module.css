@@ -32,35 +32,93 @@
 
 .iconsWrapper {
   display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Телефон */
+.phoneBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.phoneRow {
+  display: flex;
+  align-items: center;
+
   gap: 8px;
+}
+
+.phoneRow svg {
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .phoneRow svg {
+  color: #fff;
+}
+
+.phone {
+  font-size: 16px;
+  font-weight: 600;
+  color: #101828;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .phone {
+  color: #fff;
+}
+
+.phone:hover {
+  color: #0b44cd;
+}
+
+[data-theme="dark"] .phone:hover {
+  color: #0b60b5;
+}
+
+.phoneTime {
+  font-size: 12px;
+  color: #6b7280;
+  margin-left: 30px;
 }
 
 .mobileCart {
   position: relative;
-  background: none;
+  background: rgba(0, 0, 0, 0.05);
   border: none;
+  border-radius: 12px;
+  padding: 12px;
   cursor: pointer;
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #101828;
-  transition: color 0.3s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 [data-theme="dark"] .mobileCart {
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
 .mobileCart:hover {
+  background: #dbeafe;
   color: #0b44cd;
 }
 
 [data-theme="dark"] .mobileCart:hover {
-  color: #0b60b5;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
 .mobileCartCount {
   position: absolute;
-  top: -8px;
-  right: -10px;
+  top: -4px;
+  right: -4px;
   background-color: #ff4d4d;
   color: #fff;
   font-size: 12px;
@@ -106,6 +164,10 @@
 }
 
 @media (max-width: 768px) {
+  .phoneBlock {
+    display: none;
+  }
+
   .desktopNav {
     display: none;
   }

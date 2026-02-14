@@ -35,7 +35,7 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
     if (isFavorite) {
       // Видалення з обраного
       updatedFavorites = favorites.filter(
-        (item: FavoriteItem) => item.id !== p.id
+        (item: FavoriteItem) => item.id !== p.id,
       );
     } else {
       // Додавання мінімальних даних
@@ -58,7 +58,7 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
         <button
           className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ""}`}
           onClick={toggleFavorite}
-          title={isFavorite ? "В улюблених" : "Додати в обране"}
+          title={isFavorite ? "В обраному" : "Додати в обране"}
         >
           {isFavorite ? (
             <AiOutlineCheck style={{ color: "#28a745", fontSize: "18px" }} />
@@ -76,7 +76,7 @@ export default function ProductCard({ p, handleClick }: ProductCardProps) {
             className={styles.image}
             onError={() =>
               setImgSrc(
-                "https://dummyimage.com/200x200/fff/000000&text=Немає+Зображення&"
+                "https://dummyimage.com/200x200/fff/000000&text=Немає+Зображення&",
               )
             }
           />

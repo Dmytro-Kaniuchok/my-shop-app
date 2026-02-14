@@ -10,24 +10,20 @@
 
 .loader {
   width: 50px;
-  padding: 8px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #3470ff;
-  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
-  -webkit-mask: var(--_m);
-  mask: var(--_m);
-  -webkit-mask-composite: source-out;
-  mask-composite: subtract;
-  animation: l3 1s infinite linear;
+  border: 8px solid #f2f4f7;
+  border-right-color: #2563eb;
+  animation: l2 1s infinite linear;
 }
 
-@keyframes l3 {
+@keyframes l2 {
   to {
     transform: rotate(1turn);
   }
 }
 
 [data-theme="dark"] .loader {
-  background: #1e90ff;
+  border: 8px solid #1e293b;
+  border-right-color: #1e90ff;
 }

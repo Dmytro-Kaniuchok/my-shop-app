@@ -4,7 +4,11 @@ import { useTheme } from "@/src/Theme/ThemeProvider";
 import { Sun, Moon } from "lucide-react";
 import styles from "./ThemeToggle.module.css";
 
-export default function ThemeToggle() {
+interface ThemeToggleProps {
+  size?: number;
+}
+
+export default function ThemeToggle({ size = 24 }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -13,7 +17,11 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Зміна теми"
     >
-      {theme === "light" ? <Moon size={24} /> : <Sun size={24} color="#fff" />}
+      {theme === "light" ? (
+        <Moon size={size} />
+      ) : (
+        <Sun size={size} color="#fff" />
+      )}
     </button>
   );
 }
