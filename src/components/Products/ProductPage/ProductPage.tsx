@@ -32,7 +32,7 @@ export default function ProductPage() {
     const fetchProduct = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`
+          `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
         );
         if (!res.ok) throw new Error("Помилка отримання товару");
 
@@ -77,28 +77,48 @@ export default function ProductPage() {
       />
 
       <div className={styles.info}>
+        <span className={styles.topBrand}>
+          {product.brand || "Бренд не вказано"}
+        </span>
         <h1 className={styles.title}>{product.name}</h1>
 
-        <div className={styles.infoRow}>
-          <span>Бренд: {product.brand}</span>
-          <span>Артикул: {product.sku}</span>
+        <div className={styles.meta}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Артикул:</span>
+            <span className={styles.metaValue}>{product.sku || "N/A"}</span>
+          </div>
+
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Бренд:</span>
+            <span className={styles.metaValue}>{product.brand}</span>
+          </div>
         </div>
 
         <p className={styles.description}>{product.description}</p>
 
-        <div className={styles.quantityWrapper}>
-          <label htmlFor="quantity">Кількість:</label>
-          <input
-            id="quantity"
-            type="number"
-            min={0}
-            max={100}
-            value={quantity}
-            onChange={(e) =>
-              setQuantity(Math.min(100, Math.max(0, Number(e.target.value))))
-            }
-            className={styles.quantityInput}
-          />
+        {/* Кількість */}
+        <div className={styles.quantityBlock}>
+          <span className={styles.quantityLabel}>Кількість:</span>
+
+          <div className={styles.quantitySelector}>
+            <button
+              className={styles.quantityButton}
+              onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+              disabled={quantity === 1}
+            >
+              −
+            </button>
+
+            <span className={styles.quantityValue}>{quantity}</span>
+
+            <button
+              className={styles.quantityButton}
+              onClick={() => setQuantity((prev) => prev + 1)}
+              disabled={quantity === 99}
+            >
+              +
+            </button>
+          </div>
         </div>
 
         <p className={styles.price}>{product.price} грн</p>

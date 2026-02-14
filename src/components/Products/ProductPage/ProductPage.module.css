@@ -23,15 +23,43 @@
   gap: 20px;
 }
 
-.title {
-  font-size: 32px;
+.topBrand {
+  display: inline-block;
+  background: linear-gradient(to right, #dbeafe, #eff6ff);
+  color: #2563eb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  width: fit-content;
 }
 
-.infoRow {
+.title {
+  font-size: 36px;
+}
+
+.meta {
   display: flex;
-  flex-direction: column;
+  gap: 32px;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 0;
+}
+
+.metaItem {
+  display: flex;
+  gap: 8px;
+}
+
+.metaLabel {
+  color: #64748b;
   font-size: 16px;
-  color: #8e929a;
+}
+
+.metaValue {
+  color: #101828;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .description {
@@ -39,7 +67,7 @@
 }
 
 .price {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -56,10 +84,10 @@
   padding: 12px 24px;
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s ease-in;
   width: 200px;
   font-size: 16px;
   font-weight: 600;
+  transition: background 0.3s ease-in;
 }
 
 [data-theme="dark"] .button {
@@ -103,39 +131,59 @@
   background: #0b60b5;
 }
 
-.quantityWrapper {
+.quantityBlock {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 500;
+  gap: 16px;
 }
 
-.quantityInput {
-  width: 60px;
-  padding: 6px 10px;
-  border-radius: 12px;
-  border: 1px solid #dbdbdb;
-  text-align: center;
-  transition: all 0.25s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+.quantityLabel {
   font-size: 16px;
-  outline: none;
+  font-weight: 600;
+  color: #1e293b;
 }
 
-[data-theme="dark"] .quantityInput {
-  background-color: #1f1f1f;
-  border: 1px solid #2e2e2e;
-  color: #fff;
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
 }
 
-.quantityInput:focus,
-.quantityInput:hover {
-  border-color: #0b44cd;
+.quantityButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2563eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-[data-theme="dark"] .quantityInput:focus,
-[data-theme="dark"] .quantityInput:hover {
-  border-color: #0b60b5;
+.quantityButton:hover:not(:disabled) {
+  background: #dbeafe;
+}
+
+.quantityButton:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.quantityValue {
+  min-width: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #101828;
 }
 
 /* Адаптація */
