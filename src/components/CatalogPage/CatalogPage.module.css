@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   color: #101828;
 }
@@ -27,21 +27,32 @@
 }
 
 .searchBar {
-  position: relative;
   display: flex;
-  margin: 32px auto;
-  justify-content: center;
   align-items: center;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 10px 14px;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  color: #64748b;
+  margin-left: 12px;
+  flex-shrink: 0;
 }
 
 .searchInput {
-  padding: 10px 22px;
-  border: 1px solid #dadde1;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  width: 300px;
-  transition: border 0.3s ease;
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #1e293b;
+  font-family: inherit;
 }
 
 [data-theme="dark"] .searchInput {
@@ -50,22 +61,79 @@
   color: #dadde1;
 }
 
-.searchInput:hover,
-.searchInput:focus {
+.searchBar:hover,
+.searchBar:focus-within {
   border-color: #0b44cd;
   outline: none;
 }
 
-[data-theme="dark"] .searchInput:hover,
+[data-theme="dark"] .searchBar:hover,
+[data-theme="dark"] .searchBar:focus-within {
+  border-color: #1e90ff;
+}
+
 [data-theme="dark"] .searchInput:focus {
   border-color: #1e90ff;
   outline: none;
 }
 
+.noResults {
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+  margin-top: 40px;
+}
+
+.selects {
+  display: flex;
+  gap: 16px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* щоб на мобільних переносилось */
+  margin: 32px 0;
+}
+
+.brandSelect,
+.sortSelect {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.brandSelect:hover,
+.sortSelect:hover,
+.brandSelect:focus,
+.sortSelect:focus {
+  border-color: #0b44cd;
+  outline: none;
+}
+
+[data-theme="dark"] .brandSelect,
+[data-theme="dark"] .sortSelect {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #dadde1;
+}
+
+[data-theme="dark"] .brandSelect:hover,
+[data-theme="dark"] .sortSelect:hover,
+[data-theme="dark"] .brandSelect:focus,
+[data-theme="dark"] .sortSelect:focus {
+  border-color: #1e90ff;
+}
+
 /* Сітка продуктів */
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
   padding: 0;
   list-style: none;
@@ -75,30 +143,25 @@
 /* Кнопка "Завантажити ще" */
 .loadMore {
   display: block;
-  margin: 30px auto;
+  margin: 32px auto;
   padding: 12px 24px;
-  background-color: transparent;
-  color: #101828;
+  background: linear-gradient(to right, #2563eb, #06b6d4);
+  color: #fff;
   border-radius: 12px;
-  border: 1px solid #3470ff;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .loadMore {
-  border: 1px solid #1e90ff;
+  border: 2px solid #1e90ff;
   color: #fff;
 }
 
 .loadMore:hover {
-  color: #fff;
-  background-color: #0b44cd;
-  border: 1px solid #0b44cd;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
 }
 
 [data-theme="dark"] .loadMore:hover {

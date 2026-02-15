@@ -27,6 +27,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [imgSrc, setImgSrc] = useState("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -38,6 +39,7 @@ export default function ProductPage() {
 
         const data = await res.json();
         setProduct(data);
+        setImgSrc(data.image);
       } catch {
         toast.error("Товар не знайдено!");
       } finally {
@@ -69,11 +71,16 @@ export default function ProductPage() {
   return (
     <main className={styles.container}>
       <Image
-        src={product.image}
+        src={imgSrc}
         alt={product.name}
         width={500}
         height={500}
         priority
+        onError={() =>
+          setImgSrc(
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Crect width='500' height='500' fill='%23f3f4f6'/%3E%3Cpath d='M150 180h200v140H150z' fill='%23e5e7eb' stroke='%23cbd5e1' stroke-width='4'/%3E%3Cline x1='150' y1='180' x2='350' y2='320' stroke='%23cbd5e1' stroke-width='4'/%3E%3Cline x1='350' y1='180' x2='150' y2='320' stroke='%23cbd5e1' stroke-width='4'/%3E%3Ctext x='50%25' y='460' dominant-baseline='middle' text-anchor='middle' fill='%236b7280' font-size='24' font-family='Arial, sans-serif'%3EНемає зображення%3C/text%3E%3C/svg%3E",
+          )
+        }
       />
 
       <div className={styles.info}>
@@ -96,7 +103,6 @@ export default function ProductPage() {
 
         <p className={styles.description}>{product.description}</p>
 
-        {/* Кількість */}
         <div className={styles.quantityBlock}>
           <span className={styles.quantityLabel}>Кількість:</span>
 
@@ -104,7 +110,6 @@ export default function ProductPage() {
             <button
               className={styles.quantityButton}
               onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-              disabled={quantity === 1}
             >
               −
             </button>
@@ -114,7 +119,6 @@ export default function ProductPage() {
             <button
               className={styles.quantityButton}
               onClick={() => setQuantity((prev) => prev + 1)}
-              disabled={quantity === 99}
             >
               +
             </button>

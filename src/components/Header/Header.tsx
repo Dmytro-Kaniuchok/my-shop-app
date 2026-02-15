@@ -93,7 +93,7 @@ export default function Header() {
         <div className={css.iconsWrapper}>
           <div className={css.phoneBlock}>
             <div className={css.phoneRow}>
-              <Phone size={20} />
+              <Phone size={16} />
               <a href="tel:+380501234567" className={css.phone}>
                 +38 (050) 123-45-67
               </a>

@@ -1,34 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Loader from "@/src/components/Loader/Loader";
 import styles from "./CatalogPage.module.css";
 import ProductCard from "@/src/components/Products/ProductCard/ProductCard";
-import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
 import { Product } from "@/src/types/products";
 
 export default function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(15);
-  const [loadingItem, setLoadingItem] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
-
-  // Обране
-  const [favoritesIds, setFavoritesIds] = useState<string[]>([]);
+  const [brandFilter, setBrandFilter] = useState("Всі бренди");
+  const [sortOrder, setSortOrder] = useState("default");
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const router = useRouter();
 
-  // Підвантаження обраних з localStorage
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setFavoritesIds(saved);
-  }, []);
-
+  // Завантаження продуктів
   useEffect(() => {
     async function loadProducts() {
       try {
@@ -45,6 +34,7 @@ export default function CatalogPage() {
     loadProducts();
   }, [API_URL]);
 
+  // Показ кнопки вгору при скролі
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 800) setShowScrollTop(true);
@@ -55,36 +45,31 @@ export default function CatalogPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLoadMore = () => setVisibleCount((prev) => prev + 15);
+  const handleLoadMore = () => setVisibleCount((prev) => prev + 12);
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const handleClick = (id: string) => {
-    setLoadingItem(true);
-    router.push(`/product/${id}`);
-  };
+  if (loading) return <Loader />;
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  // Отримати унікальні бренди для селекту
+  const brands = Array.from(new Set(products.map((p) => p.brand))).filter(
+    Boolean,
+  );
 
-  if (loading || loadingItem) return <Loader />;
-
-  const filteredProducts = products.filter((p) =>
+  // Фільтрація
+  let filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  // toggleFavorite для додавання/видалення з обраного
-  const toggleFavorite = (id: string) => {
-    setFavoritesIds((prev) => {
-      let updated;
-      if (prev.includes(id)) {
-        updated = prev.filter((favId) => favId !== id);
-      } else {
-        updated = [...prev, id];
-      }
-      localStorage.setItem("favorites", JSON.stringify(updated));
-      return updated;
-    });
-  };
+  if (brandFilter !== "Всі бренди") {
+    filteredProducts = filteredProducts.filter((p) => p.brand === brandFilter);
+  }
+
+  // Сортування
+  if (sortOrder === "asc") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "desc") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  }
 
   return (
     <main className={styles.container}>
@@ -92,30 +77,65 @@ export default function CatalogPage() {
         <h1 className={styles.title}>Каталог товарів</h1>
       </div>
 
-      <div className={styles.searchBar}>
-        <input
-          className={styles.searchInput}
-          type="text"
-          placeholder="Введіть назву товару..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-
-        <div className={styles.favoritesWrapper}>
-          <button
-            className={styles.openFavoritesBtn}
-            onClick={() => setIsFavoritesOpen(true)}
+      <div className={styles.filters}>
+        <div className={styles.searchBar}>
+          <svg
+            className={styles.searchIcon}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
           >
-            Обране
-          </button>
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="Пошук по назві товару"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        {/* Блок для фільтрації та сортування  */}
+        <div className={styles.selects}>
+          <select
+            className={styles.brandSelect}
+            value={brandFilter}
+            onChange={(e) => setBrandFilter(e.target.value)}
+          >
+            <option value="Всі бренди">Всі бренди</option>
+            {brands.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+
+          <select
+            className={styles.sortSelect}
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="default">Сортування за замовчуванням</option>
+            <option value="asc">Від дешевих до дорогих</option>
+            <option value="desc">Від дорогих до дешевих</option>
+          </select>
         </div>
       </div>
 
-      <ul className={styles.list}>
-        {filteredProducts.slice(0, visibleCount).map((p) => (
-          <ProductCard key={p.id} p={p} handleClick={handleClick} />
-        ))}
-      </ul>
+      {filteredProducts.length === 0 ? (
+        <p className={styles.noResults}>
+          Нічого не знайдено. Введіть коректну назву товару або змініть фільтри.
+        </p>
+      ) : (
+        <ul className={styles.list}>
+          {filteredProducts.slice(0, visibleCount).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </ul>
+      )}
 
       {visibleCount < filteredProducts.length && (
         <button className={styles.loadMore} onClick={handleLoadMore}>
@@ -128,15 +148,6 @@ export default function CatalogPage() {
           ↑
         </button>
       )}
-
-      <FavoritesModal
-        isOpen={isFavoritesOpen}
-        onClose={() => setIsFavoritesOpen(false)}
-        handleClick={handleClick}
-        products={products}
-        toggleFavorite={toggleFavorite}
-        favoritesIds={favoritesIds}
-      />
     </main>
   );
 }

@@ -34,8 +34,8 @@ const Hero = () => {
 
             <select className={css.select}>
               <option>Марка</option>
-              <option>BMW</option>
-              <option>Audi</option>
+              {/* <option>BMW</option>
+              <option>Audi</option> */}
             </select>
 
             <span className={css.divider} />
