@@ -44,7 +44,8 @@ export default function Footer() {
             Для зв&apos;язку з нами
           </Link>
           <p className={styles.brandText}>
-            Запчастини для вас швидко, вигідно та надійно!
+            Ваш надійний партнер у світі автозапчастин <br /> та товарів для
+            сільськогосподарської техніки.
           </p>
 
           <div className={styles.socials}>

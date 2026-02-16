@@ -17,13 +17,20 @@ export default function About() {
 
   return (
     <main className={styles.main}>
+      {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroOverlay}>
           <h1 className={styles.heroTitle}>Про нас</h1>
+          <p className={styles.heroSubtitle}>
+            Ми забезпечуємо якісні запчастини для сільськогосподарської техніки
+            та автомобілів
+          </p>
         </div>
       </section>
 
+      {/* Контент */}
       <section className={styles.content}>
+        {/* Хто ми */}
         <div className={styles.block}>
           <h2 className={styles.sectionTitle}>Хто ми?</h2>
           <p className={styles.paragraph}>
@@ -33,6 +40,7 @@ export default function About() {
           </p>
         </div>
 
+        {/* Наша місія */}
         <div className={styles.block}>
           <h2 className={styles.sectionTitle}>Наша місія</h2>
           <p className={styles.paragraph}>
@@ -41,6 +49,7 @@ export default function About() {
           </p>
         </div>
 
+        {/* Чому обирають нас */}
         <div className={styles.block}>
           <h2 className={styles.sectionTitle}>Чому обирають нас?</h2>
           <ul className={styles.list}>
@@ -51,6 +60,7 @@ export default function About() {
           </ul>
         </div>
 
+        {/* Мапа */}
         <div className={`${styles.block} ${styles.mapGrid}`}>
           <div>
             <h2 className={styles.sectionTitle}>Місцеположення</h2>
@@ -59,6 +69,14 @@ export default function About() {
               <br />
               <strong>м. Харків, вул. Георгія Тарасенка, 12</strong>
             </p>
+            <a
+              href="https://www.google.com/maps/place/%D0%B3%D0%B5%D0%BE%D1%80%D0%B3%D1%96%D1%8F+%D1%82%D0%B0%D1%80%D0%B0%D1%81%D0%B5%D0%BD%D0%BA%D0%B0,+12,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2,+%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapButton}
+            >
+              Відкрити у Google Maps
+            </a>
           </div>
 
           <div className={styles.mapContainer}>

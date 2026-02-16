@@ -5,22 +5,31 @@
   color: #101828;
 }
 
-.heroOverlay {
+.hero {
+  position: relative;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+}
+
+.heroOverlay {
+  text-align: center;
+  color: #6b7280;
 }
 
 .heroTitle {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 12px;
   color: #101828;
-  font-size: 32px;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-[data-theme="dark"] .heroTitle {
-  color: #fff;
+.heroSubtitle {
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
 .content {
@@ -34,18 +43,17 @@
 
 .block {
   background: #fff;
-  color: #101828;
-  padding: 32px;
   border-radius: 20px;
-  border: 1px solid #dadde1;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
+  padding: 36px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-[data-theme="dark"] .block {
-  background: #1f1f1f;
-  border: none;
-  color: #dadde1;
+.block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .sectionTitle {
@@ -54,64 +62,42 @@
   margin-bottom: 16px;
 }
 
-[data-theme="dark"] .sectionTitle {
-  color: #fff;
-}
-
 .paragraph {
   font-size: 16px;
   line-height: 1.6;
   font-weight: 500;
-}
-
-[data-theme="dark"] .paragraph {
-  color: #dadde1;
-}
-
-.list {
-  display: grid;
-  gap: 12px;
-  list-style: none;
-  padding-left: 0;
-}
-
-.list li {
-  position: relative;
-  padding-left: 28px;
-  font-size: 16px;
-  font-weight: 500;
   color: #101828;
 }
 
-[data-theme="dark"] .list li {
-  color: #dadde1;
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 0;
+  list-style: none;
 }
 
-/* Кастомні галочки */
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  font-weight: 500;
+}
+
 .list li::before {
   content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  display: inline-block;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #0b44cd;
-  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.00004 10.586L3.70704 8.293L2.29304 9.707L6.00004 13.414L14.0001 5.414L12.586 4L6.00004 10.586Z"/></svg>')
-    no-repeat center / contain;
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.00004 10.586L3.70704 8.293L2.29304 9.707L6.00004 13.414L14.0001 5.414L12.586 4L6.00004 10.586Z"/></svg>')
-    no-repeat center / contain;
-}
-
-[data-theme="dark"] .list li::before {
-  background-color: #0b60b5;
+  background: linear-gradient(to bottom right, #22c55e, #10b981);
 }
 
 .mapGrid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
 }
 
 .mapContainer {
@@ -128,22 +114,26 @@
 }
 
 .mapButton {
-  padding: 12px 24px;
-  background-color: #3470ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 14px 28px;
+  background: linear-gradient(to right, #2563eb, #06b6d4);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  transform: translateY(0);
+  margin-top: 16px;
   transition:
-    background 0.3s,
-    transform 0.2s;
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .mapButton:hover {
-  background-color: #0b44cd;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
 }
 
 /* Адаптивність */
@@ -151,11 +141,12 @@
   .heroTitle {
     font-size: 32px;
   }
-
+  .heroSubtitle {
+    font-size: 16px;
+  }
   .sectionTitle {
     font-size: 24px;
   }
-
   .paragraph {
     font-size: 14px;
   }

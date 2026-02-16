@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import Loader from "@/src/components/Loader/Loader";
 import Link from "next/link";
 import Image from "next/image";
+import { ShoppingCart } from "lucide-react";
+import { VscCheck } from "react-icons/vsc";
 
 interface Product {
   id: string;
@@ -28,6 +30,7 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [imgSrc, setImgSrc] = useState("");
+  const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,6 +38,7 @@ export default function ProductPage() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
         );
+
         if (!res.ok) throw new Error("Помилка отримання товару");
 
         const data = await res.json();
@@ -50,10 +54,21 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
 
+  // Перевіряємо чи товар вже в кошику
+  useEffect(() => {
+    if (!product) return;
+
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+    const exists = cart.some((item) => item.id === product.id);
+
+    setIsInCart(exists);
+  }, [product]);
+
   const addToCart = (product: Product, quantity: number) => {
     const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
     const existing = cart.find((item) => item.id === product.id);
+
     if (existing) {
       existing.quantity += quantity;
     } else {
@@ -62,6 +77,8 @@ export default function ProductPage() {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cartUpdated"));
+
+    setIsInCart(true);
     toast.success("Товар додано до кошика!");
   };
 
@@ -69,7 +86,7 @@ export default function ProductPage() {
   if (!product) return <p>Товар не знайдено.</p>;
 
   return (
-    <main className={styles.container}>
+    <section className={styles.container}>
       <Image
         src={imgSrc}
         alt={product.name}
@@ -87,6 +104,7 @@ export default function ProductPage() {
         <span className={styles.topBrand}>
           {product.brand || "Бренд не вказано"}
         </span>
+
         <h1 className={styles.title}>{product.name}</h1>
 
         <div className={styles.meta}>
@@ -127,7 +145,7 @@ export default function ProductPage() {
 
         <p className={styles.price}>{product.price} грн</p>
 
-        <div className={styles.buttons}>
+        <div className={styles.actions}>
           <Link
             href={{
               pathname: "/order",
@@ -138,18 +156,23 @@ export default function ProductPage() {
               className={styles.buyButton}
               onClick={() => toast.success("Перехід до оформлення замовлення")}
             >
-              Купити
+              <ShoppingCart size={20} className={styles.buyIcon} />
+              Купити зараз
             </button>
           </Link>
 
           <button
-            className={styles.button}
+            className={styles.cartButton}
             onClick={() => addToCart(product, quantity)}
+            disabled={isInCart}
           >
-            Додати до кошика
+            {isInCart ? (
+              <VscCheck size={20} className={styles.checkIcon} />
+            ) : null}
+            {isInCart ? " Додано до кошика" : "Додати до кошика"}
           </button>
         </div>
       </div>
-    </main>
+    </section>
   );
 }
