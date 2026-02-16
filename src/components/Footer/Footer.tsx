@@ -1,68 +1,27 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./Footer.module.css";
+import Logo from "../Logo/Logo";
+import css from "./Footer.module.css";
 import { SiTelegram, SiViber, SiGmail } from "react-icons/si";
-import { FiPhone } from "react-icons/fi";
+import { Phone } from "lucide-react";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<null | "ok" | "error" | "loading">(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const nav = [
-    { href: "/", label: "Головна" },
-    { href: "/catalog", label: "Каталог" },
-    { href: "/contact", label: "Контакти" },
-    { href: "/about", label: "Про нас" },
-    { href: "/cart", label: "Кошик" },
-  ];
-
-  function handleSubscribe(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      setStatus("error");
-      return;
-    }
-    setStatus("loading");
-    setTimeout(() => {
-      setStatus("ok");
-      setEmail("");
-    }, 900);
-  }
-
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.brandAndSocials}>
-          <Link href="/" className={styles.brand}>
-            Для зв&apos;язку з нами
-          </Link>
-          <p className={styles.brandText}>
+    <footer className={css.footer}>
+      <div className={css.footerContainer}>
+        <div className={css.footerContent}>
+          <Logo theme="light" />
+          <p className={css.description}>
             Ваш надійний партнер у світі автозапчастин <br /> та товарів для
             сільськогосподарської техніки.
           </p>
 
-          <div className={styles.socials}>
-            <a
-              href="tel:+380501234567"
-              aria-label="Phone"
-              className={styles.socialLink}
-            >
-              <FiPhone size={20} color="#25D366" />
-            </a>
-
+          <div className={css.socials}>
             <a
               href="https://web.telegram.org/k/"
               aria-label="Telegram"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
+              className={css.socialLink}
             >
               <SiTelegram size={20} color="#0088cc" />
             </a>
@@ -72,7 +31,7 @@ export default function Footer() {
               aria-label="Viber"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
+              className={css.socialLink}
             >
               <SiViber size={20} color="#665cac" />
             </a>
@@ -82,81 +41,70 @@ export default function Footer() {
               aria-label="Email"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
+              className={css.socialLink}
             >
               <SiGmail size={20} color="#D14836" />
             </a>
           </div>
         </div>
 
-        <div className={styles.supportSection}>
-          <h4 className={styles.sectionTitle}>Навігація</h4>
-          <ul className={styles.list}>
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            ))}
+        <nav className={css.footerNavigation}>
+          <h4 className={css.title}>Навігація</h4>
+          <ul>
+            <li>
+              <Link href="/">Головна</Link>
+            </li>
+            <li>
+              <Link href="/catalog">Каталог товарів</Link>
+            </li>
+            <li>
+              <Link href="/contacts">Контакти</Link>
+            </li>
+            <li>
+              <Link href="/about">Про нас</Link>
+            </li>
+            <li>
+              <Link href="/cart">Кошик</Link>
+            </li>
           </ul>
+        </nav>
+
+        <div className={css.footerContacts}>
+          <h4 className={css.title}>Контакти</h4>
+
+          <div className={css.phoneBlock}>
+            <div className={css.phoneRow}>
+              <Phone size={20} />
+              <a href="tel:+380501234567" className={css.phone}>
+                +38 (050) 123-45-67
+              </a>
+            </div>
+            <span className={css.phoneTime}>Пн-Нд: 10:00-18:00</span>
+          </div>
+
+          <div>
+            <div className={css.emailRow}>
+              <SiGmail size={20} className={css.emailIcon} />
+              <a href="mailto:info@agroauto.ua" className={css.email}>
+                info@agroauto.ua
+              </a>
+            </div>
+          </div>
+
+          <p>Адреса: м. Харків, вул. Георгія Тарасенка, 12</p>
         </div>
 
-        <div className={styles.workingHours}>
-          <h4 className={styles.sectionTitle}>Графік роботи</h4>
-          <ul className={styles.hours}>
-            <li>Пн-Пт: 10:00-18:00</li>
-            <li>Сб-Нд: вихідний</li>
-          </ul>
-        </div>
-
-        <div className={styles.orderSection}>
-          <h4 className={styles.sectionTitle}>Підписка на розсилку</h4>
-          <form onSubmit={handleSubscribe} className={styles.form}>
-            <label htmlFor="email" className="sr-only"></label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Ваш email"
-              className={styles.input}
-            />
-            <button
-              type="submit"
-              className={styles.button}
-              disabled={status === "loading"}
-            >
-              {status === "loading" ? "Підписка..." : "Підписатися"}
-            </button>
-          </form>
-          <p
-            className={`${styles.status} ${
-              status === "ok"
-                ? styles.success
-                : status === "error"
-                  ? styles.error
-                  : ""
-            }`}
-          >
-            {status === "ok"
-              ? "Дякуємо! Ви підписані."
-              : status === "error"
-                ? "Введіть коректний email."
-                : "Отримуйте оновлення та акції на email."}
-          </p>
+        <div className={css.footerSchedule}>
+          <h4 className={css.title}>Графік роботи</h4>
+          <p>Пн-Пт: 10:00-18:00</p>
+          <p>Сб-Нд: вихідний</p>
         </div>
       </div>
 
-      {mounted && (
-        <>
-          <div className={styles.bottomBar}>
-            <div className={styles.bottomInner}>
-              <p className={styles.copy}>
-                © {new Date().getFullYear()} AGROAVTO. Всі права захищені.
-              </p>
-            </div>
-          </div>
-        </>
-      )}
+      {/* Нижня частина */}
+      <div className={css.footerBottom}>
+        <p>© {new Date().getFullYear()} AGROAVTO. Усі права захищені.</p>
+      </div>
     </footer>
   );
 }
