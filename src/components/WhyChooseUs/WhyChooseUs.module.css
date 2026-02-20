@@ -80,3 +80,9 @@
 [data-theme="dark"] .cardDescription {
   color: #9ca3af;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+}

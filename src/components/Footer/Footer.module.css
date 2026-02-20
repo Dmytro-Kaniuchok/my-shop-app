@@ -6,13 +6,12 @@
 }
 
 .footerContainer {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 48px 16px;
-
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 16px;
 }
 
 /* Лого + опис */
@@ -39,15 +38,15 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-radius: 50%;
-  background: #e5e7eb;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.05);
   border: none;
   text-decoration: none;
   transition: background 0.3s ease;
 }
 
 .socialLink:hover {
-  background: #cbd5f5;
+  background: #dbeafe;
 }
 
 /* Заголовки */
@@ -150,9 +149,20 @@
 }
 
 /* Адаптив */
-@media (max-width: 768px) {
+@media (max-width: 767.9px) {
   .footerContainer {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .footerContacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footerContent {
+    align-items: center;
+    text-align: center;
   }
 }
 

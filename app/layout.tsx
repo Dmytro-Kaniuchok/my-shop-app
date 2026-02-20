@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Магазин запчастин",
   description: "Запчастини для сільгосптехніки. Магазин якісних автозапчастин.",
   icons: {
-    icon: "/logo-img.svg",
+    icon: "/favicon-parts.png",
   },
 };
 

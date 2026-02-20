@@ -197,6 +197,11 @@
 
 /* Адаптив */
 @media (max-width: 768px) {
+  .heroContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
   .heroInner {
     padding: 0 16px;
   }
