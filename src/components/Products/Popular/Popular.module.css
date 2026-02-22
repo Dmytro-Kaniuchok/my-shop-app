@@ -30,24 +30,6 @@
   gap: 28px;
 }
 
-@media (max-width: 768px) {
-  .popular {
-    padding: 40px 20px;
-  }
-
-  .popularTitle {
-    font-size: 28px;
-  }
-
-  .productCard {
-    padding: 16px;
-  }
-
-  .productCard img {
-    height: 150px;
-  }
-}
-
 @media (max-width: 1150px) {
   .products {
     display: flex;
@@ -55,10 +37,20 @@
     scroll-snap-type: x mandatory;
     gap: 16px;
     padding-bottom: 10px;
+    position: relative;
+  }
+  .productCard {
+    flex: 0 0 95%;
+    min-width: 95%;
+    scroll-snap-align: center;
   }
 
-  .productCard {
-    flex: 0 0 260px;
-    scroll-snap-align: start;
+  /* Приховуємо скролбар */
+  .products::-webkit-scrollbar {
+    display: none;
+  }
+  .products {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

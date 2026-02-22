@@ -26,29 +26,44 @@
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
+[data-theme="dark"] .heroTitle {
+  color: #fff;
+}
+
 .heroSubtitle {
   font-size: 18px;
   font-weight: 500;
   opacity: 0.9;
 }
 
+[data-theme="dark"] .heroSubtitle {
+  color: #d1d5db;
+}
+
+/* Контейнер контенту */
 .content {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   max-width: 1280px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
+/* Блоки всередині контенту */
 .block {
   background: #fff;
   border-radius: 20px;
-  padding: 36px;
+  padding: 24px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .block {
+  background: #1f2937;
+  border: 1px solid #374151;
 }
 
 .block:hover {
@@ -62,11 +77,19 @@
   margin-bottom: 16px;
 }
 
+[data-theme="dark"] .sectionTitle {
+  color: #fff;
+}
+
 .paragraph {
   font-size: 16px;
   line-height: 1.6;
   font-weight: 500;
   color: #101828;
+}
+
+[data-theme="dark"] .paragraph {
+  color: #d1d5db;
 }
 
 .list {
@@ -79,19 +102,25 @@
 
 .list li {
   display: flex;
-  align-items: center;
+  align-items: center; /* вертикальне вирівнювання */
   gap: 12px;
-  position: relative;
   font-weight: 500;
+}
+
+[data-theme="dark"] .list li {
+  color: #d1d5db;
 }
 
 .list li::before {
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(to bottom right, #22c55e, #10b981);
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #22c55e, #10b981);
+  transform: rotate(45deg); /* ромб */
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .mapGrid {
@@ -143,12 +172,20 @@
   }
   .heroSubtitle {
     font-size: 16px;
+    padding: 0 12px;
+    box-sizing: border-box;
   }
   .sectionTitle {
     font-size: 24px;
   }
   .paragraph {
     font-size: 14px;
+  }
+  .content {
+    padding: 0 16px;
+  }
+  .block {
+    padding: 20px;
   }
 }
 

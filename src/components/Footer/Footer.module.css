@@ -91,6 +91,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin-bottom: 10px;
 }
 
 .phoneRow,
@@ -102,6 +103,12 @@
 
 .phoneRow svg {
   flex-shrink: 0;
+  color: #10b981;
+}
+
+.emailRow svg {
+  flex-shrink: 0;
+  color: #d14836;
 }
 
 .phone,
@@ -158,6 +165,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .footerContent {

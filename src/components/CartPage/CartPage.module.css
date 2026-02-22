@@ -205,9 +205,8 @@
   font-size: 20px;
 }
 
-[data-theme="dark"] .searchWrapper {
-  background: #1f1f1f;
-  border: 1px solid #2e2e2e;
+[data-theme="dark"] .searchText {
+  color: #fff;
 }
 
 .searchBtn {
