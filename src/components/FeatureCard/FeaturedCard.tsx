@@ -1,13 +1,22 @@
 import Image from "next/image";
 import css from "./FeaturedCard.module.css";
-
 interface FeaturedCardProps {
   title: string;
   price: number;
   image: string;
   badge?: string;
+  brand?: string;
+  sku?: string;
 }
-const FeaturedCard = ({ title, price, image, badge }: FeaturedCardProps) => {
+
+export default function FeaturedCard({
+  title,
+  price,
+  image,
+  badge,
+  brand,
+  sku,
+}: FeaturedCardProps) {
   return (
     <div className={css.card}>
       {badge && <span className={css.badge}>{badge}</span>}
@@ -20,12 +29,18 @@ const FeaturedCard = ({ title, price, image, badge }: FeaturedCardProps) => {
         className={css.image}
       />
 
-      <h3>{title}</h3>
+      <h3 className={css.title}>{title}</h3>
+
+      <div className={css.brandAndArticle}>
+        <span>
+          Бренд:{brand || "Не вказано"} <br />
+          Артикул:{sku || "Не вказано"}
+        </span>
+      </div>
+
       <p className={css.price}>{price} грн</p>
 
       <button className={css.button}>Купити</button>
     </div>
   );
-};
-
-export default FeaturedCard;
+}

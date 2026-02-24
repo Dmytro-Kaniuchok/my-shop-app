@@ -110,12 +110,16 @@ export default function ProductPage() {
         <div className={styles.meta}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Артикул:</span>
-            <span className={styles.metaValue}>{product.sku || "N/A"}</span>
+            <span className={styles.metaValue}>
+              {product.sku || "Не вказано"}
+            </span>
           </div>
 
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Бренд:</span>
-            <span className={styles.metaValue}>{product.brand}</span>
+            <span className={styles.metaValue}>
+              {product.brand || "Не вказано"}
+            </span>
           </div>
         </div>
 

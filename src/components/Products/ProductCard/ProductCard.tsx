@@ -42,18 +42,20 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <div className={css.productCard}>
-      <Image
-        src={imgSrc}
-        alt={product.name}
-        width={250}
-        height={250}
-        loading="lazy"
-        onError={() =>
-          setImgSrc(
-            "https://dummyimage.com/250x250/fff/000000&text=Немає+зображення",
-          )
-        }
-      />
+      <div className={css.imageWrapper}>
+        <Image
+          src={imgSrc}
+          alt={product.name}
+          width={250}
+          height={250}
+          loading="lazy"
+          onError={() =>
+            setImgSrc(
+              "https://dummyimage.com/250x250/fff/000000&text=Немає+зображення",
+            )
+          }
+        />
+      </div>
 
       <h3>{product.name}</h3>
 

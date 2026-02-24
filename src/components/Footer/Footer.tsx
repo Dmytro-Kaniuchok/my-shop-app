@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Logo from "../Logo/Logo";
 import css from "./Footer.module.css";
-import { SiTelegram, SiViber } from "react-icons/si";
-import { FiMail } from "react-icons/fi";
+import { SiTelegram, SiViber, SiGmail } from "react-icons/si";
 import { Phone } from "lucide-react";
 
 export default function Footer() {
@@ -44,7 +43,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className={css.socialLink}
             >
-              <FiMail size={20} color="#D14836" />
+              <SiGmail size={20} color="#D14836" />
             </a>
           </div>
         </div>
@@ -85,7 +84,7 @@ export default function Footer() {
 
           <div>
             <div className={css.emailRow}>
-              <FiMail size={20} className={css.emailIcon} />
+              <SiGmail size={20} className={css.emailIcon} />
               <a href="mailto:info@agroauto.ua" className={css.email}>
                 info@agroauto.ua
               </a>

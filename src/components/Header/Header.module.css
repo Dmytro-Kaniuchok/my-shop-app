@@ -51,6 +51,7 @@
 
 .phoneRow svg {
   flex-shrink: 0;
+  color: #0b44cd;
 }
 
 [data-theme="dark"] .phoneRow svg {

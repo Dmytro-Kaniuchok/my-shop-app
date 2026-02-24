@@ -53,7 +53,7 @@ export default function UserForm({ formData, handleChange }: UserFormProps) {
           className={styles.input}
           type="email"
           name="email"
-          placeholder="you@example.com"
+          placeholder="you@gmail.com"
           value={formData.email}
           onChange={handleChange}
         />

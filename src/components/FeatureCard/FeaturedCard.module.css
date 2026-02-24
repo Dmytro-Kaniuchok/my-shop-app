@@ -37,9 +37,25 @@
   color: #fff;
 }
 
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 .image {
   object-fit: contain;
   margin-bottom: 20px;
+}
+
+.brandAndArticle {
+  font-size: 16px;
+  color: #6b7280;
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .brandAndArticle {
+  color: #9ca3af;
 }
 
 .price {
