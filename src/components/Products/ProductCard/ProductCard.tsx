@@ -6,6 +6,8 @@ import Link from "next/link";
 import css from "./ProductCard.module.css";
 import toast from "react-hot-toast";
 import { Product } from "@/src/types/products";
+import { MdOutlineStar } from "react-icons/md";
+
 interface CartProduct extends Product {
   quantity: number;
 }
@@ -42,6 +44,12 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <div className={css.productCard}>
+      {product.inStock ? (
+        <div className={css.inStock}>В наявності</div>
+      ) : (
+        <div className={css.badgeOut}>Немає в наявності</div>
+      )}
+
       <div className={css.imageWrapper}>
         <Image
           src={imgSrc}
@@ -57,7 +65,26 @@ export default function ProductCard({ product }: Props) {
         />
       </div>
 
-      <h3>{product.name}</h3>
+      <h3 className={css.productName}>{product.name}</h3>
+
+      <div className={css.rating}>
+        <div className={css.starWrapper}>
+          {/* фонова зірка */}
+          <MdOutlineStar size={20} className={css.starBackground} />
+          {/* заповнена частина */}
+          <MdOutlineStar
+            size={20}
+            className={css.starForeground}
+            style={{ width: `${((product.rating ?? 0) / 5) * 100}%` }}
+          />
+        </div>
+        <span className={css.ratingValue}>
+          {(product.rating ?? 0).toFixed(1)}
+        </span>
+        <span className={css.reviews}>
+          • {product.ratingCount ?? 0} відгуків
+        </span>
+      </div>
 
       <span className={css.brandAndArticle}>
         Бренд: {product.brand || "не вказано"} <br />
@@ -68,8 +95,12 @@ export default function ProductCard({ product }: Props) {
         <div className={css.priceRow}>
           <span className={css.price}>{product.price} грн</span>
 
-          <button onClick={handleAddToCart} className={css.buyBtn}>
-            Купити
+          <button
+            onClick={handleAddToCart}
+            className={css.buyBtn}
+            disabled={!product.inStock}
+          >
+            {product.inStock ? "Купити" : "Немає в наявності"}
           </button>
         </div>
 

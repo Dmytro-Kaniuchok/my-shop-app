@@ -8,4 +8,7 @@ export interface Product {
   description?: string;
   popular?: boolean;
   badge?: string;
+  rating?: number;
+  ratingCount?: number;
+  inStock?: boolean;
 }

@@ -1,4 +1,5 @@
 .productCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -20,6 +21,7 @@
 }
 
 .imageWrapper {
+  position: relative;
   width: 100%;
   height: 180px;
   aspect-ratio: 1.6;
@@ -32,6 +34,29 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.inStock {
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(to bottom right, #22c55e, #10b981);
+}
+
+.badgeOut {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #de5452;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
 }
 
 .productCard h3 {
@@ -47,6 +72,34 @@
 
 [data-theme="dark"] .productCard h3 {
   color: #fff;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.ratingValue {
+  font-weight: 600;
+}
+
+.reviews {
+  color: #64748b;
+}
+
+.starBackground {
+  color: #e5e7eb; /* порожня частина */
+}
+
+.starForeground {
+  color: #ffd700; /* заповнена частина */
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .brandAndArticle {
@@ -152,4 +205,11 @@
   .detailsLink {
     font-size: 14px;
   }
+}
+
+.starWrapper {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
 }
