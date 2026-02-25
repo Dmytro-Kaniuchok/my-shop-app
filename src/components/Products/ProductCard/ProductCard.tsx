@@ -100,7 +100,7 @@ export default function ProductCard({ product }: Props) {
             className={css.buyBtn}
             disabled={!product.inStock}
           >
-            {product.inStock ? "Купити" : "Немає в наявності"}
+            Купити
           </button>
         </div>
 

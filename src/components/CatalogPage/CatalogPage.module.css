@@ -294,6 +294,15 @@
   .openFavoritesBtn {
     display: none;
   }
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .selects {
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 459.5px) {

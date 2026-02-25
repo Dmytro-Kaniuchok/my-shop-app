@@ -18,6 +18,7 @@ interface Product {
   description: string;
   price: number;
   image: string;
+  inStock?: boolean;
 }
 
 interface CartItem extends Product {
@@ -159,6 +160,7 @@ export default function ProductPage() {
             <button
               className={styles.buyButton}
               onClick={() => toast.success("Перехід до оформлення замовлення")}
+              disabled={!product.inStock}
             >
               <ShoppingCart size={20} className={styles.buyIcon} />
               Купити зараз
@@ -168,7 +170,7 @@ export default function ProductPage() {
           <button
             className={styles.cartButton}
             onClick={() => addToCart(product, quantity)}
-            disabled={isInCart}
+            disabled={isInCart || !product.inStock}
           >
             {isInCart ? (
               <VscCheck size={20} className={styles.checkIcon} />

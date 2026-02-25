@@ -1,7 +1,7 @@
 import Link from "next/link";
 import css from "./Hero.module.css";
 import { FiSearch } from "react-icons/fi";
-import FeaturedCard from "../FeatureCard/FeaturedCard";
+import FeaturedCard from "../FeaturedCard/FeaturedCard";
 
 const Hero = () => {
   return (
@@ -59,7 +59,7 @@ const Hero = () => {
         <div className={css.right}>
           <FeaturedCard
             title="Паливний фільтр"
-            price={300}
+            price={350}
             image="https://res.cloudinary.com/dqzzwskbk/image/upload/v1765194272/fuel-filter_wk4tvb.webp"
             badge="Хіт продажів"
           />

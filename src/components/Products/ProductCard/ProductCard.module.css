@@ -49,14 +49,13 @@
 
 .badgeOut {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  background: #de5452;
+  top: -10px;
+  left: 24px;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 10px;
   color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 9999px;
+  background: linear-gradient(to bottom right, #ff4d4f, #ff1a1c);
 }
 
 .productCard h3 {
@@ -157,6 +156,18 @@
 
 .buyBtn:active {
   transform: scale(0.97);
+}
+
+.buyBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.35);
+}
+
+.buyBtn:disabled {
+  background: #e5e7eb;
+  color: #64748b;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .detailsLink {

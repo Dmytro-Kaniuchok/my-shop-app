@@ -33,8 +33,8 @@ export default function FeaturedCard({
 
       <div className={css.brandAndArticle}>
         <span>
-          Бренд:{brand || "Не вказано"} <br />
-          Артикул:{sku || "Не вказано"}
+          Бренд: {brand || "Не вказано"} <br />
+          Артикул: {sku || "Не вказано"}
         </span>
       </div>
 
