@@ -11,4 +11,5 @@ export interface Product {
   rating?: number;
   ratingCount?: number;
   inStock?: boolean;
+  reviews?: number;
 }

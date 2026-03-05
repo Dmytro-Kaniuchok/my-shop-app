@@ -1,0 +1,234 @@
+.tabsSection {
+  background: #fff;
+  border-radius: 24px;
+  border: 2px solid #e2e8f0;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 64px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 32px;
+}
+
+.tab {
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab:hover {
+  color: #2563eb;
+}
+
+.tabActive {
+  color: #2563eb;
+}
+
+.tabActive::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, #2563eb, #06b6d4);
+}
+
+.tabContent {
+  min-height: 200px;
+}
+
+.description h3,
+.specs h3,
+.reviews h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+.description p {
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* Specs Table */
+.specsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.specsTable tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+}
+.specsTable tbody tr:last-child {
+  border-bottom: none;
+}
+.specsTable td {
+  padding: 16px 0;
+  font-size: 16px;
+}
+.specsTable td:first-child {
+  color: #64748b;
+  width: 30%;
+}
+.specsTable td:last-child {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Reviews */
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review {
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 16px;
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.reviewAuthor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewAvatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(to bottom right, #dbeafe, #eff6ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.reviewName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.reviewDate {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.reviewStars {
+  color: #facc15;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.reviewText {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.writeReviewButton {
+  background: linear-gradient(to right, #2563eb, #06b6d4);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.writeReviewButton:hover {
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ================== */
+/* Адаптація для ProductTabs */
+/* ================== */
+
+@media (max-width: 768px) {
+  .tabsSection {
+    padding: 24px;
+    margin-top: 32px;
+  }
+
+  .tabs {
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .tab {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .tabContent {
+    padding: 12px;
+  }
+
+  .description p,
+  .specsTable td,
+  .reviews p {
+    font-size: 14px;
+  }
+
+  .specsTable td:first-child {
+    width: 40%;
+  }
+
+  .writeReviewButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 393px) {
+  .tabsSection {
+    padding: 16px;
+    margin-top: 24px;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .tabContent {
+    padding: 8px;
+  }
+
+  .description p,
+  .specsTable td,
+  .reviews p {
+    font-size: 13px;
+  }
+
+  .writeReviewButton {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}

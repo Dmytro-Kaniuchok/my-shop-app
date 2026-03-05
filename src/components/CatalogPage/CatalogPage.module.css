@@ -43,7 +43,6 @@
   width: 20px;
   height: 20px;
   color: #64748b;
-  margin-left: 12px;
   flex-shrink: 0;
 }
 
@@ -52,7 +51,7 @@
   border: none;
   outline: none;
   font-size: 14px;
-  color: #1e293b;
+  color: #101828;
   font-family: inherit;
 }
 

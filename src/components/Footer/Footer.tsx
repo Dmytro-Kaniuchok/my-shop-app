@@ -58,7 +58,7 @@ export default function Footer() {
               <Link href="/catalog">Каталог товарів</Link>
             </li>
             <li>
-              <Link href="/contacts">Контакти</Link>
+              <Link href="/contact">Контакти</Link>
             </li>
             <li>
               <Link href="/about">Про нас</Link>

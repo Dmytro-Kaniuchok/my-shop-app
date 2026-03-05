@@ -7,11 +7,10 @@ import css from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import DesktopNav from "../Navigation/DesktopNav/DesktopNav";
 import MobileNav from "../Navigation/MobileNav/MobileNav";
-import ThemeToggle from "@/src/Theme/ThemeToggle/ThemeToggle";
+// import ThemeToggle from "@/src/Theme/ThemeToggle/ThemeToggle";
 import { useTheme } from "@/src/Theme/ThemeProvider";
-import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
+// import FavoritesModal from "@/src/components/FavoritesModal/FavoritesModal";
 import { Product } from "@/src/types/products";
-import { LuStar } from "react-icons/lu";
 import { Phone } from "lucide-react";
 
 const links = [
@@ -102,40 +101,16 @@ export default function Header() {
           </div>
 
           <button
-            className={`${css.mobileFavorites} ${pathname === "/products" ? css.active : ""}`}
-            onClick={() => setIsFavoritesOpen(true)}
-            aria-label="Обране"
-          >
-            <LuStar
-              color={
-                favoritesIds.length > 0
-                  ? "#FFD700"
-                  : pathname === "/products"
-                    ? theme === "dark"
-                      ? "#1e90ff"
-                      : "#0b44cd"
-                    : theme === "dark"
-                      ? "#fff"
-                      : "#101828"
-              }
-            />
-          </button>
-
-          <button
             className={`${css.mobileCart} ${pathname === "/cart" ? css.active : ""}`}
             onClick={() => router.push("/cart")}
             aria-label="Кошик"
           >
-            <ShoppingCart size={26} />
+            <ShoppingCart size={24} />
 
             {cartCount > 0 && (
               <span className={css.mobileCartCount}>{cartCount}</span>
             )}
           </button>
-
-          <div className={css.themeDesktop}>
-            <ThemeToggle size={26} />
-          </div>
 
           {!menuOpen && (
             <button
@@ -143,7 +118,7 @@ export default function Header() {
               onClick={() => setMenuOpen(true)}
               aria-label="Меню"
             >
-              <Menu size={26} color={theme === "dark" ? "#fff" : "#101828"} />
+              <Menu size={24} color={theme === "dark" ? "#fff" : "#101828"} />
             </button>
           )}
         </div>
@@ -155,15 +130,6 @@ export default function Header() {
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
           theme={theme}
-        />
-
-        <FavoritesModal
-          isOpen={isFavoritesOpen}
-          onClose={() => setIsFavoritesOpen(false)}
-          products={favoritesProducts}
-          handleClick={(id) => router.push(`/product/${id}`)}
-          toggleFavorite={toggleFavorite}
-          favoritesIds={favoritesIds}
         />
       </div>
     </header>

@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/src/components/Header/Header";
 import ClientWrapper from "./clientWrapper";
-import { ThemeProvider } from "@/src/Theme/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Магазин запчастин",
@@ -46,12 +45,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${inter.variable}`}
     >
       <body>
-        <ThemeProvider>
-          <Header />
-          <main>
-            <ClientWrapper>{children}</ClientWrapper>
-          </main>
-        </ThemeProvider>
+        <Header />
+        <main>
+          <ClientWrapper>{children}</ClientWrapper>
+        </main>
       </body>
     </html>
   );

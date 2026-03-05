@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import { VscCheck } from "react-icons/vsc";
+import ProductTabs from "../ProductTabs/ProductTabs";
 
 interface Product {
   id: string;
@@ -19,6 +20,7 @@ interface Product {
   price: number;
   image: string;
   inStock?: boolean;
+  reviews?: number;
 }
 
 interface CartItem extends Product {
@@ -87,98 +89,122 @@ export default function ProductPage() {
   if (!product) return <p>Товар не знайдено.</p>;
 
   return (
-    <section className={styles.container}>
-      <Image
-        src={imgSrc}
-        alt={product.name}
-        width={500}
-        height={500}
-        priority
-        onError={() =>
-          setImgSrc(
-            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Crect width='500' height='500' fill='%23f3f4f6'/%3E%3Cpath d='M150 180h200v140H150z' fill='%23e5e7eb' stroke='%23cbd5e1' stroke-width='4'/%3E%3Cline x1='150' y1='180' x2='350' y2='320' stroke='%23cbd5e1' stroke-width='4'/%3E%3Cline x1='350' y1='180' x2='150' y2='320' stroke='%23cbd5e1' stroke-width='4'/%3E%3Ctext x='50%25' y='460' dominant-baseline='middle' text-anchor='middle' fill='%236b7280' font-size='24' font-family='Arial, sans-serif'%3EНемає зображення%3C/text%3E%3C/svg%3E",
-          )
-        }
-      />
-
-      <div className={styles.info}>
-        <span className={styles.topBrand}>
-          {product.brand || "Бренд не вказано"}
-        </span>
-
-        <h1 className={styles.title}>{product.name}</h1>
-
-        <div className={styles.meta}>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Артикул:</span>
-            <span className={styles.metaValue}>
-              {product.sku || "Не вказано"}
-            </span>
+    <div className={styles.productPage}>
+      <div className={styles.container}>
+        <div className={styles.productLayout}>
+          <div className={styles.imageContainer}>
+            <Image
+              src={imgSrc}
+              alt={product.name}
+              width={500}
+              height={500}
+              priority
+              onError={() =>
+                setImgSrc(
+                  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Crect width='500' height='500' fill='%23f3f4f6'/%3E%3Cpath d='M150 180h200v140H150z' fill='%23e5e7eb' stroke='%23cbd5e1' stroke-width='4'/%3E%3Cline x1='150' y1='180' x2='350' y2='320' stroke='%23cbd5e1' stroke-width='4'/%3E%3Cline x1='350' y1='180' x2='150' y2='320' stroke='%23cbd5e1' stroke-width='4'/%3E%3Ctext x='50%25' y='460' dominant-baseline='middle' text-anchor='middle' fill='%236b7280' font-size='24' font-family='Arial, sans-serif'%3EНемає зображення%3C/text%3E%3C/svg%3E",
+                )
+              }
+            />
           </div>
 
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Бренд:</span>
-            <span className={styles.metaValue}>
-              {product.brand || "Не вказано"}
+          <div className={styles.info}>
+            <span className={styles.topBrand}>
+              {product.brand || "Бренд не вказано"}
             </span>
+
+            <h1 className={styles.title}>{product.name}</h1>
+
+            <div className={styles.meta}>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Артикул:</span>
+                <span className={styles.metaValue}>
+                  {product.sku || "Не вказано"}
+                </span>
+              </div>
+
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Бренд:</span>
+                <span className={styles.metaValue}>
+                  {product.brand || "Не вказано"}
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.purchaseBlock}>
+              <p className={styles.price}>{product.price} грн</p>
+
+              <div
+                className={`${styles.stockBadge} ${
+                  product.inStock ? styles.inStock : styles.outOfStock
+                }`}
+              >
+                {product.inStock ? "В наявності" : "Немає в наявності"}
+              </div>
+            </div>
+
+            <div className={styles.quantityBlock}>
+              <span className={styles.quantityLabel}>Кількість:</span>
+
+              <div className={styles.quantitySelector}>
+                <button
+                  className={styles.quantityButton}
+                  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+                >
+                  −
+                </button>
+
+                <span className={styles.quantityValue}>{quantity}</span>
+
+                <button
+                  className={styles.quantityButton}
+                  onClick={() => setQuantity((prev) => prev + 1)}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.actions}>
+              <Link
+                href={{
+                  pathname: "/order",
+                  query: { id: product.id, quantity },
+                }}
+              >
+                <button
+                  className={styles.buyButton}
+                  onClick={() =>
+                    toast.success("Перехід до оформлення замовлення")
+                  }
+                  disabled={!product.inStock}
+                >
+                  <ShoppingCart size={20} className={styles.buyIcon} />
+                  Купити зараз
+                </button>
+              </Link>
+
+              <button
+                className={styles.cartButton}
+                onClick={() => addToCart(product, quantity)}
+                disabled={isInCart || !product.inStock}
+              >
+                {isInCart ? (
+                  <VscCheck size={20} className={styles.checkIcon} />
+                ) : null}
+                {isInCart ? " Додано до кошика" : "Додати до кошика"}
+              </button>
+            </div>
           </div>
         </div>
-
-        <p className={styles.description}>{product.description}</p>
-
-        <div className={styles.quantityBlock}>
-          <span className={styles.quantityLabel}>Кількість:</span>
-
-          <div className={styles.quantitySelector}>
-            <button
-              className={styles.quantityButton}
-              onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-            >
-              −
-            </button>
-
-            <span className={styles.quantityValue}>{quantity}</span>
-
-            <button
-              className={styles.quantityButton}
-              onClick={() => setQuantity((prev) => prev + 1)}
-            >
-              +
-            </button>
-          </div>
-        </div>
-
-        <p className={styles.price}>{product.price} грн</p>
-
-        <div className={styles.actions}>
-          <Link
-            href={{
-              pathname: "/order",
-              query: { id: product.id, quantity },
-            }}
-          >
-            <button
-              className={styles.buyButton}
-              onClick={() => toast.success("Перехід до оформлення замовлення")}
-              disabled={!product.inStock}
-            >
-              <ShoppingCart size={20} className={styles.buyIcon} />
-              Купити зараз
-            </button>
-          </Link>
-
-          <button
-            className={styles.cartButton}
-            onClick={() => addToCart(product, quantity)}
-            disabled={isInCart || !product.inStock}
-          >
-            {isInCart ? (
-              <VscCheck size={20} className={styles.checkIcon} />
-            ) : null}
-            {isInCart ? " Додано до кошика" : "Додати до кошика"}
-          </button>
+        <div className={styles.tabs}>
+          <ProductTabs
+            description={product.description}
+            brand={product.brand}
+            sku={product.sku}
+            reviews={product.reviews}
+          />
         </div>
       </div>
-    </section>
+    </div>
   );
 }

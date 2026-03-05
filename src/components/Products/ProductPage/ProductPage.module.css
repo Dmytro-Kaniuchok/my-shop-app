@@ -1,25 +1,42 @@
+.productPage {
+  min-height: 100vh;
+  padding: 32px 0 80px;
+}
+
 .container {
-  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.productLayout {
+  display: grid;
+  max-width: 1280px;
+  grid-template-columns: 500px 1fr;
+  gap: 80px;
   align-items: center;
+  margin: 0 auto;
+}
+
+.imageContainer {
+  display: flex;
   justify-content: center;
-  flex-direction: row;
-  gap: 40px;
-  max-width: 900px;
-  margin: 60px auto;
 }
 
 .image {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  max-width: 500px;
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 20px;
   object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .info {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .topBrand {
@@ -34,15 +51,14 @@
 }
 
 .title {
-  font-size: 36px;
+  font-size: 34px;
+  font-weight: 700;
+  color: #101828;
 }
 
 .meta {
   display: flex;
   gap: 32px;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 16px 0;
 }
 
 .metaItem {
@@ -61,14 +77,42 @@
   font-size: 16px;
 }
 
-.description {
-  font-size: 18px;
+/* Ціна */
+.price {
+  font-size: 38px;
+  font-weight: 700;
+  background: linear-gradient(to right, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
 }
 
-.price {
-  font-size: 28px;
-  font-weight: 700;
-  color: #2563eb;
+.purchaseBlock {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stockBadge {
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.inStock {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.outOfStock {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.description {
+  font-size: 18px;
 }
 
 .actions {
@@ -192,71 +236,139 @@
   color: #101828;
 }
 
+.descriptionBlock {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.descriptionTitle {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
 /* Адаптація */
-@media (max-width: 393px) {
-  .container {
-    width: 100%;
+
+@media (max-width: 768px) {
+  .productLayout {
+    display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    gap: 32px;
+    max-width: 100%;
+    padding: 0 16px;
   }
 
-  .info {
+  .imageContainer {
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
+    margin-bottom: 16px;
   }
 
   .image {
-    height: auto;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .infoRow {
-    font-size: 14px;
-  }
-
-  .description {
-    font-size: 16px;
-  }
-
-  .quantityWrapper {
-    font-size: 16px;
-  }
-
-  .buttons {
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 20px;
-  }
-}
-
-@media (min-width: 393px) and (max-width: 768px) {
-  .container {
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
+    max-width: 360px;
+    padding: 16px;
   }
 
   .info {
-    justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 16px;
   }
 
   .title {
     font-size: 28px;
   }
 
-  .infoRow {
+  .meta {
+    flex-direction: column;
+    gap: 12px;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .purchaseBlock {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .price {
+    font-size: 32px;
+  }
+
+  .quantityBlock {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .quantitySelector {
+    justify-content: center;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .buyButton,
+  .cartButton {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .descriptionBlock {
+    padding: 16px;
+  }
+
+  .descriptionTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 393px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .info {
+    gap: 10px;
+  }
+
+  .quantitySelector {
+    gap: 8px;
+  }
+
+  .quantityButton {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .quantityValue {
+    min-width: 36px;
     font-size: 16px;
   }
 
-  .quantityWrapper {
+  .buyButton,
+  .cartButton {
+    padding: 12px;
+    font-size: 14px;
+    height: 48px;
+  }
+
+  .image {
+    max-width: 300px;
+    padding: 12px;
+  }
+
+  .description {
     font-size: 16px;
   }
 }
