@@ -14,7 +14,25 @@ export default function ClientWrapper({
   return (
     <>
       <main>{children}</main>
-      <Toaster position="top-center" />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "#101828",
+            color: "#fff",
+            borderRadius: "14px",
+            padding: "14px 18px",
+            border: "1px solid #374151",
+          },
+          success: {
+            iconTheme: {
+              primary: "#22c55e",
+              secondary: "#fff",
+            },
+          },
+        }}
+      />
       {pathname === "/" && <Footer />}
     </>
   );

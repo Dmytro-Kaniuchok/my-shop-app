@@ -20,6 +20,11 @@ export default function ProductCard({ product }: Props) {
   const [imgSrc, setImgSrc] = useState(product.image);
 
   const handleAddToCart = () => {
+    if (!product.inStock) {
+      toast.error("Товару немає в наявності");
+      return;
+    }
+
     try {
       const existingCart = localStorage.getItem("cart");
       const cart: CartProduct[] = existingCart ? JSON.parse(existingCart) : [];
@@ -35,7 +40,7 @@ export default function ProductCard({ product }: Props) {
       localStorage.setItem("cart", JSON.stringify(cart));
 
       window.dispatchEvent(new Event("cartUpdated"));
-      toast.success("Товар додано до кошика!");
+      toast.success("Товар додано до кошика");
     } catch (error) {
       console.error("Cart error:", error);
       toast.error("Помилка додавання до кошика");

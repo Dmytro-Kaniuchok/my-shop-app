@@ -4,13 +4,13 @@
   position: relative;
   overflow: hidden;
   background:
+    radial-gradient(circle at 20% 20%, rgba(0, 87, 183, 0.25), transparent 40%),
     radial-gradient(
-      circle at top left,
-      rgba(52, 112, 255, 0.1),
-      transparent 60%
+      circle at 80% 70%,
+      rgba(255, 215, 0, 0.35),
+      transparent 45%
     ),
-    linear-gradient(135deg, #e0f2fe, #bae6fd);
-  color: #101828;
+    linear-gradient(135deg, #f8fafc, #e0f2fe);
 }
 
 .heroContainer {
@@ -164,7 +164,6 @@
 
 .button:hover {
   background: #dbeafe;
-  color: #0b44cd;
 }
 
 [data-theme="light"] .button {

@@ -107,7 +107,6 @@
 
 .mobileCart:hover {
   background: #dbeafe;
-  color: #0b44cd;
 }
 
 [data-theme="dark"] .mobileCart:hover {

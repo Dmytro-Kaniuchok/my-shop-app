@@ -1,6 +1,8 @@
 import css from "./Popular.module.css";
 import ProductCard from "../ProductCard/ProductCard";
 import { Product } from "@/src/types/products";
+import Link from "next/link";
+import { LayoutGrid } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -24,7 +26,17 @@ export default async function Popular() {
   return (
     <section className={css.popular}>
       <div className={css.popularWrapper}>
-        <h2 className={css.popularTitle}>Популярні товари</h2>
+        <div className={css.popularTitle}>
+          <h2 className={css.title}>Популярні товари</h2>
+
+          <Link
+            href="/catalog"
+            className={css.button}
+            aria-label="Перейти до повного каталогу товарів"
+          >
+            Дивитись весь каталог <LayoutGrid size={26} />
+          </Link>
+        </div>
 
         <div className={css.products}>
           {popularProducts.map((product) => (
