@@ -10,6 +10,7 @@ import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import { VscCheck } from "react-icons/vsc";
 import ProductTabs from "../ProductTabs/ProductTabs";
+import { Home, Truck, Shield } from "lucide-react";
 
 interface Product {
   id: string;
@@ -195,7 +196,46 @@ export default function ProductPage() {
               </button>
             </div>
           </div>
+
+          <div className={styles.features}>
+            <div className={styles.featureContainer}>
+              <Truck size={40} color="#2563eb" className={styles.featureIcon} />
+              <div className={styles.featureTextContainer}>
+                <h3 className={styles.featureTitle}>Доставка</h3>
+                <p className={styles.featureText}>
+                  Швидка доставка по всій Україні протягом 1-3 днів після
+                  замовлення та оплати.
+                </p>
+              </div>
+            </div>
+
+            <div className={styles.featureContainer}>
+              <Shield
+                size={40}
+                color="#2563eb"
+                className={styles.featureIcon}
+              />
+              <div className={styles.featureTextContainer}>
+                <h3 className={styles.featureTitle}>Гарантія</h3>
+                <p className={styles.featureText}>
+                  Офіційна гарантія від виробника на всі автозапчастини - 12
+                  місяців.
+                </p>
+              </div>
+            </div>
+
+            <div className={styles.featureContainer}>
+              <Home size={40} color="#2563eb" className={styles.featureIcon} />
+              <div className={styles.featureTextContainer}>
+                <h3 className={styles.featureTitle}>Самовивіз</h3>
+                <p className={styles.featureText}>
+                  Можна отримати в нашому магазині безкоштовно.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className={styles.tabs}>
           <ProductTabs
             description={product.description}

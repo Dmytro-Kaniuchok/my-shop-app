@@ -75,6 +75,7 @@
 .qtyWrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   background: #f3f4f6;
   border-radius: 14px;
@@ -244,7 +245,7 @@
 
 /* Мобільні */
 
-@media (max-width: 425px) {
+@media (max-width: 550px) {
   .item {
     grid-template-columns: 1fr;
     text-align: center;

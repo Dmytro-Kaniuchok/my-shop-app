@@ -15,7 +15,7 @@ export default function ClientWrapper({
     <>
       <main>{children}</main>
       <Toaster
-        position="top-right"
+        position="top-center"
         toastOptions={{
           duration: 3000,
           style: {

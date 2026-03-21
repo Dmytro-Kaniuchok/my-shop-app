@@ -87,7 +87,9 @@ export default function Header() {
     <header className={css.header}>
       <div className={css.container}>
         <Logo theme={theme} />
-        <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
+        <div className={css.desktopNav}>
+          <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
+        </div>
 
         <div className={css.iconsWrapper}>
           <div className={css.phoneBlock}>

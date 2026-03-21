@@ -11,6 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .heroOverlay {
@@ -46,8 +48,8 @@
   grid-template-columns: 1fr;
   gap: 20px;
   max-width: 1280px;
-  margin: 40px auto;
-  padding: 0 16px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* Блоки всередині контенту */

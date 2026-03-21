@@ -12,12 +12,16 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   max-width: 1440px;
-  padding: 32px 60px;
-  color: #101828;
+  padding: 20px 60px;
   margin: 0 auto;
+}
+
+.desktopNav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .burger {
@@ -148,11 +152,12 @@
 }
 
 /* Адаптивність */
-@media (min-width: 320px) and (max-width: 393px) {
+@media (min-width: 320px) and (max-width: 1024px) {
   .container {
     padding: 24px 16px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 }
 
