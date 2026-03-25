@@ -29,7 +29,7 @@ export default function FeaturedCard({
         className={css.image}
       />
 
-      <h3 className={css.title}>{title}</h3>
+      <h2 className={css.title}>{title}</h2>
 
       <div className={css.brandAndArticle}>
         <span>

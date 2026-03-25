@@ -32,7 +32,7 @@ const Hero = () => {
 
             <span className={css.divider} />
 
-            <select className={css.select}>
+            <select className={css.select} aria-label="Марка">
               <option>Марка</option>
               {/* <option>BMW</option>
               <option>Audi</option> */}
@@ -40,17 +40,17 @@ const Hero = () => {
 
             <span className={css.divider} />
 
-            <select className={css.select}>
+            <select className={css.select} aria-label="Модель">
               <option>Модель</option>
             </select>
 
             <span className={css.divider} />
 
-            <select className={css.select}>
+            <select className={css.select} aria-label="Рік">
               <option>Рік</option>
             </select>
 
-            <button className={css.button}>
+            <button className={css.button} aria-label="Пошук">
               <FiSearch />
             </button>
           </div>

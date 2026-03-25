@@ -38,7 +38,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background: rgba(0, 0, 0, 0.05);
   border: none;
   text-decoration: none;
@@ -133,6 +133,8 @@
 .email {
   color: #101828;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .email:hover {

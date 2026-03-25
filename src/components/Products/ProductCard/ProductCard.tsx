@@ -109,7 +109,11 @@ export default function ProductCard({ product }: Props) {
           </button>
         </div>
 
-        <Link href={`/product/${product.id}`} className={css.detailsLink}>
+        <Link
+          href={`/product/${product.id}`}
+          className={css.detailsLink}
+          aria-label={`Дивитися детальніше ${product.name}`}
+        >
           Дивитися детальніше
         </Link>
       </div>

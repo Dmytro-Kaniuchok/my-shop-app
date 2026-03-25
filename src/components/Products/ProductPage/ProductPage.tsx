@@ -95,6 +95,7 @@ export default function ProductPage() {
         <div className={styles.productLayout}>
           <div className={styles.imageContainer}>
             <Image
+              className={styles.image}
               src={imgSrc}
               alt={product.name}
               width={500}
