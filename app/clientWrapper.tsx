@@ -15,15 +15,16 @@ export default function ClientWrapper({
     <>
       <main>{children}</main>
       <Toaster
-        position="top-center"
+        position="bottom-right"
         toastOptions={{
           duration: 3000,
           style: {
             background: "#101828",
             color: "#fff",
-            borderRadius: "14px",
-            padding: "14px 18px",
-            border: "1px solid #374151",
+            borderRadius: "8px",
+            padding: "10px 32px",
+            border: "none",
+            fontSize: "14px",
           },
           success: {
             iconTheme: {

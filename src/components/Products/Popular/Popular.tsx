@@ -2,7 +2,6 @@ import css from "./Popular.module.css";
 import ProductCard from "../ProductCard/ProductCard";
 import { Product } from "@/src/types/products";
 import Link from "next/link";
-import { LayoutGrid } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -34,7 +33,7 @@ export default async function Popular() {
             className={css.button}
             aria-label="Перейти до повного каталогу товарів"
           >
-            Дивитись весь каталог <LayoutGrid size={26} />
+            Дивитись весь каталог
           </Link>
         </div>
 

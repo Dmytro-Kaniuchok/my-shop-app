@@ -3,7 +3,7 @@
   top: 0;
   right: -100%;
   height: 100vh;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -25,7 +25,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(3px);
   z-index: 999;
   opacity: 0;
@@ -45,26 +45,30 @@
 }
 
 .closeBtn {
-  background: none;
-  border: none;
+  display: flex;
   cursor: pointer;
+  background: none;
+  border: 2px solid #0b44cd;
+  padding: 4px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobileNav ul {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   list-style: none;
-  margin: 0 auto;
-  gap: 8px;
-  height: 100%;
+  margin-top: 16px;
   padding: 0;
+  gap: 32px;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .mobileNav li {
   width: 100%;
-  text-align: center;
+  text-align: left;
   opacity: 0;
   transform: translateY(10px);
 }
@@ -87,6 +91,9 @@
 .mobileNav.open li:nth-child(4) {
   animation-delay: 0.2s;
 }
+.mobileNav.open li:nth-child(5) {
+  animation-delay: 0.25s;
+}
 
 @keyframes fadeIn {
   to {
@@ -97,8 +104,6 @@
 
 .mobileNav li a {
   display: block;
-  padding: 12px 20px;
-  border-radius: 12px;
   color: #101828;
   font-size: 18px;
   font-weight: 500;
@@ -120,13 +125,11 @@
   background: rgba(52, 112, 255, 0.15);
 }
 
-.active {
-  background: rgba(52, 112, 255, 0.15);
-  color: #3470ff;
+.mobileNav li a.active {
+  color: #0b44cd;
 }
 
 [data-theme="dark"] .active {
-  background: rgba(30, 144, 255, 0.2);
   color: #1e90ff;
 }
 
@@ -171,4 +174,39 @@
   padding: 3px 6px;
   line-height: 1;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.bottomInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+}
+
+.phoneBlock {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.phone {
+  font-size: 14px;
+  text-decoration: none;
+  color: #6b7280;
+}
+
+.hours {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
 }

@@ -69,53 +69,48 @@ export default function ProductCard({ product }: Props) {
           }
         />
       </div>
+      <div className={css.info}>
+        <h3 className={css.productName}>{product.name}</h3>
 
-      <h3 className={css.productName}>{product.name}</h3>
+        <span className={css.brandAndArticle}>
+          {product.brand || "не вказано"} • {product.sku || "не вказано"}
+        </span>
 
-      <div className={css.rating}>
-        <div className={css.starWrapper}>
-          {/* фонова зірка */}
-          <MdOutlineStar size={20} className={css.starBackground} />
-          {/* заповнена частина */}
-          <MdOutlineStar
-            size={20}
-            className={css.starForeground}
-            style={{ width: `${((product.rating ?? 0) / 5) * 100}%` }}
-          />
+        <div className={css.rating}>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <MdOutlineStar
+              key={i}
+              size={20}
+              className={
+                i <= Math.round(product.rating ?? 0) ? css.starActive : css.star
+              }
+            />
+          ))}
+
+          <span className={css.reviews}>({product.ratingCount ?? 0})</span>
         </div>
-        <span className={css.ratingValue}>
-          {(product.rating ?? 0).toFixed(1)}
-        </span>
-        <span className={css.reviews}>
-          • {product.ratingCount ?? 0} відгуків
-        </span>
-      </div>
 
-      <span className={css.brandAndArticle}>
-        Бренд: {product.brand || "не вказано"} <br />
-        Артикул: {product.sku || "не вказано"}
-      </span>
+        <div className={css.cardFooter}>
+          <div className={css.priceRow}>
+            <span className={css.price}>{product.price} грн</span>
 
-      <div className={css.cardFooter}>
-        <div className={css.priceRow}>
-          <span className={css.price}>{product.price} грн</span>
+            <button
+              onClick={handleAddToCart}
+              className={css.buyBtn}
+              disabled={!product.inStock}
+            >
+              Купити
+            </button>
+          </div>
 
-          <button
-            onClick={handleAddToCart}
-            className={css.buyBtn}
-            disabled={!product.inStock}
+          <Link
+            href={`/product/${product.id}`}
+            className={css.detailsLink}
+            aria-label={`Дивитися детальніше ${product.name}`}
           >
-            Купити
-          </button>
+            Дивитися детальніше
+          </Link>
         </div>
-
-        <Link
-          href={`/product/${product.id}`}
-          className={css.detailsLink}
-          aria-label={`Дивитися детальніше ${product.name}`}
-        >
-          Дивитися детальніше
-        </Link>
       </div>
     </div>
   );

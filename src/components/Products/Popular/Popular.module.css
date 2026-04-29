@@ -29,18 +29,21 @@
 
 .button {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: #3470ff;
-  font-size: 18px;
+  background: #fff;
+  color: #101828;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
   font-weight: 500;
-  padding: 0;
-  transition: color 0.25s ease;
+  padding: 10px 22px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .button:hover {
-  color: #0b44cd;
+  color: #fff;
+  background: #0b44cd;
 }
 
 [data-theme="dark"] .popularTitle {
@@ -49,7 +52,7 @@
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 28px;
 }
 

@@ -138,13 +138,21 @@ export default function CatalogPage() {
       )}
 
       {visibleCount < filteredProducts.length && (
-        <button className={styles.loadMore} onClick={handleLoadMore}>
+        <button
+          className={styles.loadMore}
+          onClick={handleLoadMore}
+          aria-label="Завантажити більше товарів"
+        >
           Завантажити ще
         </button>
       )}
 
       {showScrollTop && (
-        <button className={styles.scrollTop} onClick={scrollToTop}>
+        <button
+          className={styles.scrollTop}
+          onClick={scrollToTop}
+          aria-label="Повернутися до початку сторінки"
+        >
           ↑
         </button>
       )}

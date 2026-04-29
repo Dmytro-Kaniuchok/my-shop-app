@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import css from "./MobileNav.module.css";
+import { Phone, Clock } from "lucide-react";
 
 interface NavLink {
   href: string;
@@ -28,8 +28,6 @@ export default function MobileNav({
   setMenuOpen,
   theme,
 }: MobileNavProps) {
-  const router = useRouter();
-
   return (
     <>
       <div
@@ -44,41 +42,41 @@ export default function MobileNav({
             onClick={() => setMenuOpen(false)}
             aria-label="Закрити меню"
           >
-            <X size={26} color={theme === "dark" ? "#fff" : "#101828"} />
+            <X size={20} color={theme === "dark" ? "#fff" : "#101828"} />
           </button>
         </div>
 
         <ul>
-          {links
-            .filter((link) => link.href !== "/catalog")
-            .map((link) => (
-              <li key={link.href} onClick={() => setMenuOpen(false)}>
-                <Link
-                  href={link.href}
-                  className={pathname === link.href ? css.active : ""}
-                >
-                  <span className={css.cartWrapper}>
-                    {link.label}
+          {links.map((link) => (
+            <li key={link.href} onClick={() => setMenuOpen(false)}>
+              <Link
+                href={link.href}
+                className={pathname === link.href ? css.active : ""}
+              >
+                <span className={css.cartWrapper}>
+                  {link.label}
 
-                    {link.showCount && cartCount > 0 && (
-                      <span className={css.cartCount}>{cartCount}</span>
-                    )}
-                  </span>
-                </Link>
-              </li>
-            ))}
+                  {link.showCount && cartCount > 0 && (
+                    <span className={css.cartCount}>{cartCount}</span>
+                  )}
+                </span>
+              </Link>
+            </li>
+          ))}
         </ul>
+        <div className={css.bottomInfo}>
+          <div className={css.divider} />
+          <div className={css.phoneBlock}>
+            <Phone size={16} color="#667085" />
+            <a href="tel:+380501234567" className={css.phone}>
+              +38 (050) 123-45-67
+            </a>
+          </div>
 
-        <div className={css.mobileNavFooter}>
-          <button
-            className={css.ctaBtn}
-            onClick={() => {
-              setMenuOpen(false);
-              router.push("/catalog");
-            }}
-          >
-            До каталогу
-          </button>
+          <div className={css.hours}>
+            <Clock size={16} color="#667085" />
+            <p>Пн-Нд: 10:00-18:00</p>
+          </div>
         </div>
       </nav>
     </>

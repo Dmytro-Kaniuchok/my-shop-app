@@ -9,9 +9,9 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 32px;
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 48px 16px;
+  padding: 48px 60px;
 }
 
 /* Лого + опис */
@@ -29,8 +29,13 @@
 
 .socials {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.links {
+  display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .socialLink {
@@ -38,7 +43,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: rgba(0, 0, 0, 0.05);
   border: none;
   text-decoration: none;
@@ -79,11 +84,11 @@
   color: #0b44cd;
 }
 
-/* Контакти */
-.footerContacts p {
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   font-size: 14px;
-  margin-top: 10px;
-  color: #101828;
 }
 
 /* Телефон */
@@ -103,18 +108,14 @@
 
 .phoneRow svg {
   flex-shrink: 0;
-  color: #0b44cd;
 }
 
 .emailRow svg {
   flex-shrink: 0;
-  color: #d14836;
 }
 
 .phone,
 .emailIcon {
-  font-size: 16px;
-  font-weight: 600;
   color: #101828;
   text-decoration: none;
 }
@@ -133,19 +134,22 @@
 .email {
   color: #101828;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 16px;
 }
 
 .email:hover {
   color: #0b44cd;
 }
 
-/* Графік */
-.footerSchedule p {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #101828;
+.address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerSchedule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Нижня частина */
@@ -166,23 +170,21 @@
   .footerContacts {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footerContent {
-    align-items: center;
-    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .footerContainer {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 
   .phoneTime {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+  .footerContainer {
+    padding: 48px 20px;
   }
 }

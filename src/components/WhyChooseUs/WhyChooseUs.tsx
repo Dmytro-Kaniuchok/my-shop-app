@@ -5,22 +5,26 @@ const items = [
   {
     title: "Швидка доставка",
     description:
-      "Самовивіз або доставка по Україні протягом 1-3 днів після підтвердження замовлення.",
+      "Доставка по Україні 1-3 дні. Безкоштовна доставка при замовленні від 1000 грн",
     icon: Truck,
-    gradient: "linear-gradient(to right, #2563eb, #06b6d4)",
+    bg: "#dbeafe",
+    gradient: "linear-gradient(135deg, #2563eb, #06b6d4)",
   },
   {
     title: "Гарантія якості",
     description:
-      "Офіційна гарантія від виробника на всі товари. Обмін протягом 14 днів.",
+      "Всі товари сертифіковані. Гарантія від виробника на всі запчастини",
     icon: Shield,
-    gradient: "linear-gradient(to right, #ef4444, #f59e0b)",
+    bg: "#fef3c7",
+    gradient: "linear-gradient(135deg, #ef4444, #f59e0b)",
   },
   {
     title: "Підтримка 24/7",
-    description: "Завжди готові допомогти з вибором. Консультації безкоштовно.",
+    description:
+      "Наші консультанти завжди готові допомогти з вибором запчастин",
     icon: Phone,
-    gradient: "linear-gradient(to bottom right, #22c55e, #10b981)",
+    bg: "#d1fae5",
+    gradient: "linear-gradient(135deg, #22c55e, #10b981)",
   },
 ];
 
@@ -29,11 +33,12 @@ export default function WhyChooseUs() {
     <section className={css.whySection}>
       <div className={css.container}>
         <h2 className={css.title}>Чому обирають нас?</h2>
+
         <div className={css.grid}>
-          {items.map(({ title, description, icon: Icon, gradient }) => (
-            <div className={css.card} key={title}>
+          {items.map(({ title, description, icon: Icon, gradient, bg }) => (
+            <div className={css.card} key={title} style={{ background: bg }}>
               <div className={css.iconWrapper} style={{ background: gradient }}>
-                <Icon size={32} color="#fff" />
+                <Icon size={28} color="#fff" />
               </div>
 
               <h3 className={css.cardTitle}>{title}</h3>

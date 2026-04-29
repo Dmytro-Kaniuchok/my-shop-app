@@ -33,7 +33,7 @@
   max-width: 400px;
   background: #fff;
   border-radius: 12px;
-  border: 1px solid #d1d5db;
+  border: 2px solid #d1d5db;
   padding: 10px 14px;
   gap: 16px;
   transition: all 0.3s ease;
@@ -93,7 +93,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap; /* щоб на мобільних переносилось */
+  flex-wrap: wrap;
   margin: 32px 0;
 }
 
@@ -101,7 +101,7 @@
 .sortSelect {
   padding: 10px 14px;
   border-radius: 12px;
-  border: 1px solid #d1d5db;
+  border: 2px solid #d1d5db;
   font-size: 14px;
   background: #fff;
   cursor: pointer;
