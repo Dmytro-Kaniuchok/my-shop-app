@@ -3,7 +3,6 @@
 import styles from "./About.module.css";
 import { useState, useEffect } from "react";
 import Loader from "@/src/components/Loader/Loader";
-import Footer from "../Footer/Footer";
 
 export default function About() {
   const [loading, setLoading] = useState(true);
