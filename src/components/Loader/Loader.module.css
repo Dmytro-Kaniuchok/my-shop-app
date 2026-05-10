@@ -12,7 +12,7 @@
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 8px solid #f2f4f7;
+  border: 8px solid #e2e8f0;
   border-right-color: #2563eb;
   animation: l2 1s infinite linear;
 }

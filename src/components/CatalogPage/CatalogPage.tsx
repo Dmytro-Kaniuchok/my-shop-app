@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Loader from "@/src/components/Loader/Loader";
 import styles from "./CatalogPage.module.css";
 import ProductCard from "@/src/components/Products/ProductCard/ProductCard";
@@ -11,6 +12,7 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(12);
   const [showScrollTop, setShowScrollTop] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [brandFilter, setBrandFilter] = useState("Всі бренди");
   const [sortOrder, setSortOrder] = useState("default");
@@ -23,6 +25,7 @@ export default function CatalogPage() {
       try {
         const res = await fetch(`${API_URL}/products`);
         const data = await res.json();
+
         setProducts(data);
       } catch (error) {
         console.error("Помилка при завантаженні продуктів:", error);
@@ -34,23 +37,40 @@ export default function CatalogPage() {
     loadProducts();
   }, [API_URL]);
 
-  // Показ кнопки вгору при скролі
+  // Кнопка "вгору"
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 800) setShowScrollTop(true);
-      else setShowScrollTop(false);
+      setShowScrollTop(window.scrollY > 800);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  const handleLoadMore = () => setVisibleCount((prev) => prev + 12);
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 12);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // Скидання фільтрів
+  const resetFilters = () => {
+    setSearchTerm("");
+    setBrandFilter("Всі бренди");
+    setSortOrder("default");
+  };
 
   if (loading) return <Loader />;
 
-  // Отримати унікальні бренди для селекту
+  // Унікальні бренди
   const brands = Array.from(new Set(products.map((p) => p.brand))).filter(
     Boolean,
   );
@@ -73,86 +93,110 @@ export default function CatalogPage() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.div}>
-        <h1 className={styles.title}>Каталог товарів</h1>
+      <nav className={styles.breadcrumbs}>
+        <Link href="/" className={styles.breadcrumbLink}>
+          Головна
+        </Link>
+
+        <span className={styles.separator}>›</span>
+
+        <span className={styles.currentPage}>Каталог</span>
+      </nav>
+
+      <div className={styles.catalogLayout}>
+        <aside className={styles.sidebar}>
+          <h2 className={styles.sidebarTitle}>Фільтри</h2>
+
+          <div className={styles.filterBlock}>
+            <p className={styles.filterLabel}>Пошук товару</p>
+
+            <div className={styles.searchBar}>
+              <svg
+                className={styles.searchIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+
+              <input
+                className={styles.searchInput}
+                type="text"
+                placeholder="Введіть назву..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className={styles.filterBlock}>
+            <p className={styles.filterLabel}>Бренд</p>
+
+            <select
+              className={styles.select}
+              value={brandFilter}
+              onChange={(e) => setBrandFilter(e.target.value)}
+            >
+              <option value="Всі бренди">Всі бренди</option>
+
+              {brands.map((b) => (
+                <option key={b} value={b}>
+                  {b}
+                </option>
+              ))}
+            </select>
+          </div>
+        </aside>
+
+        <section className={styles.content}>
+          <div className={styles.topBar}>
+            <h1 className={styles.title}>
+              Знайдено {filteredProducts.length} товарів
+            </h1>
+
+            <select
+              className={styles.sortSelect}
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="default">Популярні</option>
+              <option value="asc">Від дешевих до дорогих</option>
+              <option value="desc">Від дорогих до дешевих</option>
+            </select>
+          </div>
+
+          {filteredProducts.length === 0 ? (
+            <div className={styles.noResultsWrapper}>
+              <p className={styles.noResults}>
+                За вашим запитом нічого не знайдено. Спробуйте змінити пошуковий
+                запит або скинути фільтри.
+              </p>
+
+              <button className={styles.resetButton} onClick={resetFilters}>
+                Скинути фільтри
+              </button>
+            </div>
+          ) : (
+            <ul className={styles.list}>
+              {filteredProducts.slice(0, visibleCount).map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </ul>
+          )}
+
+          {visibleCount < filteredProducts.length && (
+            <button className={styles.loadMore} onClick={handleLoadMore}>
+              Завантажити ще
+            </button>
+          )}
+        </section>
       </div>
-
-      <div className={styles.filters}>
-        <div className={styles.searchBar}>
-          <svg
-            className={styles.searchIcon}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            className={styles.searchInput}
-            type="text"
-            placeholder="Пошук по назві товару"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        {/* Блок для фільтрації та сортування  */}
-        <div className={styles.selects}>
-          <select
-            className={styles.brandSelect}
-            value={brandFilter}
-            onChange={(e) => setBrandFilter(e.target.value)}
-          >
-            <option value="Всі бренди">Всі бренди</option>
-            {brands.map((b) => (
-              <option key={b} value={b}>
-                {b}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className={styles.sortSelect}
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-          >
-            <option value="default">Сортування за замовчуванням</option>
-            <option value="asc">Від дешевих до дорогих</option>
-            <option value="desc">Від дорогих до дешевих</option>
-          </select>
-        </div>
-      </div>
-
-      {filteredProducts.length === 0 ? (
-        <p className={styles.noResults}>
-          Нічого не знайдено. Введіть коректну назву товару або змініть фільтри.
-        </p>
-      ) : (
-        <ul className={styles.list}>
-          {filteredProducts.slice(0, visibleCount).map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </ul>
-      )}
-
-      {visibleCount < filteredProducts.length && (
-        <button
-          className={styles.loadMore}
-          onClick={handleLoadMore}
-          aria-label="Завантажити більше товарів"
-        >
-          Завантажити ще
-        </button>
-      )}
 
       {showScrollTop && (
-        <button
-          className={styles.scrollTop}
-          onClick={scrollToTop}
-          aria-label="Повернутися до початку сторінки"
-        >
+        <button className={styles.scrollTop} onClick={scrollToTop}>
           ↑
         </button>
       )}

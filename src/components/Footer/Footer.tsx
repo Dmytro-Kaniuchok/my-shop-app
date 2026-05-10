@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "../Logo/Logo";
 import css from "./Footer.module.css";
-import { SiTelegram, SiViber, SiGmail } from "react-icons/si";
+import { SiTelegram, SiViber } from "react-icons/si";
 import { Phone, MapPin, Mail, Clock } from "lucide-react";
 
 export default function Footer() {
