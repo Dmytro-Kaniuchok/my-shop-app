@@ -22,8 +22,8 @@ export default function About() {
         <div className={styles.heroOverlay}>
           <h1 className={styles.heroTitle}>Про нас</h1>
           <p className={styles.heroSubtitle}>
-            Ми забезпечуємо якісні запчастини для сільськогосподарської техніки
-            та автомобілів
+            Ваш надійний партнер у світі автозапчастин та сільськогосподарської
+            техніки
           </p>
         </div>
       </section>

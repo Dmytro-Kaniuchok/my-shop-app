@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import css from "./ProductCard.module.css";
 import toast from "react-hot-toast";
+import css from "./ProductCard.module.css";
 import { Product } from "@/src/types/products";
-import { MdOutlineStar } from "react-icons/md";
 
 interface CartProduct extends Product {
   quantity: number;
@@ -16,9 +15,7 @@ interface Props {
   product: Product;
 }
 
-export default function ProductCard({ product }: Props) {
-  const [imgSrc, setImgSrc] = useState(product.image);
-
+function ProductCard({ product }: Props) {
   const handleAddToCart = () => {
     if (!product.inStock) {
       toast.error("Товару немає в наявності");
@@ -27,6 +24,7 @@ export default function ProductCard({ product }: Props) {
 
     try {
       const existingCart = localStorage.getItem("cart");
+
       const cart: CartProduct[] = existingCart ? JSON.parse(existingCart) : [];
 
       const productIndex = cart.findIndex((item) => item.id === product.id);
@@ -34,15 +32,20 @@ export default function ProductCard({ product }: Props) {
       if (productIndex !== -1) {
         cart[productIndex].quantity += 1;
       } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push({
+          ...product,
+          quantity: 1,
+        });
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
 
       window.dispatchEvent(new Event("cartUpdated"));
+
       toast.success("Товар додано до кошика");
     } catch (error) {
       console.error("Cart error:", error);
+
       toast.error("Помилка додавання до кошика");
     }
   };
@@ -57,18 +60,14 @@ export default function ProductCard({ product }: Props) {
 
       <div className={css.imageWrapper}>
         <Image
-          src={imgSrc}
+          src={product.image || "/fallback-image.webp"}
           alt={product.name}
           width={250}
           height={250}
           loading="lazy"
-          onError={() =>
-            setImgSrc(
-              "https://dummyimage.com/250x250/fff/000000&text=Немає+зображення",
-            )
-          }
         />
       </div>
+
       <div className={css.info}>
         <h3 className={css.productName}>{product.name}</h3>
 
@@ -78,13 +77,14 @@ export default function ProductCard({ product }: Props) {
 
         <div className={css.rating}>
           {[1, 2, 3, 4, 5].map((i) => (
-            <MdOutlineStar
+            <span
               key={i}
-              size={20}
               className={
                 i <= Math.round(product.rating ?? 0) ? css.starActive : css.star
               }
-            />
+            >
+              ★
+            </span>
           ))}
 
           <span className={css.reviews}>({product.ratingCount ?? 0})</span>
@@ -115,3 +115,5 @@ export default function ProductCard({ product }: Props) {
     </div>
   );
 }
+
+export default memo(ProductCard);

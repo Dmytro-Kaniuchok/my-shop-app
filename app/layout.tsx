@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/src/components/Header/Header";
-import ClientWrapper from "./clientWrapper";
+import Footer from "@/src/components/Footer/Footer";
+import ToastProvider from "@/src/components/ToastProvider/ToastProvider";
 
 export const metadata: Metadata = {
   title: "Магазин запчастин",
@@ -33,9 +34,12 @@ export default function RootLayout({
     <html lang="uk" className={`${inter.variable} ${manrope.variable}`}>
       <body>
         <Header />
-        <main>
-          <ClientWrapper>{children}</ClientWrapper>
-        </main>
+
+        <main>{children}</main>
+
+        <Footer />
+
+        <ToastProvider />
       </body>
     </html>
   );

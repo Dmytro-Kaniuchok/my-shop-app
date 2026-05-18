@@ -72,8 +72,8 @@ export default function UserForm({ formData, handleChange }: UserFormProps) {
       </label>
 
       <label className={styles.checkboxLabel}>
-        <input type="checkbox" name="consent" required /> Я згоден(на) на
-        обробку персональних даних
+        <input type="checkbox" name="consent" required />
+        <span>Я згоден(на) на обробку персональних даних</span>
       </label>
     </>
   );
