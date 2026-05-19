@@ -7,10 +7,9 @@ import toast from "react-hot-toast";
 import Loader from "@/src/components/Loader/Loader";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Home, Truck, Shield } from "lucide-react";
 import { VscCheck } from "react-icons/vsc";
 import ProductTabs from "../ProductTabs/ProductTabs";
-import { Home, Truck, Shield } from "lucide-react";
 
 interface Product {
   id: string;
@@ -30,6 +29,7 @@ interface CartItem extends Product {
 
 export default function ProductPage() {
   const { id } = useParams();
+
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -43,9 +43,10 @@ export default function ProductPage() {
           `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
         );
 
-        if (!res.ok) throw new Error("Помилка отримання товару");
+        if (!res.ok) throw new Error();
 
         const data = await res.json();
+
         setProduct(data);
         setImgSrc(data.image);
       } catch {
@@ -58,11 +59,11 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
 
-  // Перевіряємо чи товар вже в кошику
   useEffect(() => {
     if (!product) return;
 
     const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+
     const exists = cart.some((item) => item.id === product.id);
 
     setIsInCart(exists);
@@ -80,26 +81,30 @@ export default function ProductPage() {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+
     window.dispatchEvent(new Event("cartUpdated"));
 
     setIsInCart(true);
+
     toast.success("Товар додано до кошика!");
   };
 
   if (loading) return <Loader />;
+
   if (!product) return <p>Товар не знайдено.</p>;
 
   return (
     <div className={styles.productPage}>
       <div className={styles.container}>
         <div className={styles.productLayout}>
+          {/* IMAGE */}
           <div className={styles.imageContainer}>
             <Image
               className={styles.image}
               src={imgSrc}
               alt={product.name}
-              width={500}
-              height={500}
+              width={520}
+              height={520}
               priority
               onError={() =>
                 setImgSrc(
@@ -109,16 +114,16 @@ export default function ProductPage() {
             />
           </div>
 
+          {/* INFO */}
           <div className={styles.info}>
-            <span className={styles.topBrand}>
-              {product.brand || "Бренд не вказано"}
-            </span>
+            <span className={styles.topBrand}>{product.brand || "Бренд"}</span>
 
             <h1 className={styles.title}>{product.name}</h1>
 
             <div className={styles.meta}>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Артикул:</span>
+
                 <span className={styles.metaValue}>
                   {product.sku || "Не вказано"}
                 </span>
@@ -126,6 +131,7 @@ export default function ProductPage() {
 
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Бренд:</span>
+
                 <span className={styles.metaValue}>
                   {product.brand || "Не вказано"}
                 </span>
@@ -144,6 +150,7 @@ export default function ProductPage() {
               </div>
             </div>
 
+            {/* QUANTITY */}
             <div className={styles.quantityBlock}>
               <span className={styles.quantityLabel}>Кількість:</span>
 
@@ -166,21 +173,25 @@ export default function ProductPage() {
               </div>
             </div>
 
+            {/* ACTIONS */}
             <div className={styles.actions}>
               <Link
                 href={{
                   pathname: "/order",
-                  query: { id: product.id, quantity },
+                  query: {
+                    id: product.id,
+                    quantity,
+                  },
                 }}
               >
                 <button
                   className={styles.buyButton}
+                  disabled={!product.inStock}
                   onClick={() =>
                     toast.success("Перехід до оформлення замовлення")
                   }
-                  disabled={!product.inStock}
                 >
-                  <ShoppingCart size={20} className={styles.buyIcon} />
+                  <ShoppingCart size={18} className={styles.buyIcon} />
                   Купити зараз
                 </button>
               </Link>
@@ -190,53 +201,47 @@ export default function ProductPage() {
                 onClick={() => addToCart(product, quantity)}
                 disabled={isInCart || !product.inStock}
               >
-                {isInCart ? (
-                  <VscCheck size={20} className={styles.checkIcon} />
-                ) : null}
-                {isInCart ? " Додано до кошика" : "Додати до кошика"}
+                {isInCart && (
+                  <VscCheck size={18} className={styles.checkIcon} />
+                )}
+
+                {isInCart ? "В кошику" : "Додати в кошик"}
               </button>
             </div>
-          </div>
 
-          <div className={styles.features}>
-            <div className={styles.featureContainer}>
-              <Truck size={40} color="#2563eb" className={styles.featureIcon} />
-              <div className={styles.featureTextContainer}>
-                <h3 className={styles.featureTitle}>Доставка</h3>
-                <p className={styles.featureText}>
-                  Швидка доставка по всій Україні протягом 1-3 днів після
-                  замовлення та оплати.
-                </p>
+            {/* SERVICES */}
+            <div className={styles.servicesRow}>
+              <div className={styles.serviceItem}>
+                <Truck size={28} className={styles.serviceIcon} />
+
+                <div className={styles.serviceText}>
+                  <h4>Доставка</h4>
+                  <p>1-3 дні</p>
+                </div>
               </div>
-            </div>
 
-            <div className={styles.featureContainer}>
-              <Shield
-                size={40}
-                color="#2563eb"
-                className={styles.featureIcon}
-              />
-              <div className={styles.featureTextContainer}>
-                <h3 className={styles.featureTitle}>Гарантія</h3>
-                <p className={styles.featureText}>
-                  Офіційна гарантія від виробника на всі автозапчастини - 12
-                  місяців.
-                </p>
+              <div className={styles.serviceItem}>
+                <Shield size={28} className={styles.serviceIcon} />
+
+                <div className={styles.serviceText}>
+                  <h4>Гарантія</h4>
+                  <p>12 місяців</p>
+                </div>
               </div>
-            </div>
 
-            <div className={styles.featureContainer}>
-              <Home size={40} color="#2563eb" className={styles.featureIcon} />
-              <div className={styles.featureTextContainer}>
-                <h3 className={styles.featureTitle}>Самовивіз</h3>
-                <p className={styles.featureText}>
-                  Можна отримати в нашому магазині безкоштовно.
-                </p>
+              <div className={styles.serviceItem}>
+                <Home size={28} className={styles.serviceIcon} />
+
+                <div className={styles.serviceText}>
+                  <h4>Самовивіз</h4>
+                  <p>Безкоштовно</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
+        {/* TABS */}
         <div className={styles.tabs}>
           <ProductTabs
             description={product.description}
