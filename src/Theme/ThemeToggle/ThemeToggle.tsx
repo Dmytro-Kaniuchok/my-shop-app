@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/src/Theme/ThemeProvider";
-import { Sun, Moon } from "lucide-react";
+import { LuSun, LuMoon } from "react-icons/lu";
 import styles from "./ThemeToggle.module.css";
 
 interface ThemeToggleProps {
@@ -18,9 +18,9 @@ export default function ThemeToggle({ size = 24 }: ThemeToggleProps) {
       aria-label="Зміна теми"
     >
       {theme === "light" ? (
-        <Moon size={size} />
+        <LuMoon size={size} />
       ) : (
-        <Sun size={size} color="#fff" />
+        <LuSun size={size} color="#fff" />
       )}
     </button>
   );
