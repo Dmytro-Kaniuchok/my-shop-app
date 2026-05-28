@@ -7,8 +7,13 @@ import toast from "react-hot-toast";
 import Loader from "@/src/components/Loader/Loader";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart, Home, Truck, Shield } from "lucide-react";
-import { VscCheck } from "react-icons/vsc";
+import {
+  LuShoppingCart,
+  LuHouse,
+  LuTruck,
+  LuShield,
+  LuCheck,
+} from "react-icons/lu";
 import ProductTabs from "../ProductTabs/ProductTabs";
 
 interface Product {
@@ -191,7 +196,7 @@ export default function ProductPage() {
                     toast.success("Перехід до оформлення замовлення")
                   }
                 >
-                  <ShoppingCart size={18} className={styles.buyIcon} />
+                  <LuShoppingCart size={18} className={styles.buyIcon} />
                   Купити зараз
                 </button>
               </Link>
@@ -201,9 +206,7 @@ export default function ProductPage() {
                 onClick={() => addToCart(product, quantity)}
                 disabled={isInCart || !product.inStock}
               >
-                {isInCart && (
-                  <VscCheck size={18} className={styles.checkIcon} />
-                )}
+                {isInCart && <LuCheck size={18} className={styles.checkIcon} />}
 
                 {isInCart ? "В кошику" : "Додати в кошик"}
               </button>
@@ -212,7 +215,7 @@ export default function ProductPage() {
             {/* SERVICES */}
             <div className={styles.servicesRow}>
               <div className={styles.serviceItem}>
-                <Truck size={28} className={styles.serviceIcon} />
+                <LuTruck size={28} className={styles.serviceIcon} />
 
                 <div className={styles.serviceText}>
                   <h4>Доставка</h4>
@@ -221,7 +224,7 @@ export default function ProductPage() {
               </div>
 
               <div className={styles.serviceItem}>
-                <Shield size={28} className={styles.serviceIcon} />
+                <LuShield size={28} className={styles.serviceIcon} />
 
                 <div className={styles.serviceText}>
                   <h4>Гарантія</h4>
@@ -230,10 +233,10 @@ export default function ProductPage() {
               </div>
 
               <div className={styles.serviceItem}>
-                <Home size={28} className={styles.serviceIcon} />
+                <LuHouse size={28} className={styles.serviceIcon} />
 
                 <div className={styles.serviceText}>
-                  <h4>Самовивіз</h4>
+                  <h4>Самoвивіз</h4>
                   <p>Безкоштовно</p>
                 </div>
               </div>
