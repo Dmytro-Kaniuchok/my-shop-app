@@ -5,6 +5,7 @@ export default function FeaturedSection() {
   const product = {
     id: "1",
     name: "Паливний фільтр",
+    category: "Фільтри",
     price: 350,
     image:
       "https://res.cloudinary.com/dqzzwskbk/image/upload/v1765194272/fuel-filter_wk4tvb.webp",
