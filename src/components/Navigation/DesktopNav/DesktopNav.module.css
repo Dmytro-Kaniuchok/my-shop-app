@@ -67,7 +67,7 @@
 }
 
 [data-theme="dark"] .navigation a::after {
-  background: linear-gradient(to right, #2563eb, #06b6d4);
+  background: #0b60b5;
 }
 
 @media (max-width: 768px) {

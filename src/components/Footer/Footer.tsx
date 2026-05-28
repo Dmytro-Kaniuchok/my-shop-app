@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "../Logo/Logo";
 import css from "./Footer.module.css";
 import { SiTelegram, SiViber } from "react-icons/si";
-import { Phone, MapPin, Mail, Clock } from "lucide-react";
+import { LuPhone, LuMail, LuMapPin, LuClock } from "react-icons/lu";
 
 export default function Footer() {
   return (
@@ -43,7 +43,7 @@ export default function Footer() {
           <div className={css.contactInfo}>
             <div className={css.phoneBlock}>
               <div className={css.phoneRow}>
-                <Phone size={20} />
+                <LuPhone size={20} />
                 <a href="tel:+380501234567" className={css.phone}>
                   +38 (050) 123-45-67
                 </a>
@@ -52,7 +52,7 @@ export default function Footer() {
 
             <div>
               <div className={css.emailRow}>
-                <Mail size={20} className={css.emailIcon} />
+                <LuMail size={20} className={css.emailIcon} />
                 <a href="mailto:info@agroauto.ua" className={css.email}>
                   info@agroauto.ua
                 </a>
@@ -61,12 +61,12 @@ export default function Footer() {
 
             <div className={css.addressRow}>
               <div className={css.address}>
-                <MapPin size={20} />
+                <LuMapPin size={20} />
                 <p>м. Харків, вул. Георгія Тарасенка, 12</p>
               </div>
             </div>
             <div className={css.footerSchedule}>
-              <Clock size={20} />
+              <LuClock size={20} />
               <p>Пн-Пт: 10:00-18:00</p>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingCart, Menu, Phone } from "lucide-react";
+import { LuPhone, LuShoppingCart, LuMenu } from "react-icons/lu";
 import css from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import DesktopNav from "../Navigation/DesktopNav/DesktopNav";
@@ -54,7 +54,7 @@ export default function Header() {
         <div className={css.iconsWrapper}>
           <div className={css.phoneBlock}>
             <div className={css.phoneRow}>
-              <Phone size={16} />
+              <LuPhone size={16} />
 
               <a href="tel:+380501234567" className={css.phone}>
                 +38 (050) 123-45-67
@@ -71,7 +71,7 @@ export default function Header() {
             }`}
             aria-label="Кошик"
           >
-            <ShoppingCart size={24} />
+            <LuShoppingCart size={24} />
 
             {cartCount > 0 && (
               <span className={css.mobileCartCount}>{cartCount}</span>
@@ -84,7 +84,7 @@ export default function Header() {
               onClick={() => setMenuOpen(true)}
               aria-label="Меню"
             >
-              <Menu size={24} color={theme === "dark" ? "#fff" : "#101828"} />
+              <LuMenu size={24} color={theme === "dark" ? "#fff" : "#101828"} />
             </button>
           )}
         </div>

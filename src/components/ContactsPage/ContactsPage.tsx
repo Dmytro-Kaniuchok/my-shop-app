@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { SiTelegram, SiViber } from "react-icons/si";
-import { FiPhone, FiMail } from "react-icons/fi";
-import { GrLocation } from "react-icons/gr";
-import { LuClock } from "react-icons/lu";
+import { LuPhone, LuMail, LuMapPin, LuClock } from "react-icons/lu";
 import styles from "./ContactsPage.module.css";
 import Loader from "@/src/components/Loader/Loader";
 import toast from "react-hot-toast";
@@ -120,7 +118,7 @@ export default function ContactsPage() {
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <div className={styles.infoCard}>
-            <FiPhone />
+            <LuPhone />
             <div>
               <p>Телефон</p>
               <span>+38 050 123-45-67</span>
@@ -129,7 +127,7 @@ export default function ContactsPage() {
           </div>
 
           <div className={styles.infoCard}>
-            <FiMail />
+            <LuMail />
             <div>
               <p>Email</p>
               <span>info@agroauto.ua</span>
@@ -137,7 +135,7 @@ export default function ContactsPage() {
           </div>
 
           <div className={styles.infoCard}>
-            <GrLocation />
+            <LuMapPin />
             <div>
               <p>Адреса</p>
               <span>м. Харків, вул. Георгія Тарасенка, 12</span>

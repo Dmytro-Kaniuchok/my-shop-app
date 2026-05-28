@@ -1,4 +1,4 @@
-import { Truck, Shield, Phone } from "lucide-react";
+import { LuTruck, LuShield, LuPhone } from "react-icons/lu";
 import css from "./WhyChooseUs.module.css";
 
 const items = [
@@ -6,7 +6,7 @@ const items = [
     title: "Швидка доставка",
     description:
       "Доставка по Україні 1-3 дні. Безкоштовна доставка при замовленні від 1000 грн",
-    icon: Truck,
+    icon: LuTruck,
     bg: "#dbeafe",
     gradient: "linear-gradient(135deg, #2563eb, #06b6d4)",
   },
@@ -14,7 +14,7 @@ const items = [
     title: "Гарантія якості",
     description:
       "Всі товари сертифіковані. Гарантія від виробника на всі запчастини",
-    icon: Shield,
+    icon: LuShield,
     bg: "#fef3c7",
     gradient: "linear-gradient(135deg, #ef4444, #f59e0b)",
   },
@@ -22,9 +22,9 @@ const items = [
     title: "Підтримка 24/7",
     description:
       "Наші консультанти завжди готові допомогти з вибором запчастин",
-    icon: Phone,
+    icon: LuPhone,
     bg: "#d1fae5",
-    gradient: "linear-gradient(135deg, #22c55e, #10b981)",
+    gradient: "linear-gradient(to bottom right, #10b981, #059669)",
   },
 ];
 

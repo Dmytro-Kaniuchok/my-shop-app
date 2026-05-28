@@ -5,7 +5,7 @@ import styles from "./CartPage.module.css";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
+import { LuShoppingCart } from "react-icons/lu";
 
 interface CartItem {
   id: string;
@@ -57,7 +57,7 @@ export default function CartPage() {
       {cartItems.length === 0 ? (
         <div className={styles.empty}>
           <div className={styles.iconWrapper}>
-            <ShoppingCart className={styles.emptyIcon} />
+            <LuShoppingCart className={styles.emptyIcon} />
           </div>
           <p className={styles.searchText}>Кошик порожній</p>
           <p className={styles.searchDesc}>

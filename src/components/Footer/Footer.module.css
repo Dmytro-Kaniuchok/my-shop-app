@@ -47,11 +47,11 @@
   background: rgba(0, 0, 0, 0.05);
   border: none;
   text-decoration: none;
-  transition: background 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .socialLink:hover {
-  background: #dbeafe;
+  color: #0b44cd;
 }
 
 /* Заголовки */

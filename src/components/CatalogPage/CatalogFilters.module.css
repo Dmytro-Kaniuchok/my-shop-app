@@ -1,0 +1,184 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+[data-theme="dark"] .sidebar {
+  background: #111827;
+  border-color: #374151;
+}
+
+.filterBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.priceInputs {
+  display: flex;
+  gap: 12px;
+}
+
+.priceInput {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-size: 14px;
+  color: #101828;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.priceInput:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+[data-theme="dark"] .priceInput {
+  background: #1f2937;
+  border-color: #374151;
+  color: #ffffff;
+}
+
+.filterTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #101828;
+}
+
+[data-theme="dark"] .filterTitle {
+  color: #ffffff;
+}
+
+.searchInput {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 14px;
+  color: #101828;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+
+[data-theme="dark"] .searchInput {
+  background: #1f2937;
+  border-color: #374151;
+  color: #fff;
+}
+
+.categoriesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.categoryButton,
+.activeCategory {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.categoryButton {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.categoryButton:hover {
+  background: #e5e7eb;
+  transform: translateX(2px);
+}
+
+.activeCategory {
+  background: #2563eb;
+  color: #fff;
+}
+
+.brandsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.checkboxLabel input {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+}
+
+.resetButton {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #6b7280;
+  border-radius: 8px;
+  background: #fff;
+  color: #101828;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.resetButton:hover {
+  background: #f3f4f6;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    position: static;
+  }
+}

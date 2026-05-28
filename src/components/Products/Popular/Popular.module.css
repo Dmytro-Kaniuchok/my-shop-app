@@ -31,19 +31,22 @@
   display: inline-flex;
   background: #fff;
   color: #101828;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 8px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #6b7280;
   font-weight: 500;
   padding: 10px 22px;
+  cursor: pointer;
   transition:
+    transform 0.2s ease,
     background 0.2s ease,
     color 0.2s ease;
 }
 
 .button:hover {
-  color: #fff;
-  background: #0b44cd;
+  background: #f3f4f6;
+  border-color: #2563eb;
+  color: #2563eb;
 }
 
 [data-theme="dark"] .popularTitle {

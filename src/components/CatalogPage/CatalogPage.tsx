@@ -3,7 +3,9 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Loader from "@/src/components/Loader/Loader";
-import ProductCard from "@/src/components/Products/ProductCard/ProductCard";
+import CatalogFilters from "./CatalogFilters";
+import CatalogTopBar from "./CatalogTopBar";
+import CatalogProducts from "./CatalogProducts";
 import styles from "./CatalogPage.module.css";
 import { Product } from "@/src/types/products";
 
@@ -13,7 +15,9 @@ export default function CatalogPage() {
   const [visibleCount, setVisibleCount] = useState(12);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [brandFilter, setBrandFilter] = useState("Всі бренди");
+  const [selectedCategory, setSelectedCategory] = useState("Всі");
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [maxPrice, setMaxPrice] = useState(10000);
   const [sortOrder, setSortOrder] = useState("default");
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -69,33 +73,60 @@ export default function CatalogPage() {
     return Array.from(new Set(products.map((p) => p.brand))).filter(Boolean);
   }, [products]);
 
+  // TOGGLE BRAND
+  const toggleBrand = (brand: string) => {
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand],
+    );
+  };
+
   // FILTER + SORT
   const filteredProducts = useMemo(() => {
-    let filtered = products.filter((p) =>
+    let filtered = [...products];
+
+    // SEARCH
+    filtered = filtered.filter((p) =>
       p.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
 
-    if (brandFilter !== "Всі бренди") {
-      filtered = filtered.filter((p) => p.brand === brandFilter);
+    // CATEGORY
+    if (selectedCategory !== "Всі") {
+      filtered = filtered.filter((p) => p.category === selectedCategory);
     }
 
+    // BRANDS
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((p) => selectedBrands.includes(p.brand));
+    }
+
+    // PRICE
+    filtered = filtered.filter((p) => p.price <= maxPrice);
+
+    // SORT
     if (sortOrder === "asc") {
       filtered.sort((a, b) => a.price - b.price);
-    } else if (sortOrder === "desc") {
+    }
+
+    if (sortOrder === "desc") {
       filtered.sort((a, b) => b.price - a.price);
     }
 
     return filtered;
-  }, [products, searchTerm, brandFilter, sortOrder]);
+  }, [
+    products,
+    searchTerm,
+    selectedCategory,
+    selectedBrands,
+    maxPrice,
+    sortOrder,
+  ]);
 
-  const visibleProducts = useMemo(() => {
-    return filteredProducts.slice(0, visibleCount);
-  }, [filteredProducts, visibleCount]);
-
+  // LOAD MORE
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 12);
   };
 
+  // SCROLL TOP
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -103,9 +134,16 @@ export default function CatalogPage() {
     });
   };
 
+  // RESET FILTERS
   const resetFilters = () => {
     setSearchTerm("");
-    setBrandFilter("Всі бренди");
+
+    setSelectedCategory("Всі");
+
+    setSelectedBrands([]);
+
+    setMaxPrice(10000);
+
     setSortOrder("default");
   };
 
@@ -126,97 +164,32 @@ export default function CatalogPage() {
       </nav>
 
       <div className={styles.catalogLayout}>
-        <aside className={styles.sidebar}>
-          <h2 className={styles.sidebarTitle}>Фільтри</h2>
-
-          <div className={styles.filterBlock}>
-            <p className={styles.filterLabel}>Пошук товару</p>
-
-            <div className={styles.searchBar}>
-              <svg
-                className={styles.searchIcon}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-
-                <path d="m21 21-4.35-4.35" />
-              </svg>
-
-              <input
-                className={styles.searchInput}
-                type="text"
-                placeholder="Введіть назву..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className={styles.filterBlock}>
-            <p className={styles.filterLabel}>Бренд</p>
-
-            <select
-              className={styles.select}
-              value={brandFilter}
-              onChange={(e) => setBrandFilter(e.target.value)}
-            >
-              <option value="Всі бренди">Всі бренди</option>
-
-              {brands.map((b) => (
-                <option key={b} value={b}>
-                  {b}
-                </option>
-              ))}
-            </select>
-          </div>
-        </aside>
+        <CatalogFilters
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          selectedBrands={selectedBrands}
+          toggleBrand={toggleBrand}
+          brands={brands}
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
+          resetFilters={resetFilters}
+        />
 
         <section className={styles.content}>
-          <div className={styles.topBar}>
-            <h1 className={styles.title}>
-              Знайдено {filteredProducts.length} товарів
-            </h1>
+          <CatalogTopBar
+            count={filteredProducts.length}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+          />
 
-            <select
-              className={styles.sortSelect}
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-            >
-              <option value="default">Всі товари</option>
-
-              <option value="asc">Від дешевих до дорогих</option>
-
-              <option value="desc">Від дорогих до дешевих</option>
-            </select>
-          </div>
-
-          {filteredProducts.length === 0 ? (
-            <div className={styles.noResultsWrapper}>
-              <p className={styles.noResults}>
-                За вашим запитом нічого не знайдено. Спробуйте змінити пошуковий
-                запит або скинути фільтри.
-              </p>
-
-              <button className={styles.resetButton} onClick={resetFilters}>
-                Скинути фільтри
-              </button>
-            </div>
-          ) : (
-            <ul className={styles.list}>
-              {visibleProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </ul>
-          )}
-
-          {visibleCount < filteredProducts.length && (
-            <button className={styles.loadMore} onClick={handleLoadMore}>
-              Завантажити ще
-            </button>
-          )}
+          <CatalogProducts
+            products={filteredProducts}
+            visibleCount={visibleCount}
+            handleLoadMore={handleLoadMore}
+            resetFilters={resetFilters}
+          />
         </section>
       </div>
 

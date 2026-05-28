@@ -1,0 +1,55 @@
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #101828;
+}
+
+[data-theme="dark"] .title {
+  color: #ffffff;
+}
+
+.sortSelect {
+  width: 100%;
+  max-width: 260px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.sortSelect:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+[data-theme="dark"] .sortSelect {
+  background: #1f2937;
+  border-color: #374151;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .sortSelect {
+    max-width: 100%;
+  }
+}

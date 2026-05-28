@@ -97,8 +97,8 @@
 /* Верхній інпут */
 .topRow input {
   width: 100%;
-  height: 48px;
-  border-radius: 10px;
+  height: 46px;
+  border-radius: 8px;
   border: 1px solid #d1d5db;
   padding: 0 16px;
   font-size: 16px;
@@ -121,8 +121,8 @@
 /* Select */
 .select {
   flex: 1;
-  height: 48px;
-  border-radius: 10px;
+  height: 42px;
+  border-radius: 8px;
   border: 1px solid #d1d5db;
   padding: 0 12px;
   background: #fff;
@@ -139,7 +139,7 @@
 /* Кнопка */
 .button {
   flex: 1;
-  height: 47px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,7 +164,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 32px;
+  padding: 12px 24px;
   border-radius: 8px;
   background: #2563eb;
   color: #fff;

@@ -97,9 +97,8 @@
   align-items: center;
   justify-content: center;
   color: #101828;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  background: rgba(0, 0, 0, 0.05);
+  transition: color 0.2s ease;
 }
 
 [data-theme="dark"] .mobileCart {
@@ -108,7 +107,7 @@
 }
 
 .mobileCart:hover {
-  background: #dbeafe;
+  color: #0b44cd;
 }
 
 [data-theme="dark"] .mobileCart:hover {

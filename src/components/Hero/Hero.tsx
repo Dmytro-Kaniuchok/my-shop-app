@@ -1,6 +1,6 @@
 import Link from "next/link";
 import css from "./Hero.module.css";
-import { FiSearch } from "react-icons/fi";
+import { LuSearch } from "react-icons/lu";
 import SearchInput from "../SearchInput/SearchInput";
 
 const Hero = () => {
@@ -33,7 +33,7 @@ const Hero = () => {
               </select>
 
               <button className={css.button}>
-                <FiSearch size={16} />
+                <LuSearch size={16} />
                 <span>Пошук</span>
               </button>
             </div>

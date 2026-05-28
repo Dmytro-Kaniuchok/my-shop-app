@@ -1,0 +1,73 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+  gap: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.loadMore {
+  display: block;
+  margin: 40px auto 0;
+  padding: 12px 24px;
+  height: 46px;
+  border: 1px solid #6b7280;
+  border-radius: 8px;
+  background: #fff;
+  color: #101828;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.loadMore:hover {
+  background: #f3f4f6;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.noResultsWrapper {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.noResults {
+  margin-bottom: 20px;
+
+  color: #6b7280;
+
+  font-size: 16px;
+}
+
+.resetButton {
+  padding: 12px 24px;
+  border: 1px solid #6b7280;
+  border-radius: 8px;
+  background: #fff;
+  color: #101828;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.resetButton:hover {
+  background: #f3f4f6;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+@media (max-width: 640px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  }
+}
