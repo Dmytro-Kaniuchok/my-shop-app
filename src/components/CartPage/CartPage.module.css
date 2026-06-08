@@ -195,11 +195,14 @@
   color: #fff;
   font-size: 18px;
   font-weight: 600;
-  transition: background 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .searchBtn:hover {
   background: #0b44cd;
+  transform: translateY(-1px);
 }
 
 .searchText {

@@ -120,6 +120,10 @@
   text-decoration: none;
 }
 
+.phone {
+  font-weight: 600;
+}
+
 .phone:hover {
   color: #0b44cd;
 }

@@ -45,8 +45,8 @@
 
 .button:hover {
   background: #f3f4f6;
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #0b44cd;
+  color: #0b44cd;
 }
 
 [data-theme="dark"] .popularTitle {

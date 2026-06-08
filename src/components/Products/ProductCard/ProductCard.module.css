@@ -96,12 +96,26 @@
   margin: 16px 0;
 }
 
-.star {
-  color: #d1d5db;
+.starActive {
+  color: #fbbf24;
+  font-size: 18px;
 }
 
-.starActive {
-  color: #ffd700;
+.star {
+  color: #d1d5db;
+  font-size: 18px;
+}
+
+.ratingValue {
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.reviews {
+  font-size: 14px;
+  color: #6b7280;
 }
 
 .reviews {

@@ -5,7 +5,7 @@ import Image from "next/image";
 import css from "./FeaturedCard.module.css";
 import toast from "react-hot-toast";
 import { Product } from "@/src/types/products";
-import { MdOutlineStar } from "react-icons/md";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 interface CartProduct extends Product {
   quantity: number;
@@ -74,17 +74,21 @@ export default function FeaturedProductCard({ product }: Props) {
           </p>
 
           <div className={css.rating}>
-            {[1, 2, 3, 4, 5].map((i) => (
-              <MdOutlineStar
-                key={i}
-                size={22}
-                className={
-                  i <= (product.rating ?? 0) ? css.starActive : css.star
-                }
-              />
-            ))}
+            {[1, 2, 3, 4, 5].map((star) =>
+              star <= Math.round(product.rating ?? 0) ? (
+                <FaStar key={star} className={css.starActive} />
+              ) : (
+                <FaRegStar key={star} className={css.star} />
+              ),
+            )}
 
-            <span className={css.reviews}>({product.ratingCount ?? 0})</span>
+            <span className={css.ratingValue}>
+              {product.rating?.toFixed(1) ?? "0.0"}
+            </span>
+
+            <span className={css.reviews}>
+              ({product.ratingCount ?? 0} відгуків)
+            </span>
           </div>
 
           <div className={css.footer}>

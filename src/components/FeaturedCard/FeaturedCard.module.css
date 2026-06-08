@@ -1,7 +1,7 @@
 .card {
   position: relative;
   border: 1px solid rgb(229, 231, 235);
-  border-radius: 20px;
+  border-radius: 8px;
   background: #fff;
   padding: 32px;
   max-width: 900px;
@@ -20,8 +20,8 @@
   left: 16px;
   background: linear-gradient(to right, #ef4444, #f59e0b);
   color: #fff;
-  padding: 8px 16px;
-  border-radius: 999px;
+  padding: 6px 12px;
+  border-radius: 8px;
   font-weight: 500;
   font-size: 14px;
 }
@@ -62,15 +62,29 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 20px;
+  margin: 16px 0;
+}
+
+.starActive {
+  color: #f5a623;
+  font-size: 18px;
 }
 
 .star {
   color: #d1d5db;
+  font-size: 18px;
 }
 
-.starActive {
-  color: #ffd700;
+.ratingValue {
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.reviews {
+  font-size: 14px;
+  color: #6b7280;
 }
 
 .reviews {

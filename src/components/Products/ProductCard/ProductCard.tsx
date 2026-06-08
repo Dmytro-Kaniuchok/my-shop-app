@@ -6,6 +6,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import css from "./ProductCard.module.css";
 import { Product } from "@/src/types/products";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 interface CartProduct extends Product {
   quantity: number;
@@ -13,6 +14,16 @@ interface CartProduct extends Product {
 
 interface Props {
   product: Product;
+}
+
+function pluralizeReviews(count: number): string {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+
+  if (mod100 >= 11 && mod100 <= 19) return "відгуків";
+  if (mod10 === 1) return "відгук";
+  if (mod10 >= 2 && mod10 <= 4) return "відгуки";
+  return "відгуків";
 }
 
 function ProductCard({ product }: Props) {
@@ -50,6 +61,8 @@ function ProductCard({ product }: Props) {
     }
   };
 
+  const ratingCount = product.ratingCount ?? 0;
+
   return (
     <div className={css.productCard}>
       {product.inStock ? (
@@ -76,18 +89,21 @@ function ProductCard({ product }: Props) {
         </span>
 
         <div className={css.rating}>
-          {[1, 2, 3, 4, 5].map((i) => (
-            <span
-              key={i}
-              className={
-                i <= Math.round(product.rating ?? 0) ? css.starActive : css.star
-              }
-            >
-              ★
-            </span>
-          ))}
+          {[1, 2, 3, 4, 5].map((star) =>
+            star <= Math.round(product.rating ?? 0) ? (
+              <FaStar key={star} className={css.starActive} />
+            ) : (
+              <FaRegStar key={star} className={css.star} />
+            ),
+          )}
 
-          <span className={css.reviews}>({product.ratingCount ?? 0})</span>
+          <span className={css.ratingValue}>
+            {product.rating?.toFixed(1) ?? "0.0"}
+          </span>
+
+          <span className={css.reviews}>
+            ({ratingCount} {pluralizeReviews(ratingCount)})
+          </span>
         </div>
 
         <div className={css.cardFooter}>

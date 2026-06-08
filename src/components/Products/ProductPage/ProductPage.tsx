@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "./ProductPage.module.css";
 import toast from "react-hot-toast";
 import Loader from "@/src/components/Loader/Loader";
@@ -17,6 +17,7 @@ import {
 import ProductTabs from "../ProductTabs/ProductTabs";
 
 interface Product {
+  _id: string;
   id: string;
   name: string;
   brand: string;
@@ -26,6 +27,8 @@ interface Product {
   image: string;
   inStock?: boolean;
   reviews?: number;
+  rating?: number;
+  ratingCount?: number;
 }
 
 interface CartItem extends Product {
@@ -41,28 +44,29 @@ export default function ProductPage() {
   const [imgSrc, setImgSrc] = useState("");
   const [isInCart, setIsInCart] = useState(false);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
-        );
+  // useCallback щоб передати як колбек у ProductTabs
+  const fetchProduct = useCallback(async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
+      );
 
-        if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error();
 
-        const data = await res.json();
+      const data = await res.json();
 
-        setProduct(data);
-        setImgSrc(data.image);
-      } catch {
-        toast.error("Товар не знайдено!");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
+      setProduct(data);
+      setImgSrc((prev) => prev || data.image);
+    } catch {
+      toast.error("Товар не знайдено!");
+    } finally {
+      setLoading(false);
+    }
   }, [id]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
 
   useEffect(() => {
     if (!product) return;
@@ -131,14 +135,6 @@ export default function ProductPage() {
 
                 <span className={styles.metaValue}>
                   {product.sku || "Не вказано"}
-                </span>
-              </div>
-
-              <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>Бренд:</span>
-
-                <span className={styles.metaValue}>
-                  {product.brand || "Не вказано"}
                 </span>
               </div>
             </div>
@@ -215,7 +211,7 @@ export default function ProductPage() {
             {/* SERVICES */}
             <div className={styles.servicesRow}>
               <div className={styles.serviceItem}>
-                <LuTruck size={28} className={styles.serviceIcon} />
+                <LuTruck size={32} className={styles.serviceIcon} />
 
                 <div className={styles.serviceText}>
                   <h4>Доставка</h4>
@@ -224,7 +220,7 @@ export default function ProductPage() {
               </div>
 
               <div className={styles.serviceItem}>
-                <LuShield size={28} className={styles.serviceIcon} />
+                <LuShield size={32} className={styles.serviceIcon} />
 
                 <div className={styles.serviceText}>
                   <h4>Гарантія</h4>
@@ -233,7 +229,7 @@ export default function ProductPage() {
               </div>
 
               <div className={styles.serviceItem}>
-                <LuHouse size={28} className={styles.serviceIcon} />
+                <LuHouse size={32} className={styles.serviceIcon} />
 
                 <div className={styles.serviceText}>
                   <h4>Самoвивіз</h4>
@@ -247,10 +243,12 @@ export default function ProductPage() {
         {/* TABS */}
         <div className={styles.tabs}>
           <ProductTabs
+            productId={product._id}
             description={product.description}
             brand={product.brand}
             sku={product.sku}
             reviews={product.reviews}
+            onReviewAdded={fetchProduct}
           />
         </div>
       </div>

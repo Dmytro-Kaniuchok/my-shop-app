@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Loader from "../Loader/Loader";
+import Image from "next/image";
 import css from "./SearchInput.module.css";
 
 interface Product {
@@ -142,9 +142,7 @@ export default function SearchInput() {
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
-
             setIsOpen(true);
-
             setSelectedIndex(-1);
           }}
           onFocus={() => setIsOpen(true)}
@@ -152,8 +150,6 @@ export default function SearchInput() {
           placeholder="Пошук запчастин..."
           className={css.input}
         />
-
-        {isLoading && <Loader />}
       </div>
 
       {isOpen && filteredResults.length > 0 && (
@@ -162,11 +158,26 @@ export default function SearchInput() {
             <li
               key={item.id}
               onClick={() => handleSelect(item.id)}
-              className={selectedIndex === index ? css.activeItem : ""}
+              className={`${css.suggestionItem} ${
+                selectedIndex === index ? css.activeItem : ""
+              }`}
             >
-              <span>{item.name}</span>
+              <div className={css.item}>
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  className={css.image}
+                  width={40}
+                  height={40}
+                />
 
-              <small>{item.brand}</small>
+                <div className={css.info}>
+                  <span className={css.name}>{item.name}</span>
+                  <small className={css.brand}>{item.brand}</small>
+                </div>
+
+                <div className={css.price}>{item.price} грн</div>
+              </div>
             </li>
           ))}
         </ul>
