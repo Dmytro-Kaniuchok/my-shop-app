@@ -1,12 +1,10 @@
 .whySection {
-  margin: 0 auto;
-  padding: 0 20px;
-  padding-bottom: 80px;
+  padding: 0 20px 80px;
   background: #f8fafc;
 }
 
 [data-theme="dark"] .whySection {
-  background: #111827;
+  background: #101828;
 }
 
 .container {
@@ -15,67 +13,80 @@
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 32px;
   color: #101828;
+  letter-spacing: -0.02em;
 }
 
 [data-theme="dark"] .title {
-  color: #fff;
+  color: #f9fafb;
 }
 
-/* Сітка карток */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-radius: 8px;
-  padding: 32px 24px;
-  transition: all 0.3s ease;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px;
+  border-radius: 14px;
+  background: #fff;
+  border: 0.5px solid #e5e7eb;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="dark"] .card {
   background: #1f2937;
-  border: 1px solid #374151;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  border-color: #374151;
 }
 
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .iconWrapper {
+  background: #1e3a5f;
+  color: #60a5fa;
 }
 
 .cardTitle {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 16px 0 8px;
-  color: #101828;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
 }
 
 [data-theme="dark"] .cardTitle {
-  color: #fff;
+  color: #f9fafb;
 }
 
 .cardDescription {
-  font-size: 16px;
-  color: #64748b;
-  line-height: 1.5;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
 }
 
 [data-theme="dark"] .cardDescription {
@@ -83,7 +94,11 @@
 }
 
 @media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
   .title {
-    font-size: 28px;
+    font-size: 22px;
   }
 }

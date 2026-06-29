@@ -43,46 +43,41 @@ export default function OrderForm() {
       const quantityParam = Number(searchParams.get("quantity") || 1);
 
       try {
-        const res = await fetch(`${API_URL}/products`);
-        const allProducts: Product[] = await res.json();
-
-        const singleProduct = productId
-          ? allProducts.find((p) => p.id === productId)
-          : null;
-
-        const initialCart: CartItem[] = singleProduct
-          ? [
-              {
-                id: singleProduct.id,
-                name: singleProduct.name,
-                price: singleProduct.price,
-                quantity: quantityParam,
-              },
-            ]
-          : [];
-
-        if (typeof window !== "undefined") {
+        if (productId) {
+          const res = await fetch(`${API_URL}/products/${productId}`);
+          const product: Product = await res.json();
+          setCartItems([
+            {
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              quantity: quantityParam,
+            },
+          ]);
+        } else {
           const stored = localStorage.getItem("cart");
           if (stored) setCartItems(JSON.parse(stored));
-          else setCartItems(initialCart);
         }
       } catch (err) {
-        console.error("Fetch products error:", err);
+        console.error("Fetch error:", err);
       }
     };
-
     fetchCart();
   }, [searchParams]);
+
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cartItems.length) return toast.error("Кошик порожній!");
 
     const now = new Date().toLocaleString();
-
     const message = `🕒 Замовлення створено: ${now}
 
-👤 Ім’я: ${formData.name}
+👤 Ім'я: ${formData.name}
 📞 Телефон: ${formData.phone}
 🏠 Адреса: ${formData.address}
 📧 Email: ${formData.email || "не вказано"}
@@ -90,25 +85,18 @@ export default function OrderForm() {
 📦 Товари:
 ${cartItems
   .map(
-    (item, index) =>
-      `${index + 1}. ${item.name} (${item.id})
-       Кількість: ${item.quantity} шт
-       Ціна за одиницю: ${item.price} грн
-       Підсумок: ${item.quantity * item.price} грн`
+    (item, i) =>
+      `${i + 1}. ${item.name} (${item.id})\n   Кількість: ${item.quantity} шт\n   Ціна: ${item.price} грн\n   Підсумок: ${item.quantity * item.price} грн`,
   )
-  .join("\n------------------------\n")}
+  .join("\n---\n")}
 
-💰 Загальна сума: ${cartItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    )} грн
-`;
+💰 Загальна сума: ${total} грн`;
 
     const dataToSend = {
       access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
       subject: "Нове замовлення з сайту",
       from_name: formData.name,
-      from_email: formData.email || "no-email",
+      ...(formData.email && { from_email: formData.email }),
       message,
     };
 
@@ -120,7 +108,6 @@ ${cartItems
         body: JSON.stringify(dataToSend),
       });
       const result = await res.json();
-      setLoading(false);
 
       if (result.success) {
         toast.success("Замовлення успішно відправлено!");
@@ -131,24 +118,65 @@ ${cartItems
         router.push("/order/success");
       } else toast.error("Не вдалося відправити замовлення.");
     } catch {
-      setLoading(false);
       toast.error("Помилка з'єднання або мережі.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <main className={styles.container}>
-      <h1 className={styles.title}>Оформлення замовлення</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <UserForm formData={formData} handleChange={handleChange} />
-        <button type="submit" className={styles.submitBtn}>
-          {loading ? "Відправка..." : "Надіслати замовлення"}
-        </button>
-      </form>
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <div className={styles.formCol}>
+          <h1 className={styles.title}>Оформлення замовлення</h1>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <UserForm formData={formData} handleChange={handleChange} />
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={loading}
+            >
+              {loading ? "Відправка..." : "Надіслати замовлення"}
+            </button>
+          </form>
 
-      {isClient && cartItems.length > 0 && (
-        <QuickLinks cartItems={cartItems} formData={formData} />
-      )}
+          {isClient && cartItems.length > 0 && (
+            <QuickLinks cartItems={cartItems} formData={formData} />
+          )}
+        </div>
+
+        {isClient && cartItems.length > 0 && (
+          <div className={styles.summaryCol}>
+            <h2 className={styles.summaryTitle}>Ваше замовлення</h2>
+
+            <ul className={styles.itemsList}>
+              {cartItems.map((item) => (
+                <li key={item.id} className={styles.item}>
+                  <div className={styles.itemInfo}>
+                    <span className={styles.itemName}>{item.name}</span>
+                    <span className={styles.itemQty}>{item.quantity} шт</span>
+                  </div>
+                  <span className={styles.itemPrice}>
+                    {item.price * item.quantity} грн
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className={styles.divider} />
+
+            <div className={styles.totalRow}>
+              <span className={styles.totalLabel}>Доставка</span>
+              <span className={styles.totalDelivery}>узгоджується</span>
+            </div>
+
+            <div className={styles.totalRow}>
+              <span className={styles.totalLabel}>Разом</span>
+              <span className={styles.totalPrice}>{total} грн</span>
+            </div>
+          </div>
+        )}
+      </div>
     </main>
   );
 }

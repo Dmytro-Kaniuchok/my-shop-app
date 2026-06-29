@@ -40,7 +40,6 @@
   gap: 12px;
 }
 
-/* Телефон */
 .phoneBlock {
   display: flex;
   flex-direction: column;
@@ -119,7 +118,7 @@
   position: absolute;
   top: -4px;
   right: -4px;
-  background-color: #dc2626;
+  background: #2563eb;
   color: #fff;
   font-size: 12px;
   font-weight: 600;
@@ -129,7 +128,6 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
 
-/* ThemeToggle */
 .themeDesktop {
   display: none;
 }
@@ -142,13 +140,8 @@
   .themeDesktop {
     display: block;
   }
-
-  .mobileNavHeader ThemeToggle {
-    display: none;
-  }
 }
 
-/* Адаптивність */
 @media (min-width: 320px) and (max-width: 1024px) {
   .container {
     padding: 24px 20px;
@@ -174,7 +167,11 @@
   }
 
   .burger {
-    display: block;
+    display: none;
+  }
+
+  .mobileCart {
+    display: none;
   }
 
   .mobileFavorites {

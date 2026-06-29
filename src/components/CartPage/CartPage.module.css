@@ -11,14 +11,12 @@
   margin-bottom: 32px;
 }
 
-/* LAYOUT */
 .cartLayout {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 32px;
 }
 
-/* LIST */
 .list {
   list-style: none;
   padding: 0;
@@ -30,9 +28,17 @@
   gap: 16px;
   padding: 20px;
   border: 1px solid #d1d5db;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-bottom: 16px;
   background: #fff;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .image {
@@ -41,7 +47,6 @@
   border-radius: 8px;
 }
 
-/* INFO */
 .info {
   display: flex;
   flex-direction: column;
@@ -53,7 +58,7 @@
 }
 
 .meta {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7280;
 }
 
@@ -69,20 +74,19 @@
   width: 30px;
   height: 30px;
   border: none;
-  background: #fff;
+  background: #f8fafc;
   cursor: pointer;
-  border: 1px solid #d1d5db;
+  border: none;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.2s ease;
 }
 
 .qty button:hover {
+  background: #2563eb;
   color: #fff;
-  background: #0b44cd;
 }
 
-/* RIGHT SIDE */
 .right {
   display: flex;
   flex-direction: column;
@@ -110,15 +114,22 @@
   font-size: 18px;
 }
 
-/* SUMMARY */
 .summary {
   border: 1px solid #d1d5db;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 24px;
   background: #fff;
   height: fit-content;
   position: sticky;
   top: 20px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.summary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .summary h2 {
@@ -146,7 +157,6 @@
   border-top: 1px solid #d1d5db;
 }
 
-/* BUTTONS */
 .checkout {
   display: block;
   text-align: center;
@@ -154,6 +164,7 @@
   color: #fff;
   padding: 10px 32px;
   font-size: 16px;
+  font-weight: 600;
   border-radius: 8px;
   margin-bottom: 12px;
   text-decoration: none;
@@ -171,6 +182,8 @@
   font-size: 16px;
   padding: 10px 32px;
   border-radius: 8px;
+  border: 1px solid #d1d5db;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
@@ -242,7 +255,6 @@
 }
 
 /* Анімація */
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -254,7 +266,6 @@
   }
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .cartLayout {
     grid-template-columns: 1fr;

@@ -1,15 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "../Logo/Logo";
+import ThemeToggle from "../../Theme/ThemeToggle/ThemeToggle";
 import css from "./Footer.module.css";
 import { SiTelegram, SiViber } from "react-icons/si";
 import { LuPhone, LuMail, LuMapPin, LuClock } from "react-icons/lu";
+import { useTheme } from "@/src/Theme/ThemeProvider";
 
 export default function Footer() {
+  const { theme } = useTheme();
+
   return (
     <footer className={css.footer}>
       <div className={css.footerContainer}>
         <div className={css.footerContent}>
-          <Logo theme="light" />
+          <Logo theme={theme} />
           <p className={css.description}>
             Ваш надійний партнер у світі автозапчастин <br /> та товарів для
             сільськогосподарської техніки.
@@ -65,6 +71,7 @@ export default function Footer() {
                 <p>м. Харків, вул. Георгія Тарасенка, 12</p>
               </div>
             </div>
+
             <div className={css.footerSchedule}>
               <LuClock size={20} />
               <p>Пн-Пт: 10:00-18:00</p>
@@ -74,6 +81,7 @@ export default function Footer() {
 
         <div className={css.socials}>
           <h4 className={css.title}>Соціальні мережі</h4>
+
           <div className={css.links}>
             <a
               href="https://web.telegram.org/k/"
@@ -95,10 +103,14 @@ export default function Footer() {
               <SiViber size={20} />
             </a>
           </div>
+
+          {/* <div className={css.themeBlock}>
+            <span className={css.themeLabel}>Тема</span>
+            <ThemeToggle />
+          </div> */}
         </div>
       </div>
 
-      {/* Нижня частина */}
       <div className={css.footerBottom}>
         <p>© {new Date().getFullYear()} AGROAVTO. Усі права захищені.</p>
       </div>

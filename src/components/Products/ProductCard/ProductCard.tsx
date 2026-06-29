@@ -11,7 +11,6 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 interface CartProduct extends Product {
   quantity: number;
 }
-
 interface Props {
   product: Product;
 }
@@ -19,7 +18,6 @@ interface Props {
 function pluralizeReviews(count: number): string {
   const mod10 = count % 10;
   const mod100 = count % 100;
-
   if (mod100 >= 11 && mod100 <= 19) return "відгуків";
   if (mod10 === 1) return "відгук";
   if (mod10 >= 2 && mod10 <= 4) return "відгуки";
@@ -32,31 +30,18 @@ function ProductCard({ product }: Props) {
       toast.error("Товару немає в наявності");
       return;
     }
-
     try {
-      const existingCart = localStorage.getItem("cart");
-
-      const cart: CartProduct[] = existingCart ? JSON.parse(existingCart) : [];
-
-      const productIndex = cart.findIndex((item) => item.id === product.id);
-
-      if (productIndex !== -1) {
-        cart[productIndex].quantity += 1;
-      } else {
-        cart.push({
-          ...product,
-          quantity: 1,
-        });
-      }
-
+      const cart: CartProduct[] = JSON.parse(
+        localStorage.getItem("cart") ?? "[]",
+      );
+      const idx = cart.findIndex((i) => i.id === product.id);
+      if (idx !== -1) cart[idx].quantity += 1;
+      else cart.push({ ...product, quantity: 1 });
       localStorage.setItem("cart", JSON.stringify(cart));
-
       window.dispatchEvent(new Event("cartUpdated"));
-
       toast.success("Товар додано до кошика");
-    } catch (error) {
-      console.error("Cart error:", error);
-
+    } catch (e) {
+      console.error(e);
       toast.error("Помилка додавання до кошика");
     }
   };
@@ -64,71 +49,60 @@ function ProductCard({ product }: Props) {
   const ratingCount = product.ratingCount ?? 0;
 
   return (
-    <div className={css.productCard}>
-      {product.inStock ? (
-        <div className={css.inStock}>В наявності</div>
-      ) : (
-        <div className={css.badgeOut}>Немає в наявності</div>
-      )}
-
-      <div className={css.imageWrapper}>
+    <article className={css.card}>
+      <div className={css.imageWrap}>
         <Image
           src={product.image || "/fallback-image.webp"}
           alt={product.name}
-          width={250}
-          height={250}
+          width={280}
+          height={200}
           loading="lazy"
+          className={css.image}
         />
+        <span className={product.inStock ? css.badgeIn : css.badgeOut}>
+          {product.inStock ? "В наявності" : "Немає в наявності"}
+        </span>
       </div>
 
-      <div className={css.info}>
-        <h3 className={css.productName}>{product.name}</h3>
-
-        <span className={css.brandAndArticle}>
-          {product.brand || "не вказано"} • {product.sku || "не вказано"}
-        </span>
+      <div className={css.body}>
+        <div className={css.meta}>
+          <span className={css.brand}>
+            {product.brand ?? "N/A"} · {product.sku ?? "N/A"}
+          </span>
+          <h3 className={css.name}>{product.name}</h3>
+        </div>
 
         <div className={css.rating}>
-          {[1, 2, 3, 4, 5].map((star) =>
-            star <= Math.round(product.rating ?? 0) ? (
-              <FaStar key={star} className={css.starActive} />
+          {[1, 2, 3, 4, 5].map((s) =>
+            s <= Math.round(product.rating ?? 0) ? (
+              <FaStar key={s} className={css.starOn} />
             ) : (
-              <FaRegStar key={star} className={css.star} />
+              <FaRegStar key={s} className={css.starOff} />
             ),
           )}
-
-          <span className={css.ratingValue}>
-            {product.rating?.toFixed(1) ?? "0.0"}
+          <span className={css.ratingVal}>
+            {(product.rating ?? 0).toFixed(1)}
           </span>
-
-          <span className={css.reviews}>
+          <span className={css.ratingCount}>
             ({ratingCount} {pluralizeReviews(ratingCount)})
           </span>
         </div>
 
-        <div className={css.cardFooter}>
-          <div className={css.priceRow}>
-            <span className={css.price}>{product.price} грн</span>
-
-            <button
-              onClick={handleAddToCart}
-              className={css.buyBtn}
-              disabled={!product.inStock}
-            >
-              Купити
-            </button>
-          </div>
-
-          <Link
-            href={`/product/${product.id}`}
-            className={css.detailsLink}
-            aria-label={`Дивитися детальніше ${product.name}`}
+        <div className={css.footer}>
+          <span className={css.price}>{product.price} грн</span>
+          <button
+            className={css.buyBtn}
+            onClick={handleAddToCart}
+            disabled={!product.inStock}
           >
-            Дивитися детальніше
+            До кошика
+          </button>
+          <Link href={`/product/${product.id}`} className={css.details}>
+            Детальніше
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 

@@ -8,7 +8,7 @@ import css from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import DesktopNav from "../Navigation/DesktopNav/DesktopNav";
 import MobileNav from "../Navigation/MobileNav/MobileNav";
-
+import BottomNav from "../BottomNav/BottomNav";
 import { useTheme } from "@/src/Theme/ThemeProvider";
 
 const links = [
@@ -22,82 +22,83 @@ const links = [
 export default function Header() {
   const pathname = usePathname();
   const { theme } = useTheme();
-
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const updateCartCount = () => {
       const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
       setCartCount(cart.length);
     };
-
     window.addEventListener("cartUpdated", updateCartCount);
-
     updateCartCount();
-
     return () => {
       window.removeEventListener("cartUpdated", updateCartCount);
     };
   }, []);
 
   return (
-    <header className={css.header}>
-      <div className={css.container}>
-        <Logo theme={theme} />
+    <>
+      <header className={css.header}>
+        <div className={css.container}>
+          <Logo theme={theme} />
 
-        <div className={css.desktopNav}>
-          <DesktopNav links={links} pathname={pathname} cartCount={cartCount} />
-        </div>
-
-        <div className={css.iconsWrapper}>
-          <div className={css.phoneBlock}>
-            <div className={css.phoneRow}>
-              <LuPhone size={16} />
-
-              <a href="tel:+380501234567" className={css.phone}>
-                +38 (050) 123-45-67
-              </a>
-            </div>
-
-            <span className={css.phoneTime}>Пн-Нд: 10:00-18:00</span>
+          <div className={css.desktopNav}>
+            <DesktopNav
+              links={links}
+              pathname={pathname}
+              cartCount={cartCount}
+            />
           </div>
 
-          <Link
-            href="/cart"
-            className={`${css.mobileCart} ${
-              pathname === "/cart" ? css.active : ""
-            }`}
-            aria-label="Кошик"
-          >
-            <LuShoppingCart size={24} />
+          <div className={css.iconsWrapper}>
+            <div className={css.phoneBlock}>
+              <div className={css.phoneRow}>
+                <LuPhone size={16} />
+                <a href="tel:+380501234567" className={css.phone}>
+                  +38 (050) 123-45-67
+                </a>
+              </div>
+              <span className={css.phoneTime}>Пн-Нд: 10:00-18:00</span>
+            </div>
 
-            {cartCount > 0 && (
-              <span className={css.mobileCartCount}>{cartCount}</span>
-            )}
-          </Link>
-
-          {!menuOpen && (
-            <button
-              className={css.burger}
-              onClick={() => setMenuOpen(true)}
-              aria-label="Меню"
+            <Link
+              href="/cart"
+              className={`${css.mobileCart} ${pathname === "/cart" ? css.active : ""}`}
+              aria-label="Кошик"
             >
-              <LuMenu size={24} color={theme === "dark" ? "#fff" : "#101828"} />
-            </button>
-          )}
-        </div>
+              <LuShoppingCart size={24} />
+              {cartCount > 0 && (
+                <span className={css.mobileCartCount}>{cartCount}</span>
+              )}
+            </Link>
 
-        <MobileNav
-          links={links}
-          pathname={pathname}
-          cartCount={cartCount}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-          theme={theme}
-        />
-      </div>
-    </header>
+            {!menuOpen && (
+              <button
+                className={css.burger}
+                onClick={() => setMenuOpen(true)}
+                aria-label="Меню"
+              >
+                <LuMenu
+                  size={24}
+                  color={theme === "dark" ? "#fff" : "#101828"}
+                />
+              </button>
+            )}
+          </div>
+
+          <MobileNav
+            links={links}
+            pathname={pathname}
+            cartCount={cartCount}
+            menuOpen={menuOpen}
+            setMenuOpen={setMenuOpen}
+            theme={theme}
+          />
+        </div>
+      </header>
+
+      <BottomNav cartCount={cartCount} />
+    </>
   );
 }

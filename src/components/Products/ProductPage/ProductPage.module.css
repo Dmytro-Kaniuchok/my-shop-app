@@ -1,261 +1,420 @@
 .productPage {
-  padding: 40px 0 80px;
+  padding: 0 0 80px;
   min-height: 100vh;
-}
-
-.container {
+  background: #fff;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 16px;
 }
 
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 0;
+  margin: 0 32px;
+  border-bottom: 0.5px solid #e5e7eb;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.breadcrumb a {
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumb a:hover {
+  color: #2563eb;
+}
+
+.breadcrumbSep {
+  color: #d1d5db;
+}
+
+.breadcrumbCurrent {
+  color: #101828;
+}
+
+/* ─── Layout ─────────────────────────────────────────────── */
 .productLayout {
   display: grid;
-  grid-template-columns: 520px 1fr;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: 420px 1fr;
+  min-height: 520px;
+}
+
+/* ─── Image panel ────────────────────────────────────────── */
+.imagePanel {
+  background: #f8fafc;
+  border-right: 0.5px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 16px;
 }
 
 .imageContainer {
   width: 100%;
-  max-width: 520px;
 }
 
 .image {
   width: 100%;
-  height: 520px;
+  aspect-ratio: 1;
   object-fit: contain;
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 24px;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
 }
 
+.thumbnails {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  border: 0.5px solid #e5e7eb;
+  background: #fff;
+  padding: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  object-fit: contain;
+}
+
+.thumbnail:hover {
+  border-color: #93c5fd;
+}
+
+.thumbnailActive {
+  border: 1.5px solid #2563eb;
+}
+
+/* ─── Info column ────────────────────────────────────────── */
 .info {
+  padding: 40px 48px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  background: #fff;
 }
 
-.topBrand {
-  width: fit-content;
-  padding: 6px 14px;
-  border-radius: 8px;
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.brandChip {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1d4ed8;
   background: #dbeafe;
-  color: #2563eb;
-  font-size: 14px;
-  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.skuLabel {
+  font-size: 12px;
+  color: #9ca3af;
 }
 
 .title {
-  font-size: 42px;
-  line-height: 1.1;
-  font-weight: 800;
+  font-size: 26px;
+  font-weight: 500;
   color: #101828;
+  line-height: 1.25;
+  margin-bottom: 14px;
 }
 
-.meta {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.metaItem {
-  display: flex;
-  gap: 8px;
-}
-
-.metaLabel {
-  color: #64748b;
-  font-size: 16px;
-}
-
-.metaValue {
-  color: #101828;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.purchaseBlock {
+/* ─── Rating ─────────────────────────────────────────────── */
+.ratingBlock {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 0.5px solid #e5e7eb;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.starFilled {
+  color: #f59e0b;
+  font-size: 15px;
+}
+
+.starEmpty {
+  color: #d1d5db;
+  font-size: 15px;
+}
+
+.ratingNumber {
+  font-size: 13px;
+  font-weight: 500;
+  color: #101828;
+}
+
+.ratingCount {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* ─── Price ──────────────────────────────────────────────── */
+.priceBlock {
+  margin-bottom: 24px;
+  padding-left: 14px;
+  border-left: 3px solid #2563eb;
+}
+
+.priceLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
 }
 
 .price {
-  font-size: 42px;
-  font-weight: 800;
-  color: #2563eb;
+  font-size: 38px;
+  font-weight: 500;
+  color: #101828;
   line-height: 1;
+  margin-bottom: 8px;
+}
+
+.priceSub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .stockBadge {
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 4px;
 }
 
 .inStock {
-  background: #dcfce7;
   color: #166534;
+  background: #dcfce7;
 }
 
 .outOfStock {
-  background: #fee2e2;
   color: #991b1b;
+  background: #fee2e2;
 }
 
+.vatNote {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ─── Quantity ───────────────────────────────────────────── */
 .quantityBlock {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-bottom: 24px;
 }
 
 .quantityLabel {
-  font-size: 16px;
-  font-weight: 600;
-  color: #101828;
+  font-size: 13px;
+  color: #6b7280;
+  min-width: 70px;
 }
 
 .quantitySelector {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 0.5px solid #d1d5db;
   border-radius: 8px;
-  padding: 6px;
+  overflow: hidden;
 }
 
 .quantityButton {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border: none;
-  background: #f8fafc;
-  border-radius: 8px;
+  background: #f9fafb;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: 700;
-  transition: 0.2s ease;
+  font-size: 18px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.12s,
+    color 0.12s;
 }
 
 .quantityButton:hover {
-  background: #2563eb;
-  color: #fff;
-}
-
-.quantityValue {
-  min-width: 36px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 700;
+  background: #f3f4f6;
   color: #101828;
 }
 
-.actions {
-  display: flex;
-  gap: 16px;
-  margin-top: 8px;
+.quantityValue {
+  width: 44px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #101828;
+  border-left: 0.5px solid #e5e7eb;
+  border-right: 0.5px solid #e5e7eb;
+  height: 36px;
+  line-height: 36px;
 }
 
-.buyButton,
-.cartButton {
-  height: 48px;
-  padding: 0 24px;
+.quantityTotal {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* ─── Actions ────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.buyButton {
+  flex: unset;
+  width: 100%;
+  height: 46px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-width: 220px;
-}
-
-.buyButton {
-  background: #2563eb;
-  color: #fff;
-  border: none;
+  transition: background 0.15s;
 }
 
 .buyButton:hover:not(:disabled) {
   background: #1d4ed8;
 }
 
-.cartButton {
-  background: #fff;
-  border: 1px solid #d0d5dd;
-  color: #101828;
-}
-
-.cartButton:hover:not(:disabled) {
-  background: #f8fafc;
-}
-
-.buyButton:disabled,
-.cartButton:disabled {
-  opacity: 0.6;
+.buyButton:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.servicesRow {
+.buyIcon {
+  font-size: 16px;
+}
+
+.cartButton {
+  flex: 1;
+  height: 46px;
+  background: #fff;
+  color: #101828;
+  border: 0.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
   display: flex;
-  gap: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #d1d5db;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+}
+
+.cartButton:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #b0b8c4;
+}
+
+.cartButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.checkIcon {
+  color: #16a34a;
+}
+
+/* ─── Services ───────────────────────────────────────────── */
+.servicesRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 0.5px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .serviceItem {
+  padding: 14px 16px;
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  flex: 1;
+  gap: 10px;
+  border-right: 0.5px solid #e5e7eb;
+}
+
+.serviceItem:last-child {
+  border-right: none;
 }
 
 .serviceIcon {
   color: #2563eb;
+  font-size: 20px;
+  margin-top: 1px;
   flex-shrink: 0;
 }
 
 .serviceText h4 {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
   color: #101828;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .serviceText p {
-  font-size: 14px;
-  color: #64748b;
+  font-size: 12px;
+  color: #9ca3af;
 }
 
+/* ─── Tabs section ───────────────────────────────────────── */
 .tabs {
-  margin-top: 64px;
+  margin: 40px 32px 0;
 }
 
+/* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .productLayout {
     grid-template-columns: 1fr;
-    gap: 40px;
+  }
+
+  .imagePanel {
+    border-right: none;
+    border-bottom: 0.5px solid #e5e7eb;
+    min-height: auto;
+    padding: 32px;
   }
 
   .imageContainer {
-    max-width: 100%;
-  }
-
-  .image {
-    height: 420px;
+    max-width: 440px;
+    margin: 0 auto;
   }
 
   .info {
-    gap: 20px;
-  }
-
-  .title {
-    font-size: 34px;
+    padding: 32px;
   }
 
   .actions {
@@ -264,65 +423,65 @@
 
   .buyButton,
   .cartButton {
+    flex: unset;
     width: 100%;
   }
 
   .servicesRow {
-    flex-direction: column;
-    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .serviceItem {
+    border-right: none;
+    border-bottom: 0.5px solid #e5e7eb;
+  }
+
+  .serviceItem:last-child {
+    border-bottom: none;
   }
 }
 
 @media (max-width: 768px) {
-  .productPage {
-    padding: 24px 0 60px;
+  .breadcrumb {
+    margin: 0 16px;
+    padding: 12px 0;
+  }
+
+  .info {
+    padding: 24px 16px;
+  }
+
+  .imagePanel {
+    padding: 24px 16px;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .price {
-    font-size: 34px;
+    font-size: 30px;
   }
 
-  .image {
-    height: 340px;
-    padding: 16px;
-  }
-
-  .purchaseBlock {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .quantityBlock {
-    flex-direction: column;
-    align-items: flex-start;
+  .tabs {
+    margin: 32px 16px 0;
   }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: 24px;
+    font-size: 19px;
   }
 
   .price {
-    font-size: 28px;
+    font-size: 26px;
   }
 
-  .image {
-    height: 280px;
-  }
-
-  .buyButton,
-  .cartButton {
-    min-width: auto;
-    font-size: 14px;
+  .quantityBlock {
+    flex-wrap: wrap;
   }
 
   .servicesRow {
-    gap: 16px;
+    grid-template-columns: 1fr;
   }
 }

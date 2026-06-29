@@ -163,13 +163,15 @@ export default function SearchInput() {
               }`}
             >
               <div className={css.item}>
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  className={css.image}
-                  width={40}
-                  height={40}
-                />
+                <div className={css.imageWrap}>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    className={css.image}
+                    width={40}
+                    height={40}
+                  />
+                </div>
 
                 <div className={css.info}>
                   <span className={css.name}>{item.name}</span>

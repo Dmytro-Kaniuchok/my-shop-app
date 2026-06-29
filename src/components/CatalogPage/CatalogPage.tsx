@@ -17,8 +17,10 @@ export default function CatalogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Всі");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [maxPrice, setMaxPrice] = useState(10000);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
   const [sortOrder, setSortOrder] = useState("default");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -100,7 +102,12 @@ export default function CatalogPage() {
     }
 
     // PRICE
-    filtered = filtered.filter((p) => p.price <= maxPrice);
+    if (minPrice > 0) {
+      filtered = filtered.filter((p) => p.price >= minPrice);
+    }
+    if (maxPrice > 0) {
+      filtered = filtered.filter((p) => p.price <= maxPrice);
+    }
 
     // SORT
     if (sortOrder === "asc") {
@@ -117,6 +124,7 @@ export default function CatalogPage() {
     searchTerm,
     selectedCategory,
     selectedBrands,
+    minPrice,
     maxPrice,
     sortOrder,
   ]);
@@ -137,13 +145,10 @@ export default function CatalogPage() {
   // RESET FILTERS
   const resetFilters = () => {
     setSearchTerm("");
-
     setSelectedCategory("Всі");
-
     setSelectedBrands([]);
-
-    setMaxPrice(10000);
-
+    setMinPrice(0);
+    setMaxPrice(0);
     setSortOrder("default");
   };
 
@@ -158,7 +163,7 @@ export default function CatalogPage() {
           Головна
         </Link>
 
-        <span className={styles.separator}>›</span>
+        <span className={styles.separator}>/</span>
 
         <span className={styles.currentPage}>Каталог</span>
       </nav>
@@ -172,9 +177,14 @@ export default function CatalogPage() {
           selectedBrands={selectedBrands}
           toggleBrand={toggleBrand}
           brands={brands}
+          minPrice={minPrice}
+          setMinPrice={setMinPrice}
           maxPrice={maxPrice}
           setMaxPrice={setMaxPrice}
           resetFilters={resetFilters}
+          isOpen={isFilterOpen}
+          setIsOpen={setIsFilterOpen}
+          filteredCount={filteredProducts.length}
         />
 
         <section className={styles.content}>
@@ -182,6 +192,13 @@ export default function CatalogPage() {
             count={filteredProducts.length}
             sortOrder={sortOrder}
             setSortOrder={setSortOrder}
+            activeFilterCount={
+              selectedBrands.length +
+              (selectedCategory !== "Всі" ? 1 : 0) +
+              (minPrice > 0 ? 1 : 0) +
+              (maxPrice > 0 ? 1 : 0)
+            }
+            onOpenFilters={() => setIsFilterOpen(true)}
           />
 
           <CatalogProducts

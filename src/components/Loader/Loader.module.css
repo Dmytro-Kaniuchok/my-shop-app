@@ -1,35 +1,24 @@
 .overlay {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f3f4f6;
+  background: #fff;
   z-index: 9999;
 }
 
 .loader {
-  width: 50px;
-  aspect-ratio: 1;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 8px solid #e2e8f0;
-  border-right-color: #2563eb;
-  animation: l2 1s infinite linear;
+  border: 2px solid #e5e7eb;
+  border-top-color: #2563eb;
+  animation: spin 0.8s linear infinite;
 }
 
-@keyframes l2 {
+@keyframes spin {
   to {
-    transform: rotate(1turn);
+    transform: rotate(360deg);
   }
-}
-
-[data-theme="dark"] .overlay {
-  background: #0f172a;
-}
-
-[data-theme="dark"] .loader {
-  border: 8px solid #1e293b;
-  border-right-color: #1e90ff;
 }

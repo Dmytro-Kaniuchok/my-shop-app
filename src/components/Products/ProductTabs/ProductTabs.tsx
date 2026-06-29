@@ -104,6 +104,7 @@ export default function ProductTabs({
       setShowForm(false);
 
       await fetchReviews();
+      await new Promise((resolve) => setTimeout(resolve, 300));
       onReviewAdded?.();
     } catch {
       toast.error("Не вдалося додати відгук");

@@ -1,8 +1,11 @@
 .section {
-  margin-bottom: 80px;
+  padding: 80px 20px;
+  background: #f8fafc;
   opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .visible {
@@ -10,104 +13,171 @@
   transform: translateY(0);
 }
 
-.hero {
-  position: relative;
-  height: 420px;
-  overflow: hidden;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.82)),
-    url("/image/agriculture-banner.jpg");
-  background-size: cover;
-  background-position: center;
+[data-theme="dark"] .section {
+  background: #111827;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  /* background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(255, 215, 0, 0.35),
-      transparent 40%
-    ),
-    radial-gradient(circle at 80% 70%, rgba(0, 87, 183, 0.25), transparent 45%),
-    linear-gradient(135deg, #f8fafc, #e0f2fe); */
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.textCol {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+  gap: 20px;
 }
 
-.overlay h2 {
-  font-size: 48px;
-  font-weight: 800;
-  line-height: 1.1;
-  max-width: 900px;
-  color: #101828;
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.overlay p {
-  margin-top: 20px;
-  font-size: 22px;
+[data-theme="dark"] .eyebrow {
+  color: #60a5fa;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+[data-theme="dark"] .title {
+  color: #f9fafb;
+}
+
+.description {
+  font-size: 15px;
   color: #6b7280;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 440px;
 }
 
 .stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-top: 80px;
+  display: flex;
+  gap: 32px;
+  padding: 24px 0;
+  border-top: 0.5px solid #e5e7eb;
+  border-bottom: 0.5px solid #e5e7eb;
 }
 
-.item {
-  text-align: center;
+[data-theme="dark"] .stats {
+  border-color: #1f2937;
 }
 
-.counter {
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNum {
+  font-size: 28px;
+  font-weight: 700;
   color: #2563eb;
-  font-size: 32px;
-  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
-.itemSpan {
-  display: block;
-  margin-top: 10px;
-  color: #101828;
-  font-size: 16px;
+[data-theme="dark"] .statNum {
+  color: #60a5fa;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+  align-self: flex-start;
+}
+
+.cta:hover {
+  background: #1d4ed8;
+}
+.cta:active {
+  transform: scale(0.98);
+}
+
+.imageCol {
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrap {
+  width: 100%;
+  max-width: 500px;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 0.5px solid #e5e7eb;
+}
+
+[data-theme="dark"] .imageWrap {
+  border-color: #1f2937;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 992px) {
-  .overlay h2 {
-    font-size: 34px;
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
+  .imageCol {
+    display: none;
+  }
+
+  .title {
+    font-size: 28px;
   }
 }
 
-@media (max-width: 576px) {
-  .hero {
-    height: 300px;
+@media (max-width: 640px) {
+  .section {
+    padding: 60px 16px;
   }
-
-  .overlay h2 {
-    font-size: 28px;
+  .title {
+    font-size: 24px;
   }
-
-  .overlay p {
-    font-size: 16px;
-  }
-
   .stats {
-    grid-template-columns: 1fr;
+    gap: 20px;
   }
-
-  .item h3 {
-    font-size: 48px;
+  .statNum {
+    font-size: 24px;
+  }
+  .cta {
+    width: 100%;
+    justify-content: center;
   }
 }

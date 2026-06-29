@@ -9,8 +9,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
-  font-size: 14px;
+  margin-bottom: 16px;
+  font-size: 12px;
 }
 
 .breadcrumbLink {
@@ -28,8 +28,7 @@
 }
 
 .currentPage {
-  color: #111827;
-  font-weight: 600;
+  color: #101828;
 }
 
 [data-theme="dark"] .breadcrumbLink {

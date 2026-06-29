@@ -1,109 +1,26 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import css from "./FeaturedCard.module.css";
-import toast from "react-hot-toast";
+import FeaturedCardClient from "./FeaturedCardClient";
 import { Product } from "@/src/types/products";
-import { FaStar, FaRegStar } from "react-icons/fa";
 
-interface CartProduct extends Product {
-  quantity: number;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+async function getFeaturedProduct(): Promise<Product | null> {
+  try {
+    const res = await fetch(`${API_URL}/products`, {
+      next: { revalidate: 60 },
+    });
+    if (!res.ok) return null;
+    const data: Product[] = await res.json();
+    const popular = data.filter((p) => p.popular && p.inStock !== false);
+    if (!popular.length) return null;
+    return popular[Math.floor(Math.random() * popular.length)];
+  } catch {
+    return null;
+  }
 }
 
-interface Props {
-  product: Product;
-}
+export default async function FeaturedCard() {
+  const product = await getFeaturedProduct();
+  if (!product) return null;
 
-export default function FeaturedProductCard({ product }: Props) {
-  const [imgSrc, setImgSrc] = useState(product.image);
-
-  const handleAddToCart = () => {
-    if (!product.inStock) {
-      toast.error("Товару немає в наявності");
-      return;
-    }
-
-    try {
-      const existingCart = localStorage.getItem("cart");
-      const cart: CartProduct[] = existingCart ? JSON.parse(existingCart) : [];
-
-      const productIndex = cart.findIndex((item) => item.id === product.id);
-
-      if (productIndex !== -1) {
-        cart[productIndex].quantity += 1;
-      } else {
-        cart.push({ ...product, quantity: 1 });
-      }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      window.dispatchEvent(new Event("cartUpdated"));
-
-      toast.success("Товар додано до кошика");
-    } catch (error) {
-      console.error(error);
-      toast.error("Помилка");
-    }
-  };
-
-  return (
-    <div className={css.card}>
-      <div className={css.badge}>Хіт продажів</div>
-
-      <div className={css.content}>
-        <div className={css.imageWrapper}>
-          <Image
-            src={imgSrc}
-            alt={product.name}
-            width={300}
-            height={300}
-            onError={() =>
-              setImgSrc("https://dummyimage.com/300x300/fff/000&text=No+Image")
-            }
-          />
-        </div>
-
-        <div className={css.info}>
-          <h2 className={css.title}>{product.name}</h2>
-
-          <p className={css.brand}>{product.brand}</p>
-
-          <p className={css.description}>
-            {product.description ||
-              "Якісний товар з високими характеристиками. Надійність та довговічність гарантовані."}
-          </p>
-
-          <div className={css.rating}>
-            {[1, 2, 3, 4, 5].map((star) =>
-              star <= Math.round(product.rating ?? 0) ? (
-                <FaStar key={star} className={css.starActive} />
-              ) : (
-                <FaRegStar key={star} className={css.star} />
-              ),
-            )}
-
-            <span className={css.ratingValue}>
-              {product.rating?.toFixed(1) ?? "0.0"}
-            </span>
-
-            <span className={css.reviews}>
-              ({product.ratingCount ?? 0} відгуків)
-            </span>
-          </div>
-
-          <div className={css.footer}>
-            <span className={css.price}>{product.price} грн</span>
-
-            <button
-              onClick={handleAddToCart}
-              className={css.button}
-              disabled={!product.inStock}
-            >
-              Купити
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <FeaturedCardClient product={product} />;
 }

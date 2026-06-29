@@ -7,6 +7,7 @@ import Popular from "@/src/components/Products/Popular/Popular";
 import WhyChooseUs from "@/src/components/WhyChooseUs/WhyChooseUs";
 
 import FadeInSection from "@/src/components/FadeInSection/FadeInSection";
+import ContactBanner from "@/src/components/ContactBanner/ContactBanner";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,10 @@ export default function HomePage() {
 
       <FadeInSection>
         <Popular />
+      </FadeInSection>
+
+      <FadeInSection>
+        <ContactBanner />
       </FadeInSection>
 
       <FadeInSection>

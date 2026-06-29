@@ -131,6 +131,7 @@ export default function ContactsPage() {
             <div>
               <p>Email</p>
               <span>info@agroauto.ua</span>
+              <span>infoagroauto@gmail.com</span>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { LuX, LuPhone, LuClock } from "react-icons/lu";
 import css from "./MobileNav.module.css";
 
@@ -27,6 +28,27 @@ export default function MobileNav({
   setMenuOpen,
   theme,
 }: MobileNavProps) {
+  useEffect(() => {
+    if (menuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+    };
+  }, [menuOpen]);
+
   return (
     <>
       <div
@@ -41,7 +63,7 @@ export default function MobileNav({
             onClick={() => setMenuOpen(false)}
             aria-label="Закрити меню"
           >
-            <LuX size={20} color={theme === "dark" ? "#fff" : "#101828"} />
+            <LuX size={20} className={css.closeIcon} />
           </button>
         </div>
 

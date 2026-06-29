@@ -2,37 +2,33 @@
   width: 100%;
 }
 
+/* ─── Tabs nav ───────────────────────────────────────────── */
 .tabs {
   display: flex;
-  gap: 0;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 0.5px solid #e5e7eb;
   margin-bottom: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
   position: relative;
-  padding: 14px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  color: #101828;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
   background: transparent;
   border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -0.5px;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.15s;
   white-space: nowrap;
-}
-
-.tab::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #2563eb;
-  transform: scaleX(0);
-  transition: transform 0.25s ease;
+  font-family: inherit;
 }
 
 .tab:hover {
@@ -41,46 +37,37 @@
 
 .tabActive {
   color: #2563eb;
+  font-weight: 500;
+  border-bottom-color: #2563eb;
 }
 
-.tabActive::after {
-  transform: scaleX(1);
-}
-
+/* ─── Tab content ────────────────────────────────────────── */
 .tabContent {
-  padding: 28px 0;
-  animation: fadeIn 0.2s ease;
+  padding: 24px 0;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* ─── Description ────────────────────────────────────────── */
 .description p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.75;
   color: #6b7280;
-  max-width: 720px;
+  max-width: 680px;
 }
 
-/* ─── Specs ─────────────────────────────────────────────── */
+/* ─── Specs ──────────────────────────────────────────────── */
+.specs {
+  overflow-x: auto;
+}
+
 .specsTable {
   width: 100%;
   max-width: 560px;
+  min-width: 320px;
   border-collapse: collapse;
-  font-size: 14px;
 }
 
 .specsTable tbody tr {
-  border-bottom: 1px solid #f0f0f0;
-  transition: background 0.2s ease;
+  border-bottom: 0.5px solid #f0f0f0;
 }
 
 .specsTable tbody tr:last-child {
@@ -92,24 +79,25 @@
 }
 
 .specsTable td {
-  padding: 14px 18px;
+  padding: 13px 16px;
+  font-size: 13px;
   color: #101828;
 }
 
 .specsTable td:first-child {
-  font-weight: 600;
-  color: #6b7280;
+  font-weight: 500;
+  color: #9ca3af;
   width: 40%;
-  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
 }
 
-/*  Reviews  */
+/* ─── Reviews ────────────────────────────────────────────── */
 .reviews {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .reviewsHeader {
@@ -125,87 +113,81 @@
   padding: 48px 24px;
   text-align: center;
   gap: 10px;
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 0.5px solid #e5e7eb;
 }
 
 .emptyIcon {
-  font-size: 48px;
-  color: #d7d8db;
-  margin-bottom: 4px;
+  font-size: 44px;
+  color: #d1d5db;
   line-height: 1;
+  margin-bottom: 4px;
 }
 
 .emptyReviews h3 {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   color: #101828;
-  margin: 0;
 }
 
 .emptyReviews p {
-  font-size: 14px;
-  color: #6b7280;
-  max-width: 320px;
-  margin: 0;
+  font-size: 13px;
+  color: #9ca3af;
+  max-width: 300px;
   line-height: 1.6;
 }
 
-/* Write Review Button */
+/* ─── Write review button ────────────────────────────────── */
 .writeReviewButton {
-  margin-top: 8px;
-  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
   background: #2563eb;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.15s;
+  margin-top: 8px;
 }
 
 .writeReviewButton:hover {
-  background: #0b44cd;
+  background: #1d4ed8;
 }
 
-.writeReviewButton:active {
-  transform: translateY(0);
-}
-
-/* ─── Review Form ───────────────────────────────────────── */
+/* ─── Review form ────────────────────────────────────────── */
 .reviewForm {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  background: #f8fafc;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 10px;
   padding: 24px;
 }
 
 .formTitle {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 500;
   color: #101828;
   margin: 0 0 4px;
 }
 
 .reviewForm input,
 .reviewForm textarea {
-  padding: 12px 14px;
-  border: 1px solid #d1d5db;
+  padding: 10px 14px;
+  border: 0.5px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
   color: #101828;
   background: #fff;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 0.15s;
   outline: none;
   width: 100%;
   box-sizing: border-box;
@@ -217,150 +199,11 @@
 }
 
 .reviewForm textarea {
-  min-height: 100px;
+  min-height: 96px;
   resize: vertical;
 }
 
-/* Star Rating */
-.rating {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.starButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 2px;
-  display: flex;
-  align-items: center;
-  transition: transform 0.15s ease;
-}
-
-.starButton:hover {
-  transform: scale(1.2);
-}
-
-.starFilled {
-  color: #f5a623;
-  font-size: 22px;
-}
-
-.starEmpty {
-  color: #d1d5db;
-  font-size: 22px;
-}
-
-/* Form Actions */
-.formActions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 4px;
-}
-
-.cancelButton {
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #101828;
-  background: #fff;
-  border: 1px solid #d0d5dd;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.cancelButton:hover {
-  background: #f8f9fa;
-  border-color: #6b7280;
-}
-
-.submitButton {
-  padding: 10px 22px;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    opacity 0.2s;
-}
-
-.submitButton:hover:not(:disabled) {
-  background: #0b44cd;
-}
-
-.submitButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* ─── Reviews List ──────────────────────────────────────── */
-.reviewsList {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.reviewCard {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: box-shadow 0.2s ease;
-}
-
-.reviewCard:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
-}
-
-.reviewCardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.reviewCard h4 {
-  font-size: 15px;
-  font-weight: 700;
-  color: #101828;
-  margin: 0;
-}
-
-.reviewCard small {
-  font-size: 12px;
-  color: #6b7280;
-  white-space: nowrap;
-}
-
-.reviewRating {
-  display: flex;
-  gap: 3px;
-}
-
-.reviewRating .starFilled,
-.reviewRating .starEmpty {
-  font-size: 15px;
-}
-
-.reviewCard p {
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.65;
-  margin: 0;
-}
-
+/* Rating stars */
 .ratingWrapper {
   display: flex;
   flex-direction: column;
@@ -374,33 +217,29 @@
 }
 
 .ratingLabel {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   color: #101828;
 }
 
 .ratingValue {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .ratingBad {
   color: #ef4444;
 }
-
 .ratingPoor {
   color: #f97316;
 }
-
 .ratingNormal {
   color: #eab308;
 }
-
 .ratingGood {
   color: #22c55e;
 }
-
 .ratingExcellent {
   color: #2563eb;
 }
@@ -411,42 +250,152 @@
   align-items: center;
 }
 
+.starButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.12s;
+}
+
+.starButton:hover {
+  transform: scale(1.2);
+}
+
+.starFilled {
+  color: #f59e0b;
+  font-size: 22px;
+}
+
+.starEmpty {
+  color: #d1d5db;
+  font-size: 22px;
+}
+
+/* Form actions */
+.formActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.cancelButton {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #101828;
+  background: #fff;
+  border: 0.5px solid #d1d5db;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+  font-family: inherit;
+}
+
+.cancelButton:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.submitButton {
+  height: 38px;
+  padding: 0 20px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    opacity 0.15s;
+  font-family: inherit;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.submitButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ─── Reviews list ───────────────────────────────────────── */
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reviewCard {
+  background: #f8fafc;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s;
+}
+
+.reviewCard:hover {
+  border-color: #d1d5db;
+}
+
+.reviewCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reviewCard h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #101828;
+  margin: 0;
+}
+
+.reviewCard small {
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.reviewRating {
+  display: flex;
+  gap: 2px;
+}
+
+.reviewRating .starFilled,
+.reviewRating .starEmpty {
+  font-size: 14px;
+}
+
+.reviewCard p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .tabs {
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
   .tab {
-    flex-shrink: 0;
-    padding: 12px 18px;
-    font-size: 14px;
-  }
-
-  .tabContent {
-    padding: 20px 0;
-  }
-
-  .description p {
-    font-size: 15px;
-  }
-
-  .specsTable {
-    max-width: 100%;
-  }
-
-  .specsTable td {
-    padding: 12px;
+    padding: 10px 16px;
     font-size: 13px;
   }
 
-  .specsTable td:first-child {
-    width: 45%;
-    font-size: 12px;
+  .specsTable td {
+    padding: 11px 12px;
   }
 
   .reviewForm {
@@ -456,56 +405,22 @@
   .emptyReviews {
     padding: 36px 20px;
   }
-
-  .emptyIcon {
-    font-size: 42px;
-  }
-
-  .reviewCard {
-    padding: 16px;
-  }
 }
 
 @media (max-width: 480px) {
   .tab {
-    padding: 12px 14px;
+    padding: 10px 14px;
     font-size: 13px;
   }
 
-  .tabContent {
-    padding: 16px 0;
+  .formActions {
+    flex-direction: column;
   }
 
-  .description p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .specsTable td {
-    padding: 10px 8px;
-    font-size: 12px;
-  }
-
-  .specsTable td:first-child {
-    width: 40%;
-    font-size: 11px;
-    letter-spacing: 0.4px;
-  }
-
-  .emptyReviews {
-    padding: 28px 16px;
-  }
-
-  .emptyReviews h3 {
-    font-size: 16px;
-  }
-
-  .emptyReviews p {
-    font-size: 13px;
-  }
-
-  .emptyIcon {
-    font-size: 36px;
+  .cancelButton,
+  .submitButton {
+    width: 100%;
+    justify-content: center;
   }
 
   .writeReviewButton {
@@ -513,14 +428,10 @@
     justify-content: center;
   }
 
-  .reviewForm {
-    padding: 16px;
-    gap: 12px;
-  }
-
-  .reviewForm input,
-  .reviewForm textarea {
-    font-size: 16px;
+  .reviewCardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 
   .rating {
@@ -532,42 +443,7 @@
     font-size: 28px;
   }
 
-  .formActions {
-    flex-direction: column;
-  }
-
-  .cancelButton,
-  .submitButton {
-    width: 100%;
-  }
-
   .reviewCard {
-    padding: 14px;
+    padding: 14px 16px;
   }
-
-  .reviewCardHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .reviewCard h4 {
-    font-size: 14px;
-  }
-
-  .reviewCard p {
-    font-size: 13px;
-  }
-
-  .reviewCard small {
-    font-size: 11px;
-  }
-}
-
-.specs {
-  overflow-x: auto;
-}
-
-.specsTable {
-  min-width: 320px;
 }

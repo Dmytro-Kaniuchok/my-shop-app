@@ -21,73 +21,120 @@
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 500;
   color: #101828;
-  text-align: left;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+[data-theme="dark"] .title {
+  color: #f9fafb;
 }
 
 .button {
   display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 18px;
   background: #fff;
-  color: #101828;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #6b7280;
+  color: #374151;
+  font-size: 13px;
   font-weight: 500;
-  padding: 10px 22px;
-  cursor: pointer;
+  border-radius: 9px;
+  border: 0.5px solid #e5e7eb;
+  white-space: nowrap;
   transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+  text-decoration: none;
 }
 
 .button:hover {
-  background: #f3f4f6;
-  border-color: #0b44cd;
-  color: #0b44cd;
+  background: #f9fafb;
+  border-color: #2563eb;
+  color: #2563eb;
 }
 
-[data-theme="dark"] .popularTitle {
-  color: #ffffff;
+[data-theme="dark"] .button {
+  background: #111827;
+  border-color: #374151;
+  color: #d1d5db;
 }
 
+[data-theme="dark"] .button:hover {
+  background: #1f2937;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+/* ── Сітка (десктоп) ── */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
+.slide {
+  min-width: 0; /* фікс для grid overflow */
+}
+
+/* ── Слайдер (планшет і менше) ── */
 @media (max-width: 1150px) {
   .products {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding-bottom: 10px;
-    position: relative;
-  }
-  .productCard {
-    flex: 0 0 95%;
-    min-width: 95%;
-    scroll-snap-align: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    /* ховаємо скролбар */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  /* Приховуємо скролбар */
   .products::-webkit-scrollbar {
     display: none;
   }
-  .products {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+
+  .slide {
+    flex: 0 0 72%;
+    scroll-snap-align: start;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
+  .popular {
+    padding: 48px 16px;
+  }
+
   .popularTitle {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .slide {
+    flex: 0 0 80%;
+  }
+}
+
+@media (max-width: 400px) {
+  .slide {
+    flex: 0 0 88%;
   }
 }

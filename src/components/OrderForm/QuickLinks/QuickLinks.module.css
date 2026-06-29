@@ -1,35 +1,50 @@
 .quickLink {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 12px;
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #101828;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #9ca3af;
+  flex-wrap: wrap;
 }
 
 [data-theme="dark"] .quickLink {
-  color: #fff;
+  color: #6b7280;
 }
 
 .quickLink a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  color: #2563eb;
-  transform: color 0.3s ease-in;
-}
-
-[data-theme="dark"] .quickLink a {
-  color: #1e90ff;
+  gap: 5px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
+  border: 0.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    color 0.15s;
 }
 
 .quickLink a:hover {
-  color: #0b44cd;
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+[data-theme="dark"] .quickLink a {
+  background: #1f2937;
+  border-color: #374151;
+  color: #d1d5db;
 }
 
 [data-theme="dark"] .quickLink a:hover {
-  color: #dadde1;
+  background: #111827;
+  border-color: #4b5563;
+  color: #f9fafb;
 }
